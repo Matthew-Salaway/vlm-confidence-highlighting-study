@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-control" content="public">
+    <title>AI Confidence</title>
+    <link rel="shortcut icon" href="#" />
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto&display=swap'>
+    <link rel="stylesheet" href="style.css?r=4">
+</head>
+
+<body style='text-align: center; margin-top: 30px; margin-bottom: 20px;'>
+    <h2 style="margin-left: auto; margin-right: auto;">Do You Trust My Explanation?</h2>
+
+    <div style="text-align: left; width: 800px; margin-left: auto; margin-right: auto; margin-top: 30px">
+
+        <div id="instructions_and_decorations">
+            <div style="margin-top: 30px;  text-align: justify;">
+                <ul>
+                    <li style="margin: 10px 0;"> In this experiment, you are working with an AI that is answering questions about images. You cannot see the image, you can only see the AI's answer. Your task is to decide if you trust the AI's answer or not.</li>
+                    <li style="margin: 10px 0;">If your decision is correct, you gain a reward of $0.10. You will see your total reward at the end of the experiment. Your payment is $2.0 plus whatever you accumulate during this experiment.</li>
+                    <li style="margin: 10px 0;">To help you make your decision, you will see the AI's answer, along with an explanation, and some information about how reliable the explanation is. After getting each piece of additional information, you will be asked whether you think the AI is correct or not.</li>
+                </ul>
+
+            </div>
+
+            <br>
+            <div style="text-align: right; height: 20px; margin-left: -30px">
+                <div id="progress" style="width: 150px; float: left;">(-/-)</div>
+                <!--<div id="balance" style="width: 200px; float: right;">Balance: $0+$1.0</div>-->
+            </div>
+        </div>
+
+        
+        <div class="main_box" id="main_box_end" style="display: none">
+            Thank you for participation in our study.
+            <div id="reward_box" style="display: none">
+                Your total reward is $0.00 (0 questions answered).
+            </div>
+            Please navigate <a href="https://app.prolific.com/submissions/complete?cc=C18F0V8M"
+                style="color: black; font-weight: bold;">to Prolific</a> or with the code <b>C18F0V8M</b>.
+        </div>
+
+        <div class="main_box" id="main_box_end_mock" style="display: none">
+            Thank you for testing out our study.
+            <div id="reward_box_mock" style="display: none">
+                Your total reward is $0.00 (0 questions answered).
+            </div>
+            Please complete the <a href="" target="_blank" style="color: black; font-weight: bold;">exit questionnaire</a> for providing feedback on the user study.
+        </div>
+
+        <div class="main_box" id="main_box_instructions" style="display: none">
+            <input id="button_instructions_prev" type="button" value="Previous">
+            <input id="button_instructions_next" type="button" value="Next" style="margin-bottom: 10px">
+
+            <div id="instructions_0">Welcome to our user study. In this experiment, you are working with an AI that is answering questions about images. You cannot see the image, you can only see the AI's answer. Your task is to decide if you trust the AI's answer or not.
+            </div>
+            <div id="instructions_1">
+                You will first be shown the question that the AI is trying to answer, as well as the AI's answer.
+                <img src="img/instructions_1.png">
+            </div>
+            <div id="instructions_2">
+                In the first step, you will be asked whether you think the AI's answer is correct or not. You can also indicate that you are unsure.
+                <img src="img/instructions_2.png">
+            </div>
+            <div id="instructions_3">
+                You will next be shown an explanation from the AI. You will be asked again whether you think the AI's answer is correct or not.
+                <img src="img/instructions_3.png">
+            </div>
+            <div id="instructions_4">
+                Finally, you will be provided with some information about how reliable the explanation is. You will be asked again whether you think the AI's answer is correct or not.
+                <br>
+                <img src="img/instructions_4.png">
+            </div>
+            <div id="instructions_5">
+                 <!-- For this annotation experiment we are looking
+                at trivia and math questions. Note that the system performance may differ across question types. -->
+                The experiment will have you verify 10 questions in total.
+                <br><br>
+                <span class='color_incorrect'><b>You are not permitted to leave this tab</b></span> for the duration of the experiment. This will be monitored and violation of this can result in your submission being rejected.
+                <br><br>
+                The average time of the experiment is 10 minutes.
+                <br><br>
+                You will not be paid if you already participated in this study before.
+                <br><br>
+                Click <b>Start study</b> if you understood all the instructions and want to start with the first
+                question.
+                Feel free to re-read the instructions again (<b>Previous</b>).
+
+                <!-- <img src="img/instructions_5_trivia.png" style="width: 80%">
+                <img src="img/instructions_5_math.png"> -->
+            </div>
+        </div>
+
+        <div class="main_box" id="main_box_experiment" style="display: none">
+            <p style="font-weight: bold; font-size: 18px">Question: <span id="question_span"></span></p>
+
+
+            <div id="ai_answer_div">
+                <p style="font-weight: bold; font-size: 18px">The AI thinks the answer is: <span id="ai_prediction_span"></span.</p>
+                <div id="answeronly_decision_div">
+                    <input id="button_answeronly_usertrusts" type="button" class="button-neutral button-decision" value="The AI's answer is correct.">
+                    <input id="button_answeronly_userdistrusts" type="button" class="button-neutral button-decision" value="The AI's answer is incorrect.">
+                    <input id="button_answeronly_userunsure" type="button" class="button-neutral button-decision" value="I am unsure and would like more info.">
+                </div>        
+            </div>
+            <br>
+
+            <div id="ai_explanation_div">
+                <!--<button class="dropbtn" id="ai_explanation_dropbtn">Wish to Get An Explanation from the AI?</button> 
+                <p class="titlebar" id="ai_explanation_titlebar">
+                    <i class="arrow right" id="ai_explanation_dropbtn"></i>
+                    <b>  Wish to Read An Explanation from the AI?</b>
+                </p> -->
+                <p style="font-weight: bold; font-size: 18px">AI's Explanation: 
+                    <span id="ai_explanation_span">The AI system thinks that the answer is correct because...</span>
+                </p>
+                <div id="withexplanation_decision_div">
+                    <input id="button_withexplanation_usertrusts" type="button" class="button-neutral button-decision" value="The AI's answer is correct.">
+                    <input id="button_withexplanation_userdistrusts" type="button" class="button-neutral button-decision" value="The AI's answer is incorrect.">
+                    <input id="button_withexplanation_userunsure" type="button" class="button-neutral button-decision" value="I am unsure and would like more info.">
+                </div>        
+            </div>
+
+            <div id="ai_explanation_quality_div">
+                <!--<button class="dropbtn" id="ai_explanation_dropbtn">Wish to Get An Explanation from the AI?</button> 
+                <p class="titlebar" id="ai_explanation_titlebar">
+                    <i class="arrow right" id="ai_explanation_dropbtn"></i>
+                    <b>  Wish to Read An Explanation from the AI?</b>
+                </p> -->
+                <p style="font-weight: bold; font-size: 18px">AI Confidence that all the visual details in the explanation are correct: </b><span id="explanation_fidelity_span">xxx</span>
+                <br>
+                <b>AI Confidence that the other options are incorrect: </b><span id="explanation_contrastiveness_span">YYY</span>
+                <div id="withexplanation_decision_div">
+                    <input id="button_withexplanationquality_usertrusts" type="button" class="button-neutral button-decision" value="The AI's answer is correct.">
+                    <input id="button_withexplanationquality_userdistrusts" type="button" class="button-neutral button-decision" value="The AI's answer is incorrect.">
+                    <input id="button_withexplanationquality_userunsure" type="button" class="button-neutral button-decision" value="I am still unsure.">
+                </div>        
+            </div>
+
+            <br>
+
+            <p style="font-size: 1.17em;" id="result_span"></p>
+            
+            <!-- <input id="button_place_bet" type="button" class="button-neutral" value="See the result"> -->
+            <input id="button_next" type="button" class="button-neutral" value="Next question">
+            <input id="button_quit" type="button" class="button-neutral" value="End study">
+        </div>
+        <br>
+        <!-- Research project by Tejas Srinivasan at the University of Southern California. -->
+
+    </div>
+    <script id="nocachescript"></script>
+    <script>
+        var randomNum = String((Math.floor(Math.random() * 10e10)));
+        document.getElementById('nocachescript').src = "web.js?t=" + randomNum;
+    </script>
+</body>
+
+</html>

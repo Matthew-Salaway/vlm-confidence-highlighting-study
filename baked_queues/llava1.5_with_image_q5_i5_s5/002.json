@@ -1,0 +1,47 @@
+[
+  {
+    "question_id": "1",
+    "question": "Which number birthday is probably being celebrated? Choices: one, ten, nine, thirty",
+    "predicted_answer": "Thirty",
+    "prediction_is_correct": 1,
+    "generated_rationale": "The reasoning behind my answer is that the birthday cake has the number \"30\" on it. This indicates that the person celebrating their birthday is turning 30 years old.",
+    "visual fidelity": 1.0,
+    "contrastiveness": 0.9995591053869883
+  },
+  {
+    "question_id": "3",
+    "question": "What is the white substance on top of the cupcakes? Choices: butter, mayo, ice cream, icing",
+    "predicted_answer": "Icing",
+    "prediction_is_correct": 1,
+    "generated_rationale": "The white substance on top of the cupcakes is icing. This can be inferred from the fact that icing is commonly used as a topping for cupcakes to enhance their flavor and appearance. In the image, there are three cupcakes with icing on top, which indicates that they have been decorated with icing as part of their presentation. Additionally, icing is a common ingredient in cupcake recipes, so it is reasonable to assume that the white substance on top of the cupcakes is indeed icing.",
+    "visual fidelity": 1.0,
+    "contrastiveness": 0.9944673118091006
+  },
+  {
+    "question_id": "9",
+    "question": "What type of pants is the man on the right wearing? Choices: linen, corduroy, silk, denim",
+    "predicted_answer": "Denim",
+    "prediction_is_correct": 1,
+    "generated_rationale": "The man on the right is wearing denim pants.",
+    "visual fidelity": 1.0,
+    "contrastiveness": 0.3030343625512671
+  },
+  {
+    "question_id": "0",
+    "question": "What is in the motorcyclist's mouth? Choices: toothpick, food, popsicle stick, cigarette",
+    "predicted_answer": "Cigarette",
+    "prediction_is_correct": 1,
+    "generated_rationale": "The motorcyclist has a cigarette in his mouth. This is evident from the fact that he is smoking a cigarette while riding the motorcycle.",
+    "visual fidelity": 0.0,
+    "contrastiveness": 0.9995542669739426
+  },
+  {
+    "question_id": "5",
+    "question": "The thing on the animal to the left's head is similar to what is on the head of what else? Choices: devil, zombie, vampire, witch",
+    "predicted_answer": "Witch",
+    "prediction_is_correct": 0,
+    "generated_rationale": "The horns on the animal to the left's head are similar to the horns on the head of the witch in the image. Both the horns on the animal and the horns on the witch are large and pointy, giving them a similar appearance.",
+    "visual fidelity": 0.25,
+    "contrastiveness": 0.28572173222460584
+  }
+]

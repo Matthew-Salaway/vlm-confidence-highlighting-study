@@ -1,0 +1,47 @@
+[
+  {
+    "question_id": "5",
+    "question": "The thing on the animal to the left's head is similar to what is on the head of what else? Choices: devil, zombie, vampire, witch",
+    "predicted_answer": "Witch",
+    "prediction_is_correct": 0,
+    "generated_rationale": "The horns on the animal to the left's head are similar to the horns on the head of the witch in the image. Both the horns on the animal and the horns on the witch are large and pointy, giving them a similar appearance.",
+    "visual fidelity": 0.25,
+    "contrastiveness": 0.28572173222460584
+  },
+  {
+    "question_id": "6",
+    "question": "What is the appliance the woman is holding used for? Choices: cutting hair, brushing teeth, drying hair, painting nails",
+    "predicted_answer": "Drying hair",
+    "prediction_is_correct": 1,
+    "generated_rationale": "The appliance the woman is holding is a blow dryer, which is used for drying hair. The reasoning behind this answer is that the image shows the woman holding a blow dryer in a bathroom, which is a common place for people to dry their hair after taking a shower. Additionally, blow dryers are specifically designed for drying hair and are not used for cutting hair, brushing teeth, or painting nails.",
+    "visual fidelity": 1.0,
+    "contrastiveness": 0.9999647872804299
+  },
+  {
+    "question_id": "4",
+    "question": "What type of device is sitting next to the laptop? Choices: mouse, mobile phone, pen, keyboard",
+    "predicted_answer": "Mobile phone",
+    "prediction_is_correct": 1,
+    "generated_rationale": "The device sitting next to the laptop is a mobile phone. The reasoning behind this answer is that mobile phones are commonly used in conjunction with laptops for various purposes, such as making calls, sending text messages, and accessing the internet. In the image, the mobile phone is placed next to the laptop, which suggests that it might be used for one or more of these purposes. On the other hand, a mouse, pen, or keyboard would not typically be placed next to a laptop in this manner.",
+    "visual fidelity": 1.0,
+    "contrastiveness": 0.9999780091790722
+  },
+  {
+    "question_id": "9",
+    "question": "What type of pants is the man on the right wearing? Choices: linen, corduroy, silk, denim",
+    "predicted_answer": "Denim",
+    "prediction_is_correct": 1,
+    "generated_rationale": "The man on the right is wearing denim pants.",
+    "visual fidelity": 1.0,
+    "contrastiveness": 0.3030343625512671
+  },
+  {
+    "question_id": "7",
+    "question": "What is the descriptive word for this surface? Choices: barren, crowded, minimalist, empty",
+    "predicted_answer": "Empty",
+    "prediction_is_correct": 0,
+    "generated_rationale": "The surface in the image is described as empty. This implies that there are no other objects or items on the surface, making it a minimalist and uncluttered space. The presence of a black cat sitting in front of a computer screen further emphasizes the emptiness of the surface, as the cat is the only object occupying the space.",
+    "visual fidelity": 0.5,
+    "contrastiveness": 0.36991785362325547
+  }
+]
