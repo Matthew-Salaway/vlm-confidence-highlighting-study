@@ -13,7 +13,7 @@ let userselection_withexplanationquality: number = -1
 let confidenceRating: number = -1;
 let part1Timer: number = 0;
 let part1Interval: number = 0;
-let remainingTime: number = 15;
+let remainingTime: number = 20;
 
 
 
@@ -294,7 +294,7 @@ function next_question() {
     clearTimeout(part1Timer);
     part1Timer = window.setTimeout(autoSubmitPart1, 20000);
     // Reset and start the timer for Part 1
-    remainingTime = 15;
+    remainingTime = 20;
     $("#timer").text(remainingTime);
     $("#timer").show();
 
@@ -452,21 +452,21 @@ $("#qual_next").on("click", () => {
     
     let valid = true;
     
-    if (q1.length < 50) {
+    if (q1.length < 25) {
         $("#warn_q1").show();
         valid = false;
     } else {
         $("#warn_q1").hide();
     }
     
-    if (q2.length < 50) {
+    if (q2.length < 25) {
         $("#warn_q2").show();
         valid = false;
     } else {
         $("#warn_q2").hide();
     }
     
-    if (q3.length < 50) {
+    if (q3.length < 25) {
         $("#warn_q3").show();
         valid = false;
     } else {
@@ -492,8 +492,12 @@ $("#qual_next").on("click", () => {
     // Transition to end-of-survey “Thank you” screen or similar.
     $("#qualitative_section").hide();
     if (MOCKMODE) {
-        $("#main_box_end_mock").show();
+        $('#reward_box_mock').text(`Your total reward is $${balance.toFixed(2)} (${question_i} questions answered) + $2.`);
+        $('#reward_box_mock').show();
+        $("#main_box_end_mock").show();    
     } else {
-        $("#main_box_end").show();
+        $('#reward_box').text(`Your total reward is $${balance.toFixed(2)} (${question_i} questions answered) + $2.`);
+        $('#reward_box').show();
+        $("#main_box_end").show();    
     }
 });
