@@ -10,6 +10,8 @@ let question: any = null
 let userselection_answeronly: number = -1
 let userselection_withexplanation: number = -1
 let userselection_withexplanationquality: number = -1
+let confidenceRating: number = -1;
+
 
 let balance = 0
 let balance_increment = 0.1     // Balance updates by $0.10 for every correct selection
@@ -208,43 +210,44 @@ function next_question() {
     $('#button_quit').hide()
     //$("#range_val").val(user_trust)
 
-    question_i += 1
+    question_i += 1;
     if (question_i >= data.length) {
-        $("#main_box_experiment").hide()
-        if (MOCKMODE) {
-            $('#reward_box_mock').text(`Your total reward is $${balance.toFixed(2)} (${question_i} questions answered) + $2.`)
-            $('#reward_box_mock').show()
-            $("#main_box_end_mock").show()
-        } else {
-            $('#reward_box').text(`Your total reward is $${balance.toFixed(2)} (${question_i} questions answered) + $2.`)
-            $('#reward_box').show()
-            $("#main_box_end").show()
-        }
-        return
+        // (Handle end-of-study here)
+        return;
     }
-    question = data[question_i]
+    
+    // Retrieve the current question object.
+    question = data[question_i];
+    
+    // Always show Part 1 and hide Part 2 when a new question loads.
+    $("#part1").show();
+    $("#part2").hide();
+    
+    // --- Update Part 1 elements ---
+    // For the image: assume a valid Base64 string for now.
+    if (question["image"]) {
+      $("#question_image").attr("src", "data:image/png;base64," + question["image"]);
+    } else {
+      $("#question_image").attr("src", "");
+    }
+    
+    // Display the predicted text.
+    $("#predicted_text").html(question["predicted_text"]);
+    
+    // Concatenate tokens (with replacement of Ġ and skipping <|im_end|>).
+    let tokensConcatenated = "";
+    if (question["token_info"] && Array.isArray(question["token_info"])) {
+        tokensConcatenated = question["token_info"]
+          .map(item => item.token)
+          .filter(token => token !== "<|im_end|>")
+          .map(token => token.replace(/Ġ/g, " "))
+          .join('');
+    }
+    $("#token_input").val(tokensConcatenated);
+    
+    // (Update progress and other elements as necessary)
+    $("#progress").text(`Progress: ${question_i + 1} / ${data.length}`);
 
-    $("#question_span").html(question!["question"])
-    $("#ai_prediction_span").html(question!["predicted_answer"])
-    $("#ai_explanation_span").html(question!["generated_rationale"])
-    let visual_fidelity_conf = Math.round(question!["visual fidelity"] * 100)
-    $("#explanation_fidelity_span").html(`${visual_fidelity_conf}%`)
-    let visual_contrastiveness_conf = Math.round(question!["contrastiveness"] * 100)
-    $("#explanation_contrastiveness_span").html(`${visual_contrastiveness_conf}%`)
-
-
-    // set bet value ratio
-    //if(question.hasOwnProperty("reward_ratio")) {
-    //    let [ratio1, ratio2] = question["reward_ratio"]
-    //    ratio1 = Number(ratio1)
-    //    ratio2 = Number(ratio2)
-    //    bet_val_ratio = ratio1/ratio2
-    //} else {
-    //    bet_val_ratio = 1
-    //}
-
-    //time_question_start = Date.now()
-    $("#progress").text(`Progress: ${question_i + 1} / ${data.length}`)
 }
 
 // get user id and load queue
@@ -319,3 +322,46 @@ document.onvisibilitychange = () => {
         alert_active = false
     }
 }
+
+// When the DOM is ready:
+$(document).ready(() => {
+    // Transition from Part 1 (question) to Part 2 (confidence rating)
+    $("#button_next_part1").on("click", () => {
+      // Optionally, log or save any Part 1 data here.
+      $("#part1").hide();
+      $("#part2").show();
+    });
+  
+    // Handle confidence rating selections:
+    $(".confidence-button").on("click", function() {
+      let rating = parseInt($(this).attr("data-rating") as string);
+      // Clear previous selections:
+      $(".confidence-button").removeClass("selected");
+      $(this).addClass("selected");
+      // Store the rating and enable the Part 2 Next button.
+      confidenceRating = rating;
+      $("#button_next_part2").removeAttr("disabled");
+    });
+  
+    // Transition from Part 2 (confidence rating) to the next question.
+    $("#button_next_part2").on("click", () => {
+      // Log the confidence rating along with other data if needed.
+      let logged_data = {
+        "question_i": question_i,
+        "confidence_rating": confidenceRating,
+        // ... include other logging fields as desired
+      };
+      log_data(logged_data);
+      
+      // Reset Part 2 UI elements for the next question.
+      $("#button_next_part2").attr("disabled", "true");
+      $(".confidence-button").removeClass("selected");
+      confidenceRating = -1;
+      
+      // Switch back to Part 1 and load the next question.
+      $("#part2").hide();
+      $("#part1").show();
+      next_question();
+    });
+  });
+  

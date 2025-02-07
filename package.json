@@ -1,6 +1,6 @@
 {
   "main": "webpack.config.js",
-  "homepage": "https://tejas1995.github.io/vlm-rationale-study",
+  "homepage": "https://Matthew-Salaway.github.io/vlm-confidence-highlighting-study",
   "devDependencies": {
     "@types/jquery": "^3.5",
     "gh-pages": "^6.1.1",
@@ -22,6 +22,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/tejas1995/vlm-rationale-study"
+    "url": "https://github.com/Matthew-Salaway/vlm-confidence-highlighting-study"
   }
 }

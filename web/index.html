@@ -98,58 +98,38 @@
         </div>
 
         <div class="main_box" id="main_box_experiment" style="display: none">
-            <p style="font-weight: bold; font-size: 18px">Question: <span id="question_span"></span></p>
-
-
-            <div id="ai_answer_div">
-                <p style="font-weight: bold; font-size: 18px">The AI thinks the answer is: <span id="ai_prediction_span"></span.</p>
-                <div id="answeronly_decision_div">
-                    <input id="button_answeronly_usertrusts" type="button" class="button-neutral button-decision" value="The AI's answer is correct.">
-                    <input id="button_answeronly_userdistrusts" type="button" class="button-neutral button-decision" value="The AI's answer is incorrect.">
-                    <input id="button_answeronly_userunsure" type="button" class="button-neutral button-decision" value="I am unsure and would like more info.">
-                </div>        
+                    <!-- Part 1: Question Screen -->
+            <div id="part1">
+                <!-- Existing content for question display -->
+                <div id="question_display">
+                <img id="question_image" src="" alt="Question Image" style="max-width: 800px; display: block; margin: 0 auto;">
+                <div id="predicted_text_container" style="margin-top: 20px; font-size: 18px; text-align: center;">
+                    <strong>Predicted Text: </strong><span id="predicted_text"></span>
+                </div>
+                <div id="token_input_container" style="margin-top: 20px; text-align: center;">
+                    <input type="text" id="token_input" style="width: 90%; font-size: 16px; padding: 8px;">
+                </div>
+                </div>
+                <!-- Next button for Part 1: always visible -->
+                <div style="text-align: center; margin-top: 20px;">
+                <input id="button_next_part1" type="button" class="button-neutral" value="Next">
+                </div>
             </div>
-            <br>
-
-            <div id="ai_explanation_div">
-                <!--<button class="dropbtn" id="ai_explanation_dropbtn">Wish to Get An Explanation from the AI?</button> 
-                <p class="titlebar" id="ai_explanation_titlebar">
-                    <i class="arrow right" id="ai_explanation_dropbtn"></i>
-                    <b>  Wish to Read An Explanation from the AI?</b>
-                </p> -->
-                <p style="font-weight: bold; font-size: 18px">AI's Explanation: 
-                    <span id="ai_explanation_span">The AI system thinks that the answer is correct because...</span>
-                </p>
-                <div id="withexplanation_decision_div">
-                    <input id="button_withexplanation_usertrusts" type="button" class="button-neutral button-decision" value="The AI's answer is correct.">
-                    <input id="button_withexplanation_userdistrusts" type="button" class="button-neutral button-decision" value="The AI's answer is incorrect.">
-                    <input id="button_withexplanation_userunsure" type="button" class="button-neutral button-decision" value="I am unsure and would like more info.">
-                </div>        
-            </div>
-
-            <div id="ai_explanation_quality_div">
-                <!--<button class="dropbtn" id="ai_explanation_dropbtn">Wish to Get An Explanation from the AI?</button> 
-                <p class="titlebar" id="ai_explanation_titlebar">
-                    <i class="arrow right" id="ai_explanation_dropbtn"></i>
-                    <b>  Wish to Read An Explanation from the AI?</b>
-                </p> -->
-                <p style="font-weight: bold; font-size: 18px">AI Confidence that all the visual details in the explanation are correct: </b><span id="explanation_fidelity_span">xxx</span>
-                <br>
-                <b>AI Confidence that the other options are incorrect: </b><span id="explanation_contrastiveness_span">YYY</span>
-                <div id="withexplanation_decision_div">
-                    <input id="button_withexplanationquality_usertrusts" type="button" class="button-neutral button-decision" value="The AI's answer is correct.">
-                    <input id="button_withexplanationquality_userdistrusts" type="button" class="button-neutral button-decision" value="The AI's answer is incorrect.">
-                    <input id="button_withexplanationquality_userunsure" type="button" class="button-neutral button-decision" value="I am still unsure.">
-                </div>        
-            </div>
-
-            <br>
-
-            <p style="font-size: 1.17em;" id="result_span"></p>
             
-            <!-- <input id="button_place_bet" type="button" class="button-neutral" value="See the result"> -->
-            <input id="button_next" type="button" class="button-neutral" value="Next question">
-            <input id="button_quit" type="button" class="button-neutral" value="End study">
+            <!-- Part 2: Confidence Rating Screen (initially hidden) -->
+            <div id="part2" style="display: none; text-align: center; margin-top: 30px;">
+                <p>Please rate your confidence in your answer (1–5):</p>
+                <div id="confidence_options">
+                <button type="button" class="confidence-button" data-rating="1">1</button>
+                <button type="button" class="confidence-button" data-rating="2">2</button>
+                <button type="button" class="confidence-button" data-rating="3">3</button>
+                <button type="button" class="confidence-button" data-rating="4">4</button>
+                <button type="button" class="confidence-button" data-rating="5">5</button>
+                </div>
+                <div style="margin-top: 20px;">
+                <input id="button_next_part2" type="button" class="button-neutral" value="Next" disabled>
+                </div>
+            </div>
         </div>
         <br>
         <!-- Research project by Tejas Srinivasan at the University of Southern California. -->
