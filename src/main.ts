@@ -218,16 +218,7 @@ function next_question() {
     if (question_i >= data.length) {
         // Hide the experiment container.
         $("#main_box_experiment").hide();
-        // Show the final reward / end-of-study container.
-        if (MOCKMODE) {
-            $('#reward_box_mock').text(`Your total reward is $${balance.toFixed(2)} (${question_i} questions answered) + $2.`);
-            $('#reward_box_mock').show();
-            $("#main_box_end_mock").show();
-        } else {
-            $('#reward_box').text(`Your total reward is $${balance.toFixed(2)} (${question_i} questions answered) + $2.`);
-            $('#reward_box').show();
-            $("#main_box_end").show();
-        }
+        $("#qualitative_section").show();
         return;
     }
 
@@ -454,3 +445,55 @@ $(document).ready(() => {
     $("#part1").hide();
     $("#part2").show();
 }
+$("#qual_next").on("click", () => {
+    const q1 = ($("#qual_q1").val() as string) || "";
+    const q2 = ($("#qual_q2").val() as string) || "";
+    const q3 = ($("#qual_q3").val() as string) || "";
+    
+    let valid = true;
+    
+    if (q1.length < 50) {
+        $("#warn_q1").show();
+        valid = false;
+    } else {
+        $("#warn_q1").hide();
+    }
+    
+    if (q2.length < 50) {
+        $("#warn_q2").show();
+        valid = false;
+    } else {
+        $("#warn_q2").hide();
+    }
+    
+    if (q3.length < 50) {
+        $("#warn_q3").show();
+        valid = false;
+    } else {
+        $("#warn_q3").hide();
+    }
+    
+    // If validation fails, do not proceed
+    if (!valid) {
+        return;
+    }
+    
+    // If all text boxes have at least 50 characters, log data and proceed
+    const finalData = {
+        qualitative: {
+            q1: q1,
+            q2: q2,
+            q3: q3
+        },
+        // ... include any additional data if needed
+    };
+    log_data(finalData);
+    
+    // Transition to end-of-survey “Thank you” screen or similar.
+    $("#qualitative_section").hide();
+    if (MOCKMODE) {
+        $("#main_box_end_mock").show();
+    } else {
+        $("#main_box_end").show();
+    }
+});
