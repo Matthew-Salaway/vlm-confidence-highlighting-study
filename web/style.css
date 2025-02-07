@@ -193,3 +193,19 @@ input[type="button"]:hover:not([disabled]) {
     border: white;
 }
 
+.confidence-button.selected {
+    background-color: rgb(29, 100, 255);
+    color: white; /* Optional: for better contrast */
+}
+.confidence-button {
+    font-size: 1.5em;    /* Increase the font size */
+    padding: 1em 1.5em;   /* Increase padding for a larger clickable area */
+    min-width: 50px;      /* Ensure a minimum width */
+    min-height: 50px;     /* Ensure a minimum height */
+    border-radius: 8px;   /* Optional: to make them look nicer */
+    margin: 5px;          /* Add some margin between buttons */
+  }
+  .highlighted-title {
+    background-color: rgba(255, 0, 0, 0.5);
+  }
+  

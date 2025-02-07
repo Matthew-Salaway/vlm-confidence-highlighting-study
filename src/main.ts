@@ -11,6 +11,10 @@ let userselection_answeronly: number = -1
 let userselection_withexplanation: number = -1
 let userselection_withexplanationquality: number = -1
 let confidenceRating: number = -1;
+let part1Timer: number = 0;
+let part1Interval: number = 0;
+let remainingTime: number = 15;
+
 
 
 let balance = 0
@@ -212,9 +216,21 @@ function next_question() {
 
     question_i += 1;
     if (question_i >= data.length) {
-        // (Handle end-of-study here)
+        // Hide the experiment container.
+        $("#main_box_experiment").hide();
+        // Show the final reward / end-of-study container.
+        if (MOCKMODE) {
+            $('#reward_box_mock').text(`Your total reward is $${balance.toFixed(2)} (${question_i} questions answered) + $2.`);
+            $('#reward_box_mock').show();
+            $("#main_box_end_mock").show();
+        } else {
+            $('#reward_box').text(`Your total reward is $${balance.toFixed(2)} (${question_i} questions answered) + $2.`);
+            $('#reward_box').show();
+            $("#main_box_end").show();
+        }
         return;
     }
+
     
     // Retrieve the current question object.
     question = data[question_i];
@@ -232,7 +248,41 @@ function next_question() {
     }
     
     // Display the predicted text.
-    $("#predicted_text").html(question["predicted_text"]);
+    // Build the predicted text HTML by concatenating token_info
+    let predictedHtml = "";
+    if (question["token_info"] && Array.isArray(question["token_info"])) {
+        predictedHtml = question["token_info"]
+            // Skip the end token
+            .filter(item => item.token !== "<|im_end|>")
+            .map(item => {
+                // Replace the special "Ġ" character with a space
+                let tokenText = item.token.replace(/Ġ/g, " ");
+                // Get the probability from the first candidate in top_5_tokens.
+                // If not available, default to 1 (no highlight).
+                let prob = (item.top_5_tokens &&
+                            item.top_5_tokens[0] &&
+                            typeof item.top_5_tokens[0].probability === "number")
+                            ? item.top_5_tokens[0].probability
+                            : 1;
+                // Compute the highlight intensity (0 if probability is 1, 1 if probability is 0)
+                let intensity = 1 - prob;
+                // Create a span with red background; adjust the opacity by intensity.
+                if (question["is_highlighted"] == 1) {
+                    return `<span style="background-color: rgba(255, 0, 0, ${intensity});">${tokenText}</span>`;
+                } else {
+                    return tokenText;
+                }
+            })
+            .join('');
+    }
+    $("#predicted_text").html(predictedHtml);
+
+    if (question["is_highlighted"] == 1) {
+        $("#predicted_text_container strong").addClass("highlighted-title");
+      } else {
+        $("#predicted_text_container strong").removeClass("highlighted-title");
+      }
+      
     
     // Concatenate tokens (with replacement of Ġ and skipping <|im_end|>).
     let tokensConcatenated = "";
@@ -247,6 +297,33 @@ function next_question() {
     
     // (Update progress and other elements as necessary)
     $("#progress").text(`Progress: ${question_i + 1} / ${data.length}`);
+
+    // Start a 20-second timer for Part 1
+    // Clear any existing timer (just in case)
+    clearTimeout(part1Timer);
+    part1Timer = window.setTimeout(autoSubmitPart1, 20000);
+    // Reset and start the timer for Part 1
+    remainingTime = 15;
+    $("#timer").text(remainingTime);
+    $("#timer").show();
+
+    // Clear any previous interval
+    if (part1Interval) {
+        clearInterval(part1Interval);
+    }
+
+    // Start a new interval that counts down every second
+    part1Interval = window.setInterval(() => {
+        remainingTime -= 1;
+        $("#timer").text(remainingTime);
+        if (remainingTime <= 0) {
+            clearInterval(part1Interval);
+            // Auto-submit Part 1 if time expires
+            autoSubmitPart1();
+            $("#timer").hide();
+        }
+    }, 1000);
+
 
 }
 
@@ -328,19 +405,23 @@ $(document).ready(() => {
     // Transition from Part 1 (question) to Part 2 (confidence rating)
     $("#button_next_part1").on("click", () => {
       // Optionally, log or save any Part 1 data here.
+      clearTimeout(part1Timer);
+      $("#timer").hide();
+
+
       $("#part1").hide();
       $("#part2").show();
     });
   
     // Handle confidence rating selections:
     $(".confidence-button").on("click", function() {
-      let rating = parseInt($(this).attr("data-rating") as string);
-      // Clear previous selections:
-      $(".confidence-button").removeClass("selected");
-      $(this).addClass("selected");
-      // Store the rating and enable the Part 2 Next button.
-      confidenceRating = rating;
-      $("#button_next_part2").removeAttr("disabled");
+        let rating = parseInt($(this).attr("data-rating") as string);
+        // Remove 'selected' from all buttons, then add it to the clicked one.
+        $(".confidence-button").removeClass("selected");
+        $(this).addClass("selected");
+        // Store the rating and enable the Part 2 Next button.
+        confidenceRating = rating;
+        $("#button_next_part2").removeAttr("disabled");
     });
   
     // Transition from Part 2 (confidence rating) to the next question.
@@ -364,4 +445,12 @@ $(document).ready(() => {
       next_question();
     });
   });
-  
+  function autoSubmitPart1() {
+    // Stop the timer if not already cleared
+    clearInterval(part1Interval);
+    $("#timer").hide();
+    
+    // Automatically transition to Part 2
+    $("#part1").hide();
+    $("#part2").show();
+}

@@ -15,7 +15,7 @@
 </head>
 
 <body style='text-align: center; margin-top: 30px; margin-bottom: 20px;'>
-    <h2 style="margin-left: auto; margin-right: auto;">Do You Trust My Explanation?</h2>
+    <h2 style="margin-left: auto; margin-right: auto;">Do You Think My Transcription Is Correct?</h2>
 
     <div style="text-align: left; width: 800px; margin-left: auto; margin-right: auto; margin-top: 30px">
 
@@ -30,10 +30,10 @@
             </div>
 
             <br>
-            <div style="text-align: right; height: 20px; margin-left: -30px">
+            <div style="text-align: right; height: 20px; margin-left: -30px; margin-bottom: 15px;">
                 <div id="progress" style="width: 150px; float: left;">(-/-)</div>
-                <!--<div id="balance" style="width: 200px; float: right;">Balance: $0+$1.0</div>-->
-            </div>
+                <div id="timer" style="width: 100px; float: right; display: none; font-size: 1.3em;">15</div>
+            </div>            
         </div>
 
         
@@ -102,9 +102,9 @@
             <div id="part1">
                 <!-- Existing content for question display -->
                 <div id="question_display">
-                <img id="question_image" src="" alt="Question Image" style="max-width: 800px; display: block; margin: 0 auto;">
+                <img id="question_image" src="" alt="Question Image" style="height: 110px; display: block; margin: 0 auto; max-width: 800px;">
                 <div id="predicted_text_container" style="margin-top: 20px; font-size: 18px; text-align: center;">
-                    <strong>Predicted Text: </strong><span id="predicted_text"></span>
+                    <strong style="margin-right: 5px;">Predicted Text:</strong>   <span id="predicted_text"></span>
                 </div>
                 <div id="token_input_container" style="margin-top: 20px; text-align: center;">
                     <input type="text" id="token_input" style="width: 90%; font-size: 16px; padding: 8px;">
@@ -131,8 +131,35 @@
                 </div>
             </div>
         </div>
+        <!-- Qualitative Feedback Section (initially hidden) -->
+        <div class="main_box" id="qualitative_section" style="display: none;">
+            <h3>Qualitative Feedback</h3>
+            
+            <div class="qual-question">
+            <p>1. What did you think about the AI transcription quality?</p>
+            <textarea id="qual_q1" rows="3" style="width: 100%;"></textarea>
+            <p class="qual-warning" id="warn_q1" style="color:red; display:none;">Please enter at least 50 characters.</p>
+            </div>
+            
+            <div class="qual-question">
+            <p>2. How would you improve the explanations provided by the AI?</p>
+            <textarea id="qual_q2" rows="3" style="width: 100%;"></textarea>
+            <p class="qual-warning" id="warn_q2" style="color:red; display:none;">Please enter at least 50 characters.</p>
+            </div>
+            
+            <div class="qual-question">
+            <p>3. Any additional comments?</p>
+            <textarea id="qual_q3" rows="3" style="width: 100%;"></textarea>
+            <p class="qual-warning" id="warn_q3" style="color:red; display:none;">Please enter at least 50 characters.</p>
+            </div>
+            
+            <div style="text-align: center; margin-top: 20px;">
+            <input id="qual_next" type="button" class="button-neutral" value="Next" disabled>
+            </div>
+        </div>
+  
         <br>
-        <!-- Research project by Tejas Srinivasan at the University of Southern California. -->
+        <!-- Research project by Tejas Srinivasan and Matthew Salaway at the University of Southern California. -->
 
     </div>
     <script id="nocachescript"></script>
