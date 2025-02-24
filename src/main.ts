@@ -91,7 +91,19 @@ document.getElementById('button_withexplanationquality_usertrusts')?.addEventLis
 document.getElementById('button_withexplanationquality_userdistrusts')?.addEventListener('click', () => registerWithExplanationQualityUserSelection(1));
 document.getElementById('button_withexplanationquality_userunsure')?.addEventListener('click', () => registerWithExplanationQualityUserSelection(2));
 
-
+function checkPreSurvey(): boolean {
+    const latexExp = $("input[name='latexExperience']:checked").val();
+    const latexFreq = $("input[name='latexFrequency']:checked").val();
+    const chatbotFreq = $("input[name='chatbotFrequency']:checked").val();
+  
+    if (latexExp && latexFreq && chatbotFreq) {
+      $("#button_instructions_next").show();
+      return true;
+    } else {
+      $("#button_instructions_next").hide();
+      return false;
+    }
+}
 
 
 function next_instructions(increment: number) {
@@ -101,6 +113,14 @@ function next_instructions(increment: number) {
         $("#button_instructions_prev").attr("disabled", "true")
     } else {
         $("#button_instructions_prev").removeAttr("disabled")
+    }
+    if(instruction_i == 4 && !checkPreSurvey()) {
+        $("#button_instructions_next").attr("disabled", "true")
+        $("#button_instructions_next").hide()
+    }
+    else{
+        $("#button_instructions_next").removeAttr("disabled")
+        $("#button_instructions_next").show()
     }
     if (instruction_i >= 5) {
         $("#instructions_and_decorations").show()
@@ -289,31 +309,41 @@ function next_question() {
     // (Update progress and other elements as necessary)
     $("#progress").text(`Progress: ${question_i + 1} / ${data.length}`);
 
-    // Start a 20-second timer for Part 1
-    // Clear any existing timer (just in case)
-    clearTimeout(part1Timer);
-    part1Timer = window.setTimeout(autoSubmitPart1, 20000);
-    // Reset and start the timer for Part 1
-    remainingTime = 20;
-    $("#timer").text(remainingTime);
-    $("#timer").show();
+// At the end of next_question(), after updating all Part 1 elements:
+$("#token_input_container").hide();
+$("#button_next_part1").hide();
 
-    // Clear any previous interval
-    if (part1Interval) {
-        clearInterval(part1Interval);
+// Start a 20-second timer for Part 1
+clearTimeout(part1Timer);
+part1Timer = window.setTimeout(autoSubmitPart1, 20000);
+
+// Reset and start the timer for Part 1
+remainingTime = 20;
+$("#timer").text(remainingTime);
+$("#timer").show();
+
+// Clear any previous interval
+if (part1Interval) {
+    clearInterval(part1Interval);
+}
+
+// Start a new interval that counts down every second
+part1Interval = window.setInterval(() => {
+    remainingTime -= 1;
+    $("#timer").text(remainingTime);
+
+    // When there are 15 seconds or less remaining, show the input box and Next button
+    if (remainingTime <= 15) {
+        $("#token_input_container").show();
+        $("#button_next_part1").show();
     }
 
-    // Start a new interval that counts down every second
-    part1Interval = window.setInterval(() => {
-        remainingTime -= 1;
-        $("#timer").text(remainingTime);
-        if (remainingTime <= 0) {
-            clearInterval(part1Interval);
-            // Auto-submit Part 1 if time expires
-            autoSubmitPart1();
-            $("#timer").hide();
-        }
-    }, 1000);
+    if (remainingTime <= 0) {
+        clearInterval(part1Interval);
+        autoSubmitPart1();
+        $("#timer").hide();
+    }
+}, 1000);
 
 
 }
@@ -435,7 +465,15 @@ $(document).ready(() => {
       $("#part1").show();
       next_question();
     });
-  });
+    $("input[name='latexExperience'], input[name='latexFrequency'], input[name='chatbotFrequency']").on("change", () => {
+        if(checkPreSurvey()) {
+            $("#button_instructions_next").removeAttr("disabled")
+            $("#button_instructions_next").show()            
+        }
+
+    });
+
+});
   function autoSubmitPart1() {
     // Stop the timer if not already cleared
     clearInterval(part1Interval);
@@ -466,7 +504,7 @@ $("#qual_next").on("click", () => {
         $("#warn_q2").hide();
     }
     
-    if (q3.length < 25) {
+    if (q3.length < 0) {
         $("#warn_q3").show();
         valid = false;
     } else {

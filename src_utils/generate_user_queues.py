@@ -22,8 +22,19 @@ for uid in list(range(args.num_queues)):
     sampled_data = random.sample(data, args.num_instances_per_queue)
     random.shuffle(sampled_data)
 
-    for question in sampled_data:
-        question["is_highlighted"] = random.choice([True, False])
+    for question in sampled_data[:(args.num_instances_per_queue // 2)]:
+        question["is_highlighted"] = True
+
+    for question in sampled_data[(args.num_instances_per_queue // 2):]:
+        question["is_highlighted"] = False
+
+    # If we want to random question type order
+    random.shuffle(sampled_data)
+
+    #  IF we want first half to be one type and second half to be another
+    # Randomly decide to reverse the list or not
+    # if random.choice([True, False]):
+    #     sampled_data = sampled_data[::-1]
 
     out_file = f"{out_dirname}/{uid:0>3}.json"
     if os.path.exists(out_file):
