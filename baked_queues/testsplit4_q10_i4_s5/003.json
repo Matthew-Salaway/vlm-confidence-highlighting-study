@@ -1,0 +1,3910 @@
+[
+  {
+    "condition": "non_highlighted",
+    "questions": [
+      {
+        "id": 4,
+        "answer": [
+          "x = \\frac { 3 } { 1 6 } \\div \\frac { 1 } { 8 }"
+        ],
+        "image": "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",
+        "predicted_text": "x = \\frac { 3 } { 1 6 } \\div \\frac { 1 } { 8 }",
+        "token_info": [
+          {
+            "token": "x",
+            "index": 1,
+            "top_5_tokens": [
+              {
+                "token": "x",
+                "probability": 0.9380018711090088,
+                "logit": 26.875,
+                "token_index": 87
+              },
+              {
+                "token": "8",
+                "probability": 0.02832520194351673,
+                "logit": 23.375,
+                "token_index": 23
+              },
+              {
+                "token": "y",
+                "probability": 0.01516138855367899,
+                "logit": 22.75,
+                "token_index": 88
+              },
+              {
+                "token": "\\",
+                "probability": 0.009195847436785698,
+                "logit": 22.25,
+                "token_index": 59
+              },
+              {
+                "token": "=",
+                "probability": 0.00263465428724885,
+                "logit": 21.0,
+                "token_index": 28
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120=",
+            "index": 2,
+            "top_5_tokens": [
+              {
+                "token": "\u0120=",
+                "probability": 0.9918352365493774,
+                "logit": 31.125,
+                "token_index": 284
+              },
+              {
+                "token": "\u0120-",
+                "probability": 0.004053404089063406,
+                "logit": 25.625,
+                "token_index": 481
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.0016897103050723672,
+                "logit": 24.75,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120^",
+                "probability": 0.0010248610051348805,
+                "logit": 24.25,
+                "token_index": 6306
+              },
+              {
+                "token": "\u0120:",
+                "probability": 0.0006216095644049346,
+                "logit": 23.75,
+                "token_index": 549
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120\\",
+            "index": 3,
+            "top_5_tokens": [
+              {
+                "token": "\u0120\\",
+                "probability": 0.9781081676483154,
+                "logit": 32.25,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120",
+                "probability": 0.013951963745057583,
+                "logit": 28.0,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120-",
+                "probability": 0.007467947900295258,
+                "logit": 27.375,
+                "token_index": 481
+              },
+              {
+                "token": "\u0120{",
+                "probability": 0.0001756293058861047,
+                "logit": 23.625,
+                "token_index": 314
+              },
+              {
+                "token": "\u0120^",
+                "probability": 9.40075988182798e-05,
+                "logit": 23.0,
+                "token_index": 6306
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "frac",
+            "index": 4,
+            "top_5_tokens": [
+              {
+                "token": "frac",
+                "probability": 0.9999082088470459,
+                "logit": 30.0,
+                "token_index": 37018
+              },
+              {
+                "token": "text",
+                "probability": 1.8923768948297948e-05,
+                "logit": 19.125,
+                "token_index": 1318
+              },
+              {
+                "token": "pm",
+                "probability": 1.6700167179806158e-05,
+                "logit": 19.0,
+                "token_index": 5187
+              },
+              {
+                "token": "div",
+                "probability": 1.14778467832366e-05,
+                "logit": 18.625,
+                "token_index": 611
+              },
+              {
+                "token": "d",
+                "probability": 1.14778467832366e-05,
+                "logit": 18.625,
+                "token_index": 67
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120{",
+            "index": 5,
+            "top_5_tokens": [
+              {
+                "token": "\u0120{",
+                "probability": 0.9999575614929199,
+                "logit": 36.0,
+                "token_index": 314
+              },
+              {
+                "token": "\u0120",
+                "probability": 4.006359449704178e-05,
+                "logit": 25.875,
+                "token_index": 220
+              },
+              {
+                "token": "{",
+                "probability": 9.422055313734745e-07,
+                "logit": 22.125,
+                "token_index": 90
+              },
+              {
+                "token": "\u0120-",
+                "probability": 8.314934234476823e-07,
+                "logit": 22.0,
+                "token_index": 481
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 2.1023446095114195e-07,
+                "logit": 20.625,
+                "token_index": 1124
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120",
+            "index": 6,
+            "top_5_tokens": [
+              {
+                "token": "\u0120",
+                "probability": 0.9900878071784973,
+                "logit": 32.5,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120-",
+                "probability": 0.009706479497253895,
+                "logit": 27.875,
+                "token_index": 481
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 8.397749479627237e-05,
+                "logit": 23.125,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120.",
+                "probability": 4.4949916627956554e-05,
+                "logit": 22.5,
+                "token_index": 659
+              },
+              {
+                "token": "\u0120}",
+                "probability": 1.8737911887001246e-05,
+                "logit": 21.625,
+                "token_index": 335
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "3",
+            "index": 7,
+            "top_5_tokens": [
+              {
+                "token": "3",
+                "probability": 0.9984748959541321,
+                "logit": 34.5,
+                "token_index": 18
+              },
+              {
+                "token": "1",
+                "probability": 0.0004300856089685112,
+                "logit": 26.75,
+                "token_index": 16
+              },
+              {
+                "token": "6",
+                "probability": 0.00029559325776062906,
+                "logit": 26.375,
+                "token_index": 21
+              },
+              {
+                "token": "9",
+                "probability": 0.000260860106209293,
+                "logit": 26.25,
+                "token_index": 24
+              },
+              {
+                "token": "5",
+                "probability": 0.000260860106209293,
+                "logit": 26.25,
+                "token_index": 20
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120}",
+            "index": 8,
+            "top_5_tokens": [
+              {
+                "token": "\u0120}",
+                "probability": 0.9982538819313049,
+                "logit": 31.5,
+                "token_index": 335
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.0006256323540583253,
+                "logit": 24.125,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120-",
+                "probability": 0.0003794652293436229,
+                "logit": 23.625,
+                "token_index": 481
+              },
+              {
+                "token": "\u0120",
+                "probability": 0.0003348768805153668,
+                "logit": 23.5,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120.",
+                "probability": 0.00017924666462931782,
+                "logit": 22.875,
+                "token_index": 659
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120{",
+            "index": 9,
+            "top_5_tokens": [
+              {
+                "token": "\u0120{",
+                "probability": 0.9999996423721313,
+                "logit": 37.75,
+                "token_index": 314
+              },
+              {
+                "token": "\u0120",
+                "probability": 2.1024331431362953e-07,
+                "logit": 22.375,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120{}",
+                "probability": 3.653480717957791e-08,
+                "logit": 20.625,
+                "token_index": 4687
+              },
+              {
+                "token": "\u0120{-",
+                "probability": 3.653480717957791e-08,
+                "logit": 20.625,
+                "token_index": 29669
+              },
+              {
+                "token": "\u0120.",
+                "probability": 2.5109981649507063e-08,
+                "logit": 20.25,
+                "token_index": 659
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120",
+            "index": 10,
+            "top_5_tokens": [
+              {
+                "token": "\u0120",
+                "probability": 0.9953827261924744,
+                "logit": 30.25,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.0016957538900896907,
+                "logit": 23.875,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120-",
+                "probability": 0.0007068953127600253,
+                "logit": 23.0,
+                "token_index": 481
+              },
+              {
+                "token": "\u0120A",
+                "probability": 0.0005505306180566549,
+                "logit": 22.75,
+                "token_index": 362
+              },
+              {
+                "token": "\u0120x",
+                "probability": 0.00042875370127148926,
+                "logit": 22.5,
+                "token_index": 856
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "1",
+            "index": 11,
+            "top_5_tokens": [
+              {
+                "token": "1",
+                "probability": 0.9976330995559692,
+                "logit": 33.25,
+                "token_index": 16
+              },
+              {
+                "token": "7",
+                "probability": 0.0016995876794680953,
+                "logit": 26.875,
+                "token_index": 22
+              },
+              {
+                "token": "4",
+                "probability": 0.0003792292554862797,
+                "logit": 25.375,
+                "token_index": 19
+              },
+              {
+                "token": "2",
+                "probability": 9.588417015038431e-05,
+                "logit": 24.0,
+                "token_index": 17
+              },
+              {
+                "token": "8",
+                "probability": 6.590015982510522e-05,
+                "logit": 23.625,
+                "token_index": 23
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120",
+            "index": 12,
+            "top_5_tokens": [
+              {
+                "token": "\u0120",
+                "probability": 0.9968852400779724,
+                "logit": 30.5,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120b",
+                "probability": 0.0011672326363623142,
+                "logit": 23.75,
+                "token_index": 293
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.0006247745477594435,
+                "logit": 23.125,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120.",
+                "probability": 0.00042940088314935565,
+                "logit": 22.75,
+                "token_index": 659
+              },
+              {
+                "token": "\u0120-",
+                "probability": 0.0002951226488221437,
+                "logit": 22.375,
+                "token_index": 481
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "6",
+            "index": 13,
+            "top_5_tokens": [
+              {
+                "token": "6",
+                "probability": 0.9439314007759094,
+                "logit": 31.0,
+                "token_index": 21
+              },
+              {
+                "token": "0",
+                "probability": 0.041473452001810074,
+                "logit": 27.875,
+                "token_index": 15
+              },
+              {
+                "token": "8",
+                "probability": 0.008166606537997723,
+                "logit": 26.25,
+                "token_index": 23
+              },
+              {
+                "token": "5",
+                "probability": 0.002339772181585431,
+                "logit": 25.0,
+                "token_index": 20
+              },
+              {
+                "token": "1",
+                "probability": 0.001608100370503962,
+                "logit": 24.625,
+                "token_index": 16
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120}",
+            "index": 14,
+            "top_5_tokens": [
+              {
+                "token": "\u0120}",
+                "probability": 0.9997484087944031,
+                "logit": 33.25,
+                "token_index": 335
+              },
+              {
+                "token": "\u0120",
+                "probability": 0.00010888137330766767,
+                "logit": 24.125,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120^",
+                "probability": 4.5388507714960724e-05,
+                "logit": 23.25,
+                "token_index": 6306
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 3.1195035262499005e-05,
+                "logit": 22.875,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120-",
+                "probability": 1.6697498722351156e-05,
+                "logit": 22.25,
+                "token_index": 481
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120\\",
+            "index": 15,
+            "top_5_tokens": [
+              {
+                "token": "\u0120\\",
+                "probability": 0.8986039161682129,
+                "logit": 29.5,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120=",
+                "probability": 0.09471215307712555,
+                "logit": 27.25,
+                "token_index": 284
+              },
+              {
+                "token": "\u0120:",
+                "probability": 0.002523993607610464,
+                "logit": 23.625,
+                "token_index": 549
+              },
+              {
+                "token": "\u0120-",
+                "probability": 0.0017347136745229363,
+                "logit": 23.25,
+                "token_index": 481
+              },
+              {
+                "token": "\u0120",
+                "probability": 0.0006381655111908913,
+                "logit": 22.25,
+                "token_index": 220
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "div",
+            "index": 16,
+            "top_5_tokens": [
+              {
+                "token": "div",
+                "probability": 0.9991379976272583,
+                "logit": 28.25,
+                "token_index": 611
+              },
+              {
+                "token": "frac",
+                "probability": 0.0002957895630970597,
+                "logit": 20.125,
+                "token_index": 37018
+              },
+              {
+                "token": "times",
+                "probability": 0.0001794054260244593,
+                "logit": 19.625,
+                "token_index": 15136
+              },
+              {
+                "token": "there",
+                "probability": 8.474512287648395e-05,
+                "logit": 18.875,
+                "token_index": 18532
+              },
+              {
+                "token": "cdot",
+                "probability": 5.140051871421747e-05,
+                "logit": 18.375,
+                "token_index": 50853
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120\\",
+            "index": 17,
+            "top_5_tokens": [
+              {
+                "token": "\u0120\\",
+                "probability": 0.9937648773193359,
+                "logit": 29.625,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120",
+                "probability": 0.0031629360746592283,
+                "logit": 23.875,
+                "token_index": 220
+              },
+              {
+                "token": "$$",
+                "probability": 0.002173851942643523,
+                "logit": 23.5,
+                "token_index": 14085
+              },
+              {
+                "token": "\u0120{",
+                "probability": 0.0002941988641396165,
+                "logit": 21.5,
+                "token_index": 314
+              },
+              {
+                "token": "\u0120-",
+                "probability": 0.00020219972066115588,
+                "logit": 21.125,
+                "token_index": 481
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "frac",
+            "index": 18,
+            "top_5_tokens": [
+              {
+                "token": "frac",
+                "probability": 0.9996243715286255,
+                "logit": 27.75,
+                "token_index": 37018
+              },
+              {
+                "token": "sqrt",
+                "probability": 9.607554966351017e-05,
+                "logit": 18.5,
+                "token_index": 26888
+              },
+              {
+                "token": "cd",
+                "probability": 7.482372166123241e-05,
+                "logit": 18.25,
+                "token_index": 4385
+              },
+              {
+                "token": "text",
+                "probability": 5.827276618219912e-05,
+                "logit": 18.0,
+                "token_index": 1318
+              },
+              {
+                "token": "{",
+                "probability": 1.8918397472589277e-05,
+                "logit": 16.875,
+                "token_index": 90
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120{",
+            "index": 19,
+            "top_5_tokens": [
+              {
+                "token": "\u0120{",
+                "probability": 0.9997943043708801,
+                "logit": 33.0,
+                "token_index": 314
+              },
+              {
+                "token": "\u0120",
+                "probability": 0.00020342651987448335,
+                "logit": 24.5,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120{}",
+                "probability": 7.336705607485783e-07,
+                "logit": 18.875,
+                "token_index": 4687
+              },
+              {
+                "token": "\u0120]",
+                "probability": 3.0583939292228024e-07,
+                "logit": 18.0,
+                "token_index": 2279
+              },
+              {
+                "token": "\u0120.",
+                "probability": 3.0583939292228024e-07,
+                "logit": 18.0,
+                "token_index": 659
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120",
+            "index": 20,
+            "top_5_tokens": [
+              {
+                "token": "\u0120",
+                "probability": 0.9997524619102478,
+                "logit": 33.0,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120}",
+                "probability": 0.00015842208813410252,
+                "logit": 24.25,
+                "token_index": 335
+              },
+              {
+                "token": "\u0120l",
+                "probability": 4.0055376302916557e-05,
+                "logit": 22.875,
+                "token_index": 326
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 1.1476058716652915e-05,
+                "logit": 21.625,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120_",
+                "probability": 7.88737179391319e-06,
+                "logit": 21.25,
+                "token_index": 716
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "1",
+            "index": 21,
+            "top_5_tokens": [
+              {
+                "token": "1",
+                "probability": 0.9993564486503601,
+                "logit": 31.0,
+                "token_index": 16
+              },
+              {
+                "token": "3",
+                "probability": 0.00023041148961056024,
+                "logit": 22.625,
+                "token_index": 18
+              },
+              {
+                "token": "7",
+                "probability": 0.0001583593402756378,
+                "logit": 22.25,
+                "token_index": 22
+              },
+              {
+                "token": "5",
+                "probability": 6.601399218197912e-05,
+                "logit": 21.375,
+                "token_index": 20
+              },
+              {
+                "token": "8",
+                "probability": 5.141175279277377e-05,
+                "logit": 21.125,
+                "token_index": 23
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120}",
+            "index": 22,
+            "top_5_tokens": [
+              {
+                "token": "\u0120}",
+                "probability": 0.9945064187049866,
+                "logit": 32.25,
+                "token_index": 335
+              },
+              {
+                "token": "\u0120",
+                "probability": 0.005218690726906061,
+                "logit": 27.0,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120)",
+                "probability": 9.55836585490033e-05,
+                "logit": 23.0,
+                "token_index": 873
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 7.444063521688804e-05,
+                "logit": 22.75,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120.",
+                "probability": 3.984519207733683e-05,
+                "logit": 22.125,
+                "token_index": 659
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120{",
+            "index": 23,
+            "top_5_tokens": [
+              {
+                "token": "\u0120{",
+                "probability": 0.9999703168869019,
+                "logit": 32.75,
+                "token_index": 314
+              },
+              {
+                "token": "\u0120",
+                "probability": 1.300691110373009e-05,
+                "logit": 21.5,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120{}",
+                "probability": 7.88909073889954e-06,
+                "logit": 21.0,
+                "token_index": 4687
+              },
+              {
+                "token": "{",
+                "probability": 4.7849757720541675e-06,
+                "logit": 20.5,
+                "token_index": 90
+              },
+              {
+                "token": "\u0120{$",
+                "probability": 1.2098312254238408e-06,
+                "logit": 19.125,
+                "token_index": 13924
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120",
+            "index": 24,
+            "top_5_tokens": [
+              {
+                "token": "\u0120",
+                "probability": 0.9996776580810547,
+                "logit": 30.75,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120b",
+                "probability": 0.00012337001680862159,
+                "logit": 21.75,
+                "token_index": 293
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 5.827587301610038e-05,
+                "logit": 21.0,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120a",
+                "probability": 5.1428280130494386e-05,
+                "logit": 20.875,
+                "token_index": 264
+              },
+              {
+                "token": "\u0120x",
+                "probability": 1.669631637923885e-05,
+                "logit": 19.75,
+                "token_index": 856
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "8",
+            "index": 25,
+            "top_5_tokens": [
+              {
+                "token": "8",
+                "probability": 0.9933801889419556,
+                "logit": 30.25,
+                "token_index": 23
+              },
+              {
+                "token": "6",
+                "probability": 0.0013179973466321826,
+                "logit": 23.625,
+                "token_index": 21
+              },
+              {
+                "token": "5",
+                "probability": 0.0011631285306066275,
+                "logit": 23.5,
+                "token_index": 20
+              },
+              {
+                "token": "1",
+                "probability": 0.0011631285306066275,
+                "logit": 23.5,
+                "token_index": 16
+              },
+              {
+                "token": "2",
+                "probability": 0.0010264574084430933,
+                "logit": 23.375,
+                "token_index": 17
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120}",
+            "index": 26,
+            "top_5_tokens": [
+              {
+                "token": "\u0120}",
+                "probability": 0.9997941851615906,
+                "logit": 33.0,
+                "token_index": 335
+              },
+              {
+                "token": "\u0120",
+                "probability": 8.480077667627484e-05,
+                "logit": 23.625,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120.",
+                "probability": 4.5390585000859573e-05,
+                "logit": 23.0,
+                "token_index": 659
+              },
+              {
+                "token": "\u0120^",
+                "probability": 3.5350225516594946e-05,
+                "logit": 22.75,
+                "token_index": 6306
+              },
+              {
+                "token": "}",
+                "probability": 1.1476537110866047e-05,
+                "logit": 21.625,
+                "token_index": 92
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "<|im_end|>",
+            "index": 28,
+            "top_5_tokens": [
+              {
+                "token": "<|im_end|>",
+                "probability": 0.9999992847442627,
+                "logit": 29.25,
+                "token_index": 151645
+              },
+              {
+                "token": "\u010a\u010a",
+                "probability": 3.927860632302327e-07,
+                "logit": 14.5,
+                "token_index": 271
+              },
+              {
+                "token": "\u010a",
+                "probability": 2.87368408180555e-07,
+                "logit": 14.1875,
+                "token_index": 198
+              },
+              {
+                "token": "&",
+                "probability": 1.0467394950808284e-08,
+                "logit": 10.875,
+                "token_index": 5
+              },
+              {
+                "token": ",",
+                "probability": 9.833207137432964e-09,
+                "logit": 10.8125,
+                "token_index": 11
+              }
+            ]
+          }
+        ],
+        "cer": 0.0,
+        "question_length": 46,
+        "is_highlighted": false
+      },
+      {
+        "id": 19,
+        "answer": [
+          "( 1 0 - k ^ { 2 } ) x ^ { 2 } + 2 k x - 2 = 0",
+          "( 1 0 - k ^2 ) x ^2 + 2 k x - 2 = 0"
+        ],
+        "image": "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",
+        "predicted_text": "( 1 0 - k ^ { 2 } ) x ^ { 2 } + 2 k x - 2 = 6",
+        "token_info": [
+          {
+            "token": "(",
+            "index": 1,
+            "top_5_tokens": [
+              {
+                "token": "$(",
+                "probability": 0.9985744953155518,
+                "logit": 33.0,
+                "token_index": 8525
+              },
+              {
+                "token": "${",
+                "probability": 0.0013248891336843371,
+                "logit": 26.375,
+                "token_index": 2365
+              },
+              {
+                "token": "$.",
+                "probability": 6.596234015887603e-05,
+                "logit": 23.375,
+                "token_index": 12947
+              },
+              {
+                "token": "$_",
+                "probability": 3.1158408091869205e-05,
+                "logit": 22.625,
+                "token_index": 6401
+              },
+              {
+                "token": "\u0120$(",
+                "probability": 1.3690048490389017e-06,
+                "logit": 19.5,
+                "token_index": 4930
+              }
+            ],
+            "is_correct": 0
+          },
+          {
+            "token": "\u0120",
+            "index": 2,
+            "top_5_tokens": [
+              {
+                "token": "\u0120",
+                "probability": 0.9979727864265442,
+                "logit": 32.0,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.0011685059871524572,
+                "logit": 25.25,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120l",
+                "probability": 0.00029544459539465606,
+                "logit": 23.875,
+                "token_index": 326
+              },
+              {
+                "token": "\u0120k",
+                "probability": 0.000139558149385266,
+                "logit": 23.125,
+                "token_index": 595
+              },
+              {
+                "token": "\u0120(",
+                "probability": 0.000139558149385266,
+                "logit": 23.125,
+                "token_index": 320
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "1",
+            "index": 3,
+            "top_5_tokens": [
+              {
+                "token": "1",
+                "probability": 0.9999264478683472,
+                "logit": 34.0,
+                "token_index": 16
+              },
+              {
+                "token": "2",
+                "probability": 2.1443831428769045e-05,
+                "logit": 23.25,
+                "token_index": 17
+              },
+              {
+                "token": "0",
+                "probability": 1.473811425967142e-05,
+                "logit": 22.875,
+                "token_index": 15
+              },
+              {
+                "token": "7",
+                "probability": 1.1478055967018008e-05,
+                "logit": 22.625,
+                "token_index": 22
+              },
+              {
+                "token": "4",
+                "probability": 1.1478055967018008e-05,
+                "logit": 22.625,
+                "token_index": 19
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120",
+            "index": 4,
+            "top_5_tokens": [
+              {
+                "token": "\u0120",
+                "probability": 0.9989854693412781,
+                "logit": 33.0,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120-",
+                "probability": 0.0006260908558033407,
+                "logit": 25.625,
+                "token_index": 481
+              },
+              {
+                "token": "\u0120o",
+                "probability": 0.00020326195226516575,
+                "logit": 24.5,
+                "token_index": 297
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 4.5353870518738404e-05,
+                "logit": 23.0,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120a",
+                "probability": 3.5321631003171206e-05,
+                "logit": 22.75,
+                "token_index": 264
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "0",
+            "index": 5,
+            "top_5_tokens": [
+              {
+                "token": "0",
+                "probability": 0.9990915060043335,
+                "logit": 32.5,
+                "token_index": 15
+              },
+              {
+                "token": "1",
+                "probability": 0.0003797836252488196,
+                "logit": 24.625,
+                "token_index": 16
+              },
+              {
+                "token": "8",
+                "probability": 0.00023035040067043155,
+                "logit": 24.125,
+                "token_index": 23
+              },
+              {
+                "token": "9",
+                "probability": 0.00015831735800020397,
+                "logit": 23.75,
+                "token_index": 24
+              },
+              {
+                "token": "6",
+                "probability": 9.602433419786394e-05,
+                "logit": 23.25,
+                "token_index": 21
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120-",
+            "index": 6,
+            "top_5_tokens": [
+              {
+                "token": "\u0120-",
+                "probability": 0.9992272853851318,
+                "logit": 33.5,
+                "token_index": 481
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.0002610566734801978,
+                "logit": 25.25,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120",
+                "probability": 0.00013973357272334397,
+                "logit": 24.625,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120_",
+                "probability": 8.47526898724027e-05,
+                "logit": 24.125,
+                "token_index": 716
+              },
+              {
+                "token": "\u0120+",
+                "probability": 7.479399937437847e-05,
+                "logit": 24.0,
+                "token_index": 488
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120k",
+            "index": 7,
+            "top_5_tokens": [
+              {
+                "token": "\u0120k",
+                "probability": 0.9848828911781311,
+                "logit": 30.375,
+                "token_index": 595
+              },
+              {
+                "token": "\u0120K",
+                "probability": 0.005168191157281399,
+                "logit": 25.125,
+                "token_index": 730
+              },
+              {
+                "token": "\u0120",
+                "probability": 0.004024991299957037,
+                "logit": 24.875,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120x",
+                "probability": 0.002766333520412445,
+                "logit": 24.5,
+                "token_index": 856
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.001677866093814373,
+                "logit": 24.0,
+                "token_index": 1124
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120^",
+            "index": 8,
+            "top_5_tokens": [
+              {
+                "token": "\u0120^",
+                "probability": 0.9761618971824646,
+                "logit": 29.125,
+                "token_index": 6306
+              },
+              {
+                "token": "\u0120)",
+                "probability": 0.007453087251633406,
+                "logit": 24.25,
+                "token_index": 873
+              },
+              {
+                "token": "\u0120x",
+                "probability": 0.006577326916158199,
+                "logit": 24.125,
+                "token_index": 856
+              },
+              {
+                "token": "\u0120_",
+                "probability": 0.0024196633603423834,
+                "logit": 23.125,
+                "token_index": 716
+              },
+              {
+                "token": "\u0120",
+                "probability": 0.0024196633603423834,
+                "logit": 23.125,
+                "token_index": 220
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120{",
+            "index": 9,
+            "top_5_tokens": [
+              {
+                "token": "\u0120{",
+                "probability": 1.0,
+                "logit": 38.0,
+                "token_index": 314
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 4.139937814784389e-08,
+                "logit": 21.0,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120",
+                "probability": 1.7257828943684217e-08,
+                "logit": 20.125,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120*",
+                "probability": 5.602796449011294e-09,
+                "logit": 19.0,
+                "token_index": 353
+              },
+              {
+                "token": "\u0120{\u010a",
+                "probability": 3.3982678893096363e-09,
+                "logit": 18.5,
+                "token_index": 341
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120",
+            "index": 10,
+            "top_5_tokens": [
+              {
+                "token": "\u0120",
+                "probability": 0.997031569480896,
+                "logit": 31.875,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.002471394371241331,
+                "logit": 25.875,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120*",
+                "probability": 0.00020286439394112676,
+                "logit": 23.375,
+                "token_index": 353
+              },
+              {
+                "token": "\u0120.",
+                "probability": 7.462964276783168e-05,
+                "logit": 22.375,
+                "token_index": 659
+              },
+              {
+                "token": "\u0120-",
+                "probability": 7.462964276783168e-05,
+                "logit": 22.375,
+                "token_index": 481
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "2",
+            "index": 11,
+            "top_5_tokens": [
+              {
+                "token": "2",
+                "probability": 0.998933732509613,
+                "logit": 31.0,
+                "token_index": 17
+              },
+              {
+                "token": "3",
+                "probability": 0.000626058375928551,
+                "logit": 23.625,
+                "token_index": 18
+              },
+              {
+                "token": "0",
+                "probability": 0.0001793687406461686,
+                "logit": 22.375,
+                "token_index": 15
+              },
+              {
+                "token": "5",
+                "probability": 0.00015829235780984163,
+                "logit": 22.25,
+                "token_index": 20
+              },
+              {
+                "token": "1",
+                "probability": 5.139000859344378e-05,
+                "logit": 21.125,
+                "token_index": 16
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120}",
+            "index": 12,
+            "top_5_tokens": [
+              {
+                "token": "\u0120}",
+                "probability": 0.9997938275337219,
+                "logit": 34.75,
+                "token_index": 335
+              },
+              {
+                "token": "\u0120)",
+                "probability": 0.00010888632095884532,
+                "logit": 25.625,
+                "token_index": 873
+              },
+              {
+                "token": "\u0120",
+                "probability": 5.8282643294660375e-05,
+                "logit": 25.0,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120})",
+                "probability": 2.7530773877515458e-05,
+                "logit": 24.25,
+                "token_index": 6413
+              },
+              {
+                "token": "\u0120^",
+                "probability": 4.2219803617626894e-06,
+                "logit": 22.375,
+                "token_index": 6306
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120)",
+            "index": 13,
+            "top_5_tokens": [
+              {
+                "token": "\u0120)",
+                "probability": 0.9989410042762756,
+                "logit": 31.375,
+                "token_index": 873
+              },
+              {
+                "token": "\u0120x",
+                "probability": 0.00043028639629483223,
+                "logit": 23.625,
+                "token_index": 856
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.0002303156943526119,
+                "logit": 23.0,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120-",
+                "probability": 0.00010879343608394265,
+                "logit": 22.25,
+                "token_index": 481
+              },
+              {
+                "token": "\u0120_",
+                "probability": 5.8232930314261466e-05,
+                "logit": 21.625,
+                "token_index": 716
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120x",
+            "index": 14,
+            "top_5_tokens": [
+              {
+                "token": "\u0120x",
+                "probability": 0.9956569671630859,
+                "logit": 31.0,
+                "token_index": 856
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.0013210182078182697,
+                "logit": 24.375,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120X",
+                "probability": 0.0011657944414764643,
+                "logit": 24.25,
+                "token_index": 1599
+              },
+              {
+                "token": "\u0120y",
+                "probability": 0.0002947589964605868,
+                "logit": 22.875,
+                "token_index": 379
+              },
+              {
+                "token": "\u0120",
+                "probability": 0.00020258470613043755,
+                "logit": 22.5,
+                "token_index": 220
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120^",
+            "index": 15,
+            "top_5_tokens": [
+              {
+                "token": "\u0120^",
+                "probability": 0.9994469285011292,
+                "logit": 33.0,
+                "token_index": 6306
+              },
+              {
+                "token": "\u0120+",
+                "probability": 0.000261114037130028,
+                "logit": 24.75,
+                "token_index": 488
+              },
+              {
+                "token": "\u0120_",
+                "probability": 8.477132359985262e-05,
+                "logit": 23.625,
+                "token_index": 716
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 7.481043576262891e-05,
+                "logit": 23.5,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120",
+                "probability": 5.1416409405646846e-05,
+                "logit": 23.125,
+                "token_index": 220
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120{",
+            "index": 16,
+            "top_5_tokens": [
+              {
+                "token": "\u0120{",
+                "probability": 0.9999867677688599,
+                "logit": 37.0,
+                "token_index": 314
+              },
+              {
+                "token": "\u0120",
+                "probability": 1.3007125744479708e-05,
+                "logit": 25.75,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120^",
+                "probability": 9.931063260637529e-08,
+                "logit": 20.875,
+                "token_index": 6306
+              },
+              {
+                "token": "\u0120.",
+                "probability": 6.023494592000134e-08,
+                "logit": 20.375,
+                "token_index": 659
+              },
+              {
+                "token": "\u0120[",
+                "probability": 3.653433822137231e-08,
+                "logit": 19.875,
+                "token_index": 508
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120",
+            "index": 17,
+            "top_5_tokens": [
+              {
+                "token": "\u0120",
+                "probability": 0.9995858073234558,
+                "logit": 33.75,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.0002304643567185849,
+                "logit": 25.375,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120z",
+                "probability": 6.602914800168946e-05,
+                "logit": 24.125,
+                "token_index": 1147
+              },
+              {
+                "token": "\u0120-",
+                "probability": 1.6694782971171662e-05,
+                "logit": 22.75,
+                "token_index": 481
+              },
+              {
+                "token": "\u0120~",
+                "probability": 1.300190979236504e-05,
+                "logit": 22.5,
+                "token_index": 3968
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "2",
+            "index": 18,
+            "top_5_tokens": [
+              {
+                "token": "2",
+                "probability": 0.9997192025184631,
+                "logit": 32.5,
+                "token_index": 17
+              },
+              {
+                "token": "3",
+                "probability": 0.0001398023741785437,
+                "logit": 23.625,
+                "token_index": 18
+              },
+              {
+                "token": "1",
+                "probability": 8.479441748932004e-05,
+                "logit": 23.125,
+                "token_index": 16
+              },
+              {
+                "token": "4",
+                "probability": 2.752871841948945e-05,
+                "logit": 22.0,
+                "token_index": 19
+              },
+              {
+                "token": "7",
+                "probability": 8.937266102293506e-06,
+                "logit": 20.875,
+                "token_index": 22
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120}",
+            "index": 19,
+            "top_5_tokens": [
+              {
+                "token": "\u0120}",
+                "probability": 0.9997348189353943,
+                "logit": 33.75,
+                "token_index": 335
+              },
+              {
+                "token": "\u0120+",
+                "probability": 0.00013980455696582794,
+                "logit": 24.875,
+                "token_index": 488
+              },
+              {
+                "token": "\u0120",
+                "probability": 5.827920540468767e-05,
+                "logit": 24.0,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120^",
+                "probability": 4.005467053502798e-05,
+                "logit": 23.625,
+                "token_index": 6306
+              },
+              {
+                "token": "\u0120-",
+                "probability": 7.887232641223818e-06,
+                "logit": 22.0,
+                "token_index": 481
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120+",
+            "index": 20,
+            "top_5_tokens": [
+              {
+                "token": "\u0120+",
+                "probability": 0.9964861869812012,
+                "logit": 31.625,
+                "token_index": 488
+              },
+              {
+                "token": "\u0120-",
+                "probability": 0.0027989246882498264,
+                "logit": 25.75,
+                "token_index": 481
+              },
+              {
+                "token": "\u0120",
+                "probability": 0.0002297497121617198,
+                "logit": 23.25,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.00017892925825435668,
+                "logit": 23.0,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120=",
+                "probability": 0.0001579045201651752,
+                "logit": 22.875,
+                "token_index": 284
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120",
+            "index": 21,
+            "top_5_tokens": [
+              {
+                "token": "\u0120",
+                "probability": 0.9994476437568665,
+                "logit": 33.0,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120(",
+                "probability": 0.00017946101434063166,
+                "logit": 24.375,
+                "token_index": 320
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.00013976439367979765,
+                "logit": 24.125,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120z",
+                "probability": 7.481049397028983e-05,
+                "logit": 23.5,
+                "token_index": 1147
+              },
+              {
+                "token": "\u0120+",
+                "probability": 3.1185652915155515e-05,
+                "logit": 22.625,
+                "token_index": 488
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "2",
+            "index": 22,
+            "top_5_tokens": [
+              {
+                "token": "2",
+                "probability": 0.9946495890617371,
+                "logit": 35.5,
+                "token_index": 17
+              },
+              {
+                "token": "1",
+                "probability": 0.0052194418385624886,
+                "logit": 30.25,
+                "token_index": 16
+              },
+              {
+                "token": "4",
+                "probability": 5.1169608923373744e-05,
+                "logit": 25.625,
+                "token_index": 19
+              },
+              {
+                "token": "3",
+                "probability": 3.5168322938261554e-05,
+                "logit": 25.25,
+                "token_index": 18
+              },
+              {
+                "token": "7",
+                "probability": 1.8824246581061743e-05,
+                "logit": 24.625,
+                "token_index": 22
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120k",
+            "index": 23,
+            "top_5_tokens": [
+              {
+                "token": "\u0120k",
+                "probability": 0.9838926792144775,
+                "logit": 29.25,
+                "token_index": 595
+              },
+              {
+                "token": "\u0120",
+                "probability": 0.009645745158195496,
+                "logit": 24.625,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120K",
+                "probability": 0.002763552125543356,
+                "logit": 23.375,
+                "token_index": 730
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.002763552125543356,
+                "logit": 23.375,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120x",
+                "probability": 0.00025705035659484565,
+                "logit": 21.0,
+                "token_index": 856
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120x",
+            "index": 24,
+            "top_5_tokens": [
+              {
+                "token": "\u0120x",
+                "probability": 0.993599534034729,
+                "logit": 29.625,
+                "token_index": 856
+              },
+              {
+                "token": "\u0120y",
+                "probability": 0.001692715915851295,
+                "logit": 23.25,
+                "token_index": 379
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.0014938163803890347,
+                "logit": 23.125,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120k",
+                "probability": 0.0009060454904101789,
+                "logit": 22.625,
+                "token_index": 595
+              },
+              {
+                "token": "\u0120X",
+                "probability": 0.00037769594928249717,
+                "logit": 21.75,
+                "token_index": 1599
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120-",
+            "index": 25,
+            "top_5_tokens": [
+              {
+                "token": "\u0120-",
+                "probability": 0.9946547746658325,
+                "logit": 32.5,
+                "token_index": 481
+              },
+              {
+                "token": "\u0120+",
+                "probability": 0.0021757984068244696,
+                "logit": 26.375,
+                "token_index": 488
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.0008004315313883126,
+                "logit": 25.375,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120_",
+                "probability": 0.0007063783123157918,
+                "logit": 25.25,
+                "token_index": 716
+              },
+              {
+                "token": "\u0120=",
+                "probability": 0.0006233766325749457,
+                "logit": 25.125,
+                "token_index": 284
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120",
+            "index": 26,
+            "top_5_tokens": [
+              {
+                "token": "\u0120",
+                "probability": 0.9796420335769653,
+                "logit": 29.5,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120c",
+                "probability": 0.010882840491831303,
+                "logit": 25.0,
+                "token_index": 272
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.003117986023426056,
+                "logit": 23.75,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120l",
+                "probability": 0.0014728321693837643,
+                "logit": 23.0,
+                "token_index": 326
+              },
+              {
+                "token": "\u0120k",
+                "probability": 0.0010122617240995169,
+                "logit": 22.625,
+                "token_index": 595
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "2",
+            "index": 27,
+            "top_5_tokens": [
+              {
+                "token": "2",
+                "probability": 0.9464494585990906,
+                "logit": 30.625,
+                "token_index": 17
+              },
+              {
+                "token": "1",
+                "probability": 0.041584089398384094,
+                "logit": 27.5,
+                "token_index": 16
+              },
+              {
+                "token": "6",
+                "probability": 0.005627794191241264,
+                "logit": 25.5,
+                "token_index": 21
+              },
+              {
+                "token": "5",
+                "probability": 0.002346013905480504,
+                "logit": 24.625,
+                "token_index": 20
+              },
+              {
+                "token": "3",
+                "probability": 0.0016123902751132846,
+                "logit": 24.25,
+                "token_index": 18
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120=",
+            "index": 28,
+            "top_5_tokens": [
+              {
+                "token": "\u0120=",
+                "probability": 0.9903531670570374,
+                "logit": 29.125,
+                "token_index": 284
+              },
+              {
+                "token": "\u0120",
+                "probability": 0.004586245398968458,
+                "logit": 23.75,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120>",
+                "probability": 0.0016871853731572628,
+                "logit": 22.75,
+                "token_index": 861
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.0010233295615762472,
+                "logit": 22.25,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120<",
+                "probability": 0.0006206806865520775,
+                "logit": 21.75,
+                "token_index": 366
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120",
+            "index": 29,
+            "top_5_tokens": [
+              {
+                "token": "\u0120",
+                "probability": 0.9923422932624817,
+                "logit": 29.625,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120b",
+                "probability": 0.005207334645092487,
+                "logit": 24.375,
+                "token_index": 293
+              },
+              {
+                "token": "$$",
+                "probability": 0.0006219273782335222,
+                "logit": 22.25,
+                "token_index": 14085
+              },
+              {
+                "token": "\u0120k",
+                "probability": 0.0005488489987328649,
+                "logit": 22.125,
+                "token_index": 595
+              },
+              {
+                "token": "\u0120-",
+                "probability": 0.000484357587993145,
+                "logit": 22.0,
+                "token_index": 481
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "6",
+            "index": 30,
+            "top_5_tokens": [
+              {
+                "token": "6",
+                "probability": 0.5920876264572144,
+                "logit": 30.75,
+                "token_index": 21
+              },
+              {
+                "token": "0",
+                "probability": 0.4069354832172394,
+                "logit": 30.375,
+                "token_index": 15
+              },
+              {
+                "token": "1",
+                "probability": 0.0005399140063673258,
+                "logit": 23.75,
+                "token_index": 16
+              },
+              {
+                "token": "2",
+                "probability": 0.00013651163317263126,
+                "logit": 22.375,
+                "token_index": 17
+              },
+              {
+                "token": "5",
+                "probability": 7.306941552087665e-05,
+                "logit": 21.75,
+                "token_index": 20
+              }
+            ],
+            "is_correct": 0
+          },
+          {
+            "token": "<|im_end|>",
+            "index": 32,
+            "top_5_tokens": [
+              {
+                "token": "<|im_end|>",
+                "probability": 0.9999936819076538,
+                "logit": 27.75,
+                "token_index": 151645
+              },
+              {
+                "token": "\u010a\u010a",
+                "probability": 3.288739208073821e-06,
+                "logit": 15.125,
+                "token_index": 271
+              },
+              {
+                "token": "\u010a",
+                "probability": 2.1233695406408515e-06,
+                "logit": 14.6875,
+                "token_index": 198
+              },
+              {
+                "token": "&",
+                "probability": 1.7429678678126947e-07,
+                "logit": 12.1875,
+                "token_index": 5
+              },
+              {
+                "token": "`",
+                "probability": 1.444971218234059e-07,
+                "logit": 12.0,
+                "token_index": 63
+              }
+            ]
+          }
+        ],
+        "cer": 0.06666667014360428,
+        "question_length": 40,
+        "is_highlighted": false
+      }
+    ]
+  },
+  {
+    "condition": "highlighted",
+    "questions": [
+      {
+        "id": 20,
+        "answer": [
+          "\\angle B A C = \\frac { 1 } { 2 } \\angle B O C"
+        ],
+        "image": "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",
+        "predicted_text": "\\angle B A C = \\frac { 1 } { 2 } \\angle B O C",
+        "token_info": [
+          {
+            "token": "\\",
+            "index": 1,
+            "top_5_tokens": [
+              {
+                "token": "\\",
+                "probability": 0.9976682066917419,
+                "logit": 27.375,
+                "token_index": 59
+              },
+              {
+                "token": ",",
+                "probability": 0.000625265296548605,
+                "logit": 20.0,
+                "token_index": 11
+              },
+              {
+                "token": ":",
+                "probability": 0.0004297381383366883,
+                "logit": 19.625,
+                "token_index": 25
+              },
+              {
+                "token": "C",
+                "probability": 0.0002953544317279011,
+                "logit": 19.25,
+                "token_index": 34
+              },
+              {
+                "token": "\u00e3\u0122\u0123",
+                "probability": 0.00020299393509048969,
+                "logit": 18.875,
+                "token_index": 5373
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "angle",
+            "index": 2,
+            "top_5_tokens": [
+              {
+                "token": "angle",
+                "probability": 0.9997245669364929,
+                "logit": 26.125,
+                "token_index": 4044
+              },
+              {
+                "token": "Delta",
+                "probability": 9.608518303139135e-05,
+                "logit": 16.875,
+                "token_index": 20277
+              },
+              {
+                "token": "there",
+                "probability": 2.4294138711411506e-05,
+                "logit": 15.5,
+                "token_index": 18532
+              },
+              {
+                "token": "cdot",
+                "probability": 1.669710036367178e-05,
+                "logit": 15.125,
+                "token_index": 50853
+              },
+              {
+                "token": "because",
+                "probability": 1.473513930250192e-05,
+                "logit": 15.0,
+                "token_index": 27653
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120B",
+            "index": 3,
+            "top_5_tokens": [
+              {
+                "token": "\u0120B",
+                "probability": 0.9995218515396118,
+                "logit": 29.5,
+                "token_index": 425
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.00020337107707746327,
+                "logit": 21.0,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120C",
+                "probability": 6.602492067031562e-05,
+                "logit": 19.875,
+                "token_index": 356
+              },
+              {
+                "token": "\u0120A",
+                "probability": 5.826678898301907e-05,
+                "logit": 19.75,
+                "token_index": 362
+              },
+              {
+                "token": "\u0120E",
+                "probability": 5.1420262025203556e-05,
+                "logit": 19.625,
+                "token_index": 468
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120A",
+            "index": 4,
+            "top_5_tokens": [
+              {
+                "token": "\u0120A",
+                "probability": 0.9984777569770813,
+                "logit": 29.75,
+                "token_index": 362
+              },
+              {
+                "token": "\u0120O",
+                "probability": 0.0007090933504514396,
+                "logit": 22.5,
+                "token_index": 506
+              },
+              {
+                "token": "\u0120_",
+                "probability": 0.00013962875527795404,
+                "logit": 20.875,
+                "token_index": 716
+              },
+              {
+                "token": "\u0120G",
+                "probability": 0.00012322193651925772,
+                "logit": 20.75,
+                "token_index": 479
+              },
+              {
+                "token": "\u0120+",
+                "probability": 0.00010874299186980352,
+                "logit": 20.625,
+                "token_index": 488
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120C",
+            "index": 5,
+            "top_5_tokens": [
+              {
+                "token": "\u0120C",
+                "probability": 0.9984373450279236,
+                "logit": 29.875,
+                "token_index": 356
+              },
+              {
+                "token": "\u0120G",
+                "probability": 0.00048733255243860185,
+                "logit": 22.25,
+                "token_index": 479
+              },
+              {
+                "token": "\u0120O",
+                "probability": 0.00037953496212139726,
+                "logit": 22.0,
+                "token_index": 506
+              },
+              {
+                "token": "\u0120E",
+                "probability": 0.0002955821400973946,
+                "logit": 21.75,
+                "token_index": 468
+              },
+              {
+                "token": "\u0120D",
+                "probability": 0.00010873858991544694,
+                "logit": 20.75,
+                "token_index": 422
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120=",
+            "index": 6,
+            "top_5_tokens": [
+              {
+                "token": "\u0120=",
+                "probability": 0.9977057576179504,
+                "logit": 31.625,
+                "token_index": 284
+              },
+              {
+                "token": "\u0120^",
+                "probability": 0.0016997114289551973,
+                "logit": 25.25,
+                "token_index": 6306
+              },
+              {
+                "token": "\u0120-",
+                "probability": 0.00023003089881967753,
+                "logit": 23.25,
+                "token_index": 481
+              },
+              {
+                "token": "\u0120.",
+                "probability": 0.00010865891090361401,
+                "logit": 22.5,
+                "token_index": 659
+              },
+              {
+                "token": "\u0120+",
+                "probability": 8.462363621219993e-05,
+                "logit": 22.25,
+                "token_index": 488
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120\\",
+            "index": 7,
+            "top_5_tokens": [
+              {
+                "token": "\u0120\\",
+                "probability": 0.999632716178894,
+                "logit": 33.5,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120",
+                "probability": 0.00013979028153698891,
+                "logit": 24.625,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120^",
+                "probability": 0.00010886877862503752,
+                "logit": 24.375,
+                "token_index": 6306
+              },
+              {
+                "token": "\u0120{",
+                "probability": 4.005057780887e-05,
+                "logit": 23.375,
+                "token_index": 314
+              },
+              {
+                "token": "\u0120-",
+                "probability": 3.119142638752237e-05,
+                "logit": 23.125,
+                "token_index": 481
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "frac",
+            "index": 8,
+            "top_5_tokens": [
+              {
+                "token": "frac",
+                "probability": 0.9999502897262573,
+                "logit": 30.125,
+                "token_index": 37018
+              },
+              {
+                "token": "angle",
+                "probability": 2.4299622964463197e-05,
+                "logit": 19.5,
+                "token_index": 4044
+              },
+              {
+                "token": "cdot",
+                "probability": 1.0129589099960867e-05,
+                "logit": 18.625,
+                "token_index": 50853
+              },
+              {
+                "token": "text",
+                "probability": 3.7264678667270346e-06,
+                "logit": 17.625,
+                "token_index": 1318
+              },
+              {
+                "token": "over",
+                "probability": 2.260217115690466e-06,
+                "logit": 17.125,
+                "token_index": 1975
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120{",
+            "index": 9,
+            "top_5_tokens": [
+              {
+                "token": "\u0120{",
+                "probability": 0.9999884366989136,
+                "logit": 38.25,
+                "token_index": 314
+              },
+              {
+                "token": "\u0120",
+                "probability": 1.1478767191874795e-05,
+                "logit": 26.875,
+                "token_index": 220
+              },
+              {
+                "token": "{",
+                "probability": 6.825524678788497e-08,
+                "logit": 21.75,
+                "token_index": 90
+              },
+              {
+                "token": "\u0120{\u010a",
+                "probability": 1.7257629991718204e-08,
+                "logit": 20.375,
+                "token_index": 341
+              },
+              {
+                "token": "\u0120}",
+                "probability": 1.5229804972705097e-08,
+                "logit": 20.25,
+                "token_index": 335
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120",
+            "index": 10,
+            "top_5_tokens": [
+              {
+                "token": "\u0120",
+                "probability": 0.9999266862869263,
+                "logit": 34.75,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120}",
+                "probability": 2.7534431865205988e-05,
+                "logit": 24.25,
+                "token_index": 335
+              },
+              {
+                "token": "\u0120l",
+                "probability": 2.1443836885737255e-05,
+                "logit": 24.0,
+                "token_index": 326
+              },
+              {
+                "token": "\u0120-",
+                "probability": 3.2885188829823164e-06,
+                "logit": 22.125,
+                "token_index": 481
+              },
+              {
+                "token": "\u0120I",
+                "probability": 3.2885188829823164e-06,
+                "logit": 22.125,
+                "token_index": 358
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "1",
+            "index": 11,
+            "top_5_tokens": [
+              {
+                "token": "1",
+                "probability": 0.999969482421875,
+                "logit": 36.75,
+                "token_index": 16
+              },
+              {
+                "token": "3",
+                "probability": 1.300690109928837e-05,
+                "logit": 25.5,
+                "token_index": 18
+              },
+              {
+                "token": "2",
+                "probability": 1.0129783731827047e-05,
+                "logit": 25.25,
+                "token_index": 17
+              },
+              {
+                "token": "5",
+                "probability": 2.902231926782406e-06,
+                "logit": 24.0,
+                "token_index": 20
+              },
+              {
+                "token": "9",
+                "probability": 1.760292548169673e-06,
+                "logit": 23.5,
+                "token_index": 24
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120}",
+            "index": 12,
+            "top_5_tokens": [
+              {
+                "token": "\u0120}",
+                "probability": 0.999889612197876,
+                "logit": 34.0,
+                "token_index": 335
+              },
+              {
+                "token": "\u0120",
+                "probability": 4.539492147159763e-05,
+                "logit": 24.0,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120)",
+                "probability": 2.429814776405692e-05,
+                "logit": 23.375,
+                "token_index": 873
+              },
+              {
+                "token": "\u0120.",
+                "probability": 1.6699857951607555e-05,
+                "logit": 23.0,
+                "token_index": 659
+              },
+              {
+                "token": "\u0120^",
+                "probability": 1.1477633051981684e-05,
+                "logit": 22.625,
+                "token_index": 6306
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120{",
+            "index": 13,
+            "top_5_tokens": [
+              {
+                "token": "\u0120{",
+                "probability": 0.9999970197677612,
+                "logit": 34.25,
+                "token_index": 314
+              },
+              {
+                "token": "\u0120",
+                "probability": 2.5612810077291215e-06,
+                "logit": 21.375,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120.",
+                "probability": 1.6373722644402733e-07,
+                "logit": 18.625,
+                "token_index": 659
+              },
+              {
+                "token": "\u0120{\u010a",
+                "probability": 5.31576951345869e-08,
+                "logit": 17.5,
+                "token_index": 341
+              },
+              {
+                "token": "\u0120}",
+                "probability": 3.653471125630858e-08,
+                "logit": 17.125,
+                "token_index": 335
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120",
+            "index": 14,
+            "top_5_tokens": [
+              {
+                "token": "\u0120",
+                "probability": 0.9999608993530273,
+                "logit": 35.0,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120z",
+                "probability": 1.3006789231440052e-05,
+                "logit": 23.75,
+                "token_index": 1147
+              },
+              {
+                "token": "\u0120}",
+                "probability": 8.939427061704919e-06,
+                "logit": 23.375,
+                "token_index": 335
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 6.1439723140210845e-06,
+                "logit": 23.0,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120Z",
+                "probability": 4.78493075206643e-06,
+                "logit": 22.75,
+                "token_index": 1863
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "2",
+            "index": 15,
+            "top_5_tokens": [
+              {
+                "token": "2",
+                "probability": 0.9994893074035645,
+                "logit": 33.75,
+                "token_index": 17
+              },
+              {
+                "token": "3",
+                "probability": 0.0004305225738789886,
+                "logit": 26.0,
+                "token_index": 18
+              },
+              {
+                "token": "5",
+                "probability": 3.5339446185389534e-05,
+                "logit": 23.5,
+                "token_index": 20
+              },
+              {
+                "token": "1",
+                "probability": 2.428842162771616e-05,
+                "logit": 23.125,
+                "token_index": 16
+              },
+              {
+                "token": "4",
+                "probability": 6.958749509067275e-06,
+                "logit": 21.875,
+                "token_index": 19
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120}",
+            "index": 16,
+            "top_5_tokens": [
+              {
+                "token": "\u0120}",
+                "probability": 0.9999829530715942,
+                "logit": 34.5,
+                "token_index": 335
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 6.144107828731649e-06,
+                "logit": 22.5,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120.",
+                "probability": 3.726589739017072e-06,
+                "logit": 22.0,
+                "token_index": 659
+              },
+              {
+                "token": "\u0120C",
+                "probability": 2.260291012134985e-06,
+                "logit": 21.5,
+                "token_index": 356
+              },
+              {
+                "token": "\u0120)",
+                "probability": 9.422294056093961e-07,
+                "logit": 20.625,
+                "token_index": 873
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120\\",
+            "index": 17,
+            "top_5_tokens": [
+              {
+                "token": "\u0120\\",
+                "probability": 0.9960086345672607,
+                "logit": 31.375,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120C",
+                "probability": 0.00279758358374238,
+                "logit": 25.5,
+                "token_index": 356
+              },
+              {
+                "token": "\u0120(",
+                "probability": 0.0007073398446664214,
+                "logit": 24.125,
+                "token_index": 320
+              },
+              {
+                "token": "\u0120<",
+                "probability": 8.447969594271854e-05,
+                "logit": 22.0,
+                "token_index": 366
+              },
+              {
+                "token": "\u0120A",
+                "probability": 5.806198896607384e-05,
+                "logit": 21.625,
+                "token_index": 362
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "angle",
+            "index": 18,
+            "top_5_tokens": [
+              {
+                "token": "angle",
+                "probability": 0.9999171495437622,
+                "logit": 27.5,
+                "token_index": 4044
+              },
+              {
+                "token": "vert",
+                "probability": 3.535457290126942e-05,
+                "logit": 17.25,
+                "token_index": 1621
+              },
+              {
+                "token": "ang",
+                "probability": 1.1477948646643199e-05,
+                "logit": 16.125,
+                "token_index": 524
+              },
+              {
+                "token": "\u0120angle",
+                "probability": 7.888670552347321e-06,
+                "logit": 15.75,
+                "token_index": 9210
+              },
+              {
+                "token": "cdot",
+                "probability": 6.5399376580899116e-06,
+                "logit": 15.5625,
+                "token_index": 50853
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120B",
+            "index": 19,
+            "top_5_tokens": [
+              {
+                "token": "\u0120B",
+                "probability": 0.9986146688461304,
+                "logit": 29.75,
+                "token_index": 425
+              },
+              {
+                "token": "\u0120A",
+                "probability": 0.0009106187499128282,
+                "logit": 22.75,
+                "token_index": 362
+              },
+              {
+                "token": "\u0120D",
+                "probability": 0.00029563464340753853,
+                "logit": 21.625,
+                "token_index": 422
+              },
+              {
+                "token": "\u0120C",
+                "probability": 0.00010875790030695498,
+                "logit": 20.625,
+                "token_index": 356
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 1.6678563042660244e-05,
+                "logit": 18.75,
+                "token_index": 1124
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120O",
+            "index": 20,
+            "top_5_tokens": [
+              {
+                "token": "\u0120O",
+                "probability": 0.9951157569885254,
+                "logit": 29.125,
+                "token_index": 506
+              },
+              {
+                "token": "\u0120",
+                "probability": 0.001921025337651372,
+                "logit": 22.875,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120D",
+                "probability": 0.0014960960252210498,
+                "logit": 22.625,
+                "token_index": 422
+              },
+              {
+                "token": "\u0120C",
+                "probability": 0.0008008024888113141,
+                "logit": 22.0,
+                "token_index": 356
+              },
+              {
+                "token": "\u0120A",
+                "probability": 0.0002599824802018702,
+                "logit": 20.875,
+                "token_index": 362
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120C",
+            "index": 21,
+            "top_5_tokens": [
+              {
+                "token": "\u0120C",
+                "probability": 0.9997419714927673,
+                "logit": 31.25,
+                "token_index": 356
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.00012337796215433627,
+                "logit": 22.25,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120c",
+                "probability": 4.0054954297374934e-05,
+                "logit": 21.125,
+                "token_index": 272
+              },
+              {
+                "token": "$$",
+                "probability": 3.1194835173664615e-05,
+                "logit": 20.875,
+                "token_index": 14085
+              },
+              {
+                "token": "\u0120D",
+                "probability": 3.1194835173664615e-05,
+                "logit": 20.875,
+                "token_index": 422
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "<|im_end|>",
+            "index": 23,
+            "top_5_tokens": [
+              {
+                "token": "<|im_end|>",
+                "probability": 0.9999982118606567,
+                "logit": 28.75,
+                "token_index": 151645
+              },
+              {
+                "token": "\u010a\u010a",
+                "probability": 1.553497554596106e-06,
+                "logit": 15.375,
+                "token_index": 271
+              },
+              {
+                "token": "\u010a",
+                "probability": 1.1253497689267533e-07,
+                "logit": 12.75,
+                "token_index": 198
+              },
+              {
+                "token": ",",
+                "probability": 7.265803958489414e-08,
+                "logit": 12.3125,
+                "token_index": 11
+              },
+              {
+                "token": ";",
+                "probability": 1.9555645991431447e-08,
+                "logit": 11.0,
+                "token_index": 26
+              }
+            ]
+          }
+        ],
+        "cer": 0.0,
+        "question_length": 45,
+        "is_highlighted": true
+      },
+      {
+        "id": 14,
+        "answer": [
+          "y = - ( x + 3 ) ^ { 2 } + 2 ( x + 3 ) + 3",
+          "y = - ( x + 3 ) ^2 + 2 ( x + 3 ) + 3"
+        ],
+        "image": "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",
+        "predicted_text": "y = - ( x - 3 ) ^ { 2 } + 2 ( x + 3 )",
+        "token_info": [
+          {
+            "token": "y",
+            "index": 1,
+            "top_5_tokens": [
+              {
+                "token": "y",
+                "probability": 0.9403876662254333,
+                "logit": 27.0,
+                "token_index": 88
+              },
+              {
+                "token": "=",
+                "probability": 0.04131775349378586,
+                "logit": 23.875,
+                "token_index": 28
+              },
+              {
+                "token": "\\",
+                "probability": 0.004354859236627817,
+                "logit": 21.625,
+                "token_index": 59
+              },
+              {
+                "token": "4",
+                "probability": 0.00384314963594079,
+                "logit": 21.5,
+                "token_index": 19
+              },
+              {
+                "token": "-",
+                "probability": 0.0026413556188344955,
+                "logit": 21.125,
+                "token_index": 12
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120=",
+            "index": 2,
+            "top_5_tokens": [
+              {
+                "token": "\u0120=",
+                "probability": 0.9910255074501038,
+                "logit": 31.625,
+                "token_index": 284
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.004050095099955797,
+                "logit": 26.125,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120^",
+                "probability": 0.0024565067142248154,
+                "logit": 25.625,
+                "token_index": 6306
+              },
+              {
+                "token": "\u0120_",
+                "probability": 0.001160371582955122,
+                "logit": 24.875,
+                "token_index": 716
+              },
+              {
+                "token": "\u0120:",
+                "probability": 0.0007975109620019794,
+                "logit": 24.5,
+                "token_index": 549
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120-",
+            "index": 3,
+            "top_5_tokens": [
+              {
+                "token": "\u0120-",
+                "probability": 0.9945451021194458,
+                "logit": 31.0,
+                "token_index": 481
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.002465230878442526,
+                "logit": 25.0,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120(",
+                "probability": 0.0009069077204912901,
+                "logit": 24.0,
+                "token_index": 320
+              },
+              {
+                "token": "\u0120",
+                "probability": 0.0009069077204912901,
+                "logit": 24.0,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120+",
+                "probability": 0.0003780554106924683,
+                "logit": 23.125,
+                "token_index": 488
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120(",
+            "index": 4,
+            "top_5_tokens": [
+              {
+                "token": "\u0120(",
+                "probability": 0.9278021454811096,
+                "logit": 31.375,
+                "token_index": 320
+              },
+              {
+                "token": "\u0120x",
+                "probability": 0.06720976531505585,
+                "logit": 28.75,
+                "token_index": 856
+              },
+              {
+                "token": "\u0120",
+                "probability": 0.0029529910534620285,
+                "logit": 25.625,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.0015806222800165415,
+                "logit": 25.0,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120{",
+                "probability": 0.00018877838738262653,
+                "logit": 22.875,
+                "token_index": 314
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120x",
+            "index": 5,
+            "top_5_tokens": [
+              {
+                "token": "\u0120x",
+                "probability": 0.9973016977310181,
+                "logit": 32.75,
+                "token_index": 856
+              },
+              {
+                "token": "\u0120-",
+                "probability": 0.0010305094765499234,
+                "logit": 25.875,
+                "token_index": 481
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.0008025616407394409,
+                "logit": 25.625,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120",
+                "probability": 0.00042958027916029096,
+                "logit": 25.0,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120y",
+                "probability": 0.0002952459326479584,
+                "logit": 24.625,
+                "token_index": 379
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120-",
+            "index": 6,
+            "top_5_tokens": [
+              {
+                "token": "\u0120-",
+                "probability": 0.8693269491195679,
+                "logit": 32.75,
+                "token_index": 481
+              },
+              {
+                "token": "\u0120+",
+                "probability": 0.11765061318874359,
+                "logit": 30.75,
+                "token_index": 488
+              },
+              {
+                "token": "\u0120^",
+                "probability": 0.012400282546877861,
+                "logit": 28.5,
+                "token_index": 6306
+              },
+              {
+                "token": "\u0120)",
+                "probability": 0.00022711908968631178,
+                "logit": 24.5,
+                "token_index": 873
+              },
+              {
+                "token": "\u0120",
+                "probability": 0.0001768805377651006,
+                "logit": 24.25,
+                "token_index": 220
+              }
+            ],
+            "is_correct": 0
+          },
+          {
+            "token": "\u0120",
+            "index": 7,
+            "top_5_tokens": [
+              {
+                "token": "\u0120",
+                "probability": 0.9989545345306396,
+                "logit": 33.0,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120b",
+                "probability": 0.0006260714726522565,
+                "logit": 25.625,
+                "token_index": 293
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.000230318823014386,
+                "logit": 24.625,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120x",
+                "probability": 7.477358303731307e-05,
+                "logit": 23.5,
+                "token_index": 856
+              },
+              {
+                "token": "\u0120)",
+                "probability": 3.117026426480152e-05,
+                "logit": 22.625,
+                "token_index": 873
+              }
+            ],
+            "is_correct": 0
+          },
+          {
+            "token": "3",
+            "index": 8,
+            "top_5_tokens": [
+              {
+                "token": "3",
+                "probability": 0.9973921775817871,
+                "logit": 35.25,
+                "token_index": 18
+              },
+              {
+                "token": "1",
+                "probability": 0.0013233204372227192,
+                "logit": 28.625,
+                "token_index": 16
+              },
+              {
+                "token": "5",
+                "probability": 0.0005516420351341367,
+                "logit": 27.75,
+                "token_index": 20
+              },
+              {
+                "token": "2",
+                "probability": 0.0005516420351341367,
+                "logit": 27.75,
+                "token_index": 17
+              },
+              {
+                "token": "8",
+                "probability": 0.00013947694969829172,
+                "logit": 26.375,
+                "token_index": 23
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120)",
+            "index": 9,
+            "top_5_tokens": [
+              {
+                "token": "\u0120)",
+                "probability": 0.9951672554016113,
+                "logit": 31.375,
+                "token_index": 873
+              },
+              {
+                "token": "\u0120^",
+                "probability": 0.004608538933098316,
+                "logit": 26.0,
+                "token_index": 6306
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 9.564717038301751e-05,
+                "logit": 22.125,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120",
+                "probability": 4.518052446655929e-05,
+                "logit": 21.375,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120b",
+                "probability": 1.2944436093675904e-05,
+                "logit": 20.125,
+                "token_index": 293
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120^",
+            "index": 10,
+            "top_5_tokens": [
+              {
+                "token": "\u0120^",
+                "probability": 0.9989854693412781,
+                "logit": 34.0,
+                "token_index": 6306
+              },
+              {
+                "token": "\u0120",
+                "probability": 0.00043030554661527276,
+                "logit": 26.25,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120+",
+                "probability": 0.00033512228401377797,
+                "logit": 26.0,
+                "token_index": 488
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.00012328459706623107,
+                "logit": 25.0,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120-",
+                "probability": 5.823552419315092e-05,
+                "logit": 24.25,
+                "token_index": 481
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120{",
+            "index": 11,
+            "top_5_tokens": [
+              {
+                "token": "\u0120{",
+                "probability": 0.9999983310699463,
+                "logit": 37.5,
+                "token_index": 314
+              },
+              {
+                "token": "\u0120",
+                "probability": 1.5534976682829438e-06,
+                "logit": 24.125,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120.",
+                "probability": 4.139931064628399e-08,
+                "logit": 20.5,
+                "token_index": 659
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 4.139931064628399e-08,
+                "logit": 20.5,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120^",
+                "probability": 1.3440387469643156e-08,
+                "logit": 19.375,
+                "token_index": 6306
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120",
+            "index": 12,
+            "top_5_tokens": [
+              {
+                "token": "\u0120",
+                "probability": 0.9998503923416138,
+                "logit": 34.25,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.00010889248369494453,
+                "logit": 25.125,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120-",
+                "probability": 1.4736993762198836e-05,
+                "logit": 23.125,
+                "token_index": 481
+              },
+              {
+                "token": "\u0120z",
+                "probability": 4.784401880897349e-06,
+                "logit": 22.0,
+                "token_index": 1147
+              },
+              {
+                "token": "\u0120}",
+                "probability": 4.222219558869256e-06,
+                "logit": 21.875,
+                "token_index": 335
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "2",
+            "index": 13,
+            "top_5_tokens": [
+              {
+                "token": "2",
+                "probability": 0.9970144033432007,
+                "logit": 32.75,
+                "token_index": 17
+              },
+              {
+                "token": "3",
+                "probability": 0.0028004085179418325,
+                "logit": 26.875,
+                "token_index": 18
+              },
+              {
+                "token": "1",
+                "probability": 8.456499926978722e-05,
+                "logit": 23.375,
+                "token_index": 16
+              },
+              {
+                "token": "5",
+                "probability": 4.526438351604156e-05,
+                "logit": 22.75,
+                "token_index": 20
+              },
+              {
+                "token": "4",
+                "probability": 2.7454238079371862e-05,
+                "logit": 22.25,
+                "token_index": 19
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120}",
+            "index": 14,
+            "top_5_tokens": [
+              {
+                "token": "\u0120}",
+                "probability": 0.9999334812164307,
+                "logit": 35.75,
+                "token_index": 335
+              },
+              {
+                "token": "\u0120",
+                "probability": 5.144143869983964e-05,
+                "logit": 25.875,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120+",
+                "probability": 5.421887635748135e-06,
+                "logit": 23.625,
+                "token_index": 488
+              },
+              {
+                "token": "\u0120-",
+                "probability": 2.9021275622653775e-06,
+                "logit": 23.0,
+                "token_index": 481
+              },
+              {
+                "token": "\u0120)",
+                "probability": 1.994601007027086e-06,
+                "logit": 22.625,
+                "token_index": 873
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120+",
+            "index": 15,
+            "top_5_tokens": [
+              {
+                "token": "\u0120+",
+                "probability": 0.9974402189254761,
+                "logit": 32.75,
+                "token_index": 488
+              },
+              {
+                "token": "\u0120-",
+                "probability": 0.0016992590390145779,
+                "logit": 26.375,
+                "token_index": 481
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.0005516685778275132,
+                "logit": 25.25,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120",
+                "probability": 0.0001580557000124827,
+                "logit": 24.0,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120=",
+                "probability": 4.5283719373401254e-05,
+                "logit": 22.75,
+                "token_index": 284
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120",
+            "index": 16,
+            "top_5_tokens": [
+              {
+                "token": "\u0120",
+                "probability": 0.9988558292388916,
+                "logit": 32.5,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120(",
+                "probability": 0.0004875368031207472,
+                "logit": 24.875,
+                "token_index": 320
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.00037969404365867376,
+                "logit": 24.625,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120-",
+                "probability": 0.00010878416651394218,
+                "logit": 23.375,
+                "token_index": 481
+              },
+              {
+                "token": "\u0120.",
+                "probability": 2.142087214451749e-05,
+                "logit": 21.75,
+                "token_index": 659
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "2",
+            "index": 17,
+            "top_5_tokens": [
+              {
+                "token": "2",
+                "probability": 0.9945889711380005,
+                "logit": 34.25,
+                "token_index": 17
+              },
+              {
+                "token": "1",
+                "probability": 0.005219123791903257,
+                "logit": 29.0,
+                "token_index": 16
+              },
+              {
+                "token": "3",
+                "probability": 8.43592788442038e-05,
+                "logit": 24.875,
+                "token_index": 18
+              },
+              {
+                "token": "7",
+                "probability": 5.797922858619131e-05,
+                "logit": 24.5,
+                "token_index": 22
+              },
+              {
+                "token": "4",
+                "probability": 1.8823098798748106e-05,
+                "logit": 23.375,
+                "token_index": 19
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120(",
+            "index": 18,
+            "top_5_tokens": [
+              {
+                "token": "\u0120(",
+                "probability": 0.9308700561523438,
+                "logit": 29.0,
+                "token_index": 320
+              },
+              {
+                "token": "\u0120",
+                "probability": 0.040899574756622314,
+                "logit": 25.875,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.017049480229616165,
+                "logit": 25.0,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120+",
+                "probability": 0.005535155534744263,
+                "logit": 23.875,
+                "token_index": 488
+              },
+              {
+                "token": "\u0120l",
+                "probability": 0.0010899367043748498,
+                "logit": 22.25,
+                "token_index": 326
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120x",
+            "index": 19,
+            "top_5_tokens": [
+              {
+                "token": "\u0120x",
+                "probability": 0.9973178505897522,
+                "logit": 31.75,
+                "token_index": 856
+              },
+              {
+                "token": "\u0120",
+                "probability": 0.002181624062359333,
+                "logit": 25.625,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120-",
+                "probability": 0.0002952507056761533,
+                "logit": 23.625,
+                "token_index": 481
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 9.585386578692123e-05,
+                "logit": 22.5,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120_",
+                "probability": 1.8874745364882983e-05,
+                "logit": 20.875,
+                "token_index": 716
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120+",
+            "index": 20,
+            "top_5_tokens": [
+              {
+                "token": "\u0120+",
+                "probability": 0.9441850185394287,
+                "logit": 32.5,
+                "token_index": 488
+              },
+              {
+                "token": "\u0120-",
+                "probability": 0.05326727777719498,
+                "logit": 29.625,
+                "token_index": 481
+              },
+              {
+                "token": "\u0120^",
+                "probability": 0.0016085323877632618,
+                "logit": 26.125,
+                "token_index": 6306
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.00040670065209269524,
+                "logit": 24.75,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120=",
+                "probability": 0.0002466763835400343,
+                "logit": 24.25,
+                "token_index": 284
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120",
+            "index": 21,
+            "top_5_tokens": [
+              {
+                "token": "\u0120",
+                "probability": 0.9994502663612366,
+                "logit": 31.75,
+                "token_index": 220
+              },
+              {
+                "token": "\u0120\\",
+                "probability": 0.0001233419607160613,
+                "logit": 22.75,
+                "token_index": 1124
+              },
+              {
+                "token": "\u0120)",
+                "probability": 0.00010884890070883557,
+                "logit": 22.625,
+                "token_index": 873
+              },
+              {
+                "token": "\u0120x",
+                "probability": 0.00010884890070883557,
+                "logit": 22.625,
+                "token_index": 856
+              },
+              {
+                "token": "\u0120b",
+                "probability": 3.533806375344284e-05,
+                "logit": 21.5,
+                "token_index": 293
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "3",
+            "index": 22,
+            "top_5_tokens": [
+              {
+                "token": "3",
+                "probability": 0.9987651109695435,
+                "logit": 34.5,
+                "token_index": 18
+              },
+              {
+                "token": "5",
+                "probability": 0.0007092973683029413,
+                "logit": 27.25,
+                "token_index": 20
+              },
+              {
+                "token": "1",
+                "probability": 0.00033504836028441787,
+                "logit": 26.5,
+                "token_index": 16
+              },
+              {
+                "token": "2",
+                "probability": 0.0001396689476678148,
+                "logit": 25.625,
+                "token_index": 17
+              },
+              {
+                "token": "8",
+                "probability": 2.1418925825855695e-05,
+                "logit": 23.75,
+                "token_index": 23
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "\u0120)",
+            "index": 23,
+            "top_5_tokens": [
+              {
+                "token": "\u0120)",
+                "probability": 0.9895517230033875,
+                "logit": 28.25,
+                "token_index": 873
+              },
+              {
+                "token": "\u0120y",
+                "probability": 0.0066675469279289246,
+                "logit": 23.25,
+                "token_index": 379
+              },
+              {
+                "token": "\u0120^",
+                "probability": 0.0006201784126460552,
+                "logit": 20.875,
+                "token_index": 6306
+              },
+              {
+                "token": "\u0120-",
+                "probability": 0.0006201784126460552,
+                "logit": 20.875,
+                "token_index": 481
+              },
+              {
+                "token": "\u0120",
+                "probability": 0.0005473055643960834,
+                "logit": 20.75,
+                "token_index": 220
+              }
+            ],
+            "is_correct": 1
+          },
+          {
+            "token": "<|im_end|>",
+            "index": 25,
+            "top_5_tokens": [
+              {
+                "token": "<|im_end|>",
+                "probability": 0.9999959468841553,
+                "logit": 27.25,
+                "token_index": 151645
+              },
+              {
+                "token": "\u010a",
+                "probability": 1.2878916777481209e-06,
+                "logit": 13.6875,
+                "token_index": 198
+              },
+              {
+                "token": "\u010a\u010a",
+                "probability": 7.811457862771931e-07,
+                "logit": 13.1875,
+                "token_index": 271
+              },
+              {
+                "token": ",",
+                "probability": 3.466313671651733e-07,
+                "logit": 12.375,
+                "token_index": 11
+              },
+              {
+                "token": "&",
+                "probability": 2.238020186950962e-07,
+                "logit": 11.9375,
+                "token_index": 5
+              }
+            ]
+          }
+        ],
+        "cer": 0.12195122241973877,
+        "question_length": 38,
+        "is_highlighted": true
+      }
+    ]
+  }
+]

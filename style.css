@@ -209,3 +209,70 @@ input[type="button"]:hover:not([disabled]) {
     background-color: rgba(255, 0, 0, 0.5);
   }
   
+/* Container for each NASA TLX question */
+.nasa-tlx-question {
+    margin-bottom: 20px;
+}
+
+/* Container for the slider + labels */
+.slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 500px; /* adjust as needed */
+    margin-top: 5px;
+    position: relative;
+}
+
+.slider-label {
+    font-size: 16px;
+    width: 100px;
+    text-align: center;
+}
+
+/* The slider itself */
+.nasa-tlx-range {
+    -webkit-appearance: none;
+    width: 220px;
+    background: transparent;  /* transparent so only our custom track is visible */
+    margin: 0 5px;
+    outline: none;
+}
+
+/* WebKit slider track */
+.nasa-tlx-range::-webkit-slider-runnable-track {
+    height: 8px;
+    background: #ddd;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* WebKit slider thumb */
+.nasa-tlx-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    background: #4CAF50;
+    border: 1px solid #888;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top: -6px; /* centers the thumb relative to the track */
+}
+
+/* Firefox slider track */
+.nasa-tlx-range::-moz-range-track {
+    height: 8px;
+    background: #ddd;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Firefox slider thumb */
+.nasa-tlx-range::-moz-range-thumb {
+    height: 20px;
+    width: 20px;
+    background: #4CAF50;
+    border: 1px solid #888;
+    border-radius: 50%;
+    cursor: pointer;
+}
