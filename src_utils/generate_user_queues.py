@@ -22,23 +22,28 @@ for uid in list(range(args.num_queues)):
     sampled_data = random.sample(data, args.num_instances_per_queue)
     random.shuffle(sampled_data)
 
-    for question in sampled_data[:(args.num_instances_per_queue // 2)]:
+    half = args.num_instances_per_queue // 2
+    # Split the sampled data into two conditions
+    condition_A = sampled_data[:half]
+    condition_B = sampled_data[half:]
+    
+    # Set the is_highlighted flag for each condition accordingly
+    for question in condition_A:
         question["is_highlighted"] = True
-
-    for question in sampled_data[(args.num_instances_per_queue // 2):]:
+    for question in condition_B:
         question["is_highlighted"] = False
 
-    # If we want to random question type order
-    random.shuffle(sampled_data)
-
-    #  IF we want first half to be one type and second half to be another
-    # Randomly decide to reverse the list or not
-    # if random.choice([True, False]):
-    #     sampled_data = sampled_data[::-1]
-
+    # Create a list of condition blocks
+    conditions = [
+        {"condition": "highlighted", "questions": condition_A},
+        {"condition": "non_highlighted", "questions": condition_B}
+    ]
+    # Randomize the order of the condition blocks
+    random.shuffle(conditions)
+    
     out_file = f"{out_dirname}/{uid:0>3}.json"
     if os.path.exists(out_file):
         print(f"Overwriting {out_file}")
     else:
         print(f"Writing {out_file}")
-    json.dump(sampled_data, open(out_file, "w"), indent=2)
+    json.dump(conditions, open(out_file, "w"), indent=2)

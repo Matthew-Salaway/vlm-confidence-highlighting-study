@@ -5,7 +5,6 @@ import { load_data, log_data } from './connector'
 import { paramsToObject } from "./utils"
 
 var data: any[] = []
-let question_i = -1
 let question: any = null
 let userselection_answeronly: number = -1
 let userselection_withexplanation: number = -1
@@ -14,6 +13,9 @@ let confidenceRating: number = -1;
 let part1Timer: number = 0;
 let part1Interval: number = 0;
 let remainingTime: number = 20;
+let currentConditionIndex = 0;
+let currentQuestionIndex = 0;
+
 
 
 
@@ -28,68 +30,6 @@ function assert(condition, message) {
         throw message || "Assertion failed";
     }
 }
-
-function registerAnswerOnlyUserSelection(user_choice: number) {
-    userselection_answeronly = user_choice
-
-    $("#button_answeronly_usertrusts").attr("disabled", "true")
-    $("#button_answeronly_userdistrusts").attr("disabled", "true")
-    $("#button_answeronly_userunsure").attr("disabled", "true")
-    if (user_choice == 0) {
-        $("#button_answeronly_usertrusts").attr("activedecision", "true")
-    } else if (user_choice == 1) {
-        $("#button_answeronly_userdistrusts").attr("activedecision", "true")
-    } else if (user_choice == 2) {
-        $("#button_answeronly_userunsure").attr("activedecision", "true")
-    }
-    $("#ai_explanation_div").show()
-}
-// Event listener for the button click
-document.getElementById('button_answeronly_usertrusts')?.addEventListener('click', () => registerAnswerOnlyUserSelection(0));
-document.getElementById('button_answeronly_userdistrusts')?.addEventListener('click', () => registerAnswerOnlyUserSelection(1));
-document.getElementById('button_answeronly_userunsure')?.addEventListener('click', () => registerAnswerOnlyUserSelection(2));
-
-
-function registerWithExplanationUserSelection(user_choice: number) {
-    userselection_withexplanation = user_choice
-
-    $("#button_withexplanation_usertrusts").attr("disabled", "true")
-    $("#button_withexplanation_userdistrusts").attr("disabled", "true")
-    $("#button_withexplanation_userunsure").attr("disabled", "true")
-    if (user_choice == 0) {
-        $("#button_withexplanation_usertrusts").attr("activedecision", "true")
-    } else if (user_choice == 1) {
-        $("#button_withexplanation_userdistrusts").attr("activedecision", "true")
-    } else if (user_choice == 2) {
-        $("#button_withexplanation_userunsure").attr("activedecision", "true")
-    }
-    $("#ai_explanation_quality_div").show()
-}
-
-document.getElementById('button_withexplanation_usertrusts')?.addEventListener('click', () => registerWithExplanationUserSelection(0));
-document.getElementById('button_withexplanation_userdistrusts')?.addEventListener('click', () => registerWithExplanationUserSelection(1));
-document.getElementById('button_withexplanation_userunsure')?.addEventListener('click', () => registerWithExplanationUserSelection(2));
-  
-function registerWithExplanationQualityUserSelection(user_choice: number) {
-    userselection_withexplanationquality = user_choice
-
-    $("#button_withexplanationquality_usertrusts").attr("disabled", "true")
-    $("#button_withexplanationquality_userdistrusts").attr("disabled", "true")
-    $("#button_withexplanationquality_userunsure").attr("disabled", "true")
-    if (user_choice == 0) {
-        $("#button_withexplanationquality_usertrusts").attr("activedecision", "true")
-    } else if (user_choice == 1) {
-        $("#button_withexplanationquality_userdistrusts").attr("activedecision", "true")
-    } else if (user_choice == 2) {
-        $("#button_withexplanationquality_userunsure").attr("activedecision", "true")
-    }
-    $("#button_next").show()
-    $("#button_next").removeAttr("disabled")
-}
-
-document.getElementById('button_withexplanationquality_usertrusts')?.addEventListener('click', () => registerWithExplanationQualityUserSelection(0));
-document.getElementById('button_withexplanationquality_userdistrusts')?.addEventListener('click', () => registerWithExplanationQualityUserSelection(1));
-document.getElementById('button_withexplanationquality_userunsure')?.addEventListener('click', () => registerWithExplanationQualityUserSelection(2));
 
 function checkPreSurvey(): boolean {
     const latexExp = $("input[name='latexExperience']:checked").val();
@@ -133,6 +73,8 @@ function next_instructions(increment: number) {
         $("#instructions_and_decorations").show()
         $("#main_box_instructions").hide()
         $("#main_box_experiment").show()
+        // Reset our condition indices before starting the experiment
+
         next_question()
     }
 
@@ -150,9 +92,9 @@ $("#button_next").on("click", () => {
     let old_balance = balance
     update_balance()
 
-    if (question_i != -1) {
+    if (currentQuestionIndex > 0) {
         let logged_data = {
-            "question_i": question_i,
+            "question_i": currentQuestionIndex,
             "user_selections": {
                 "answeronly": userselection_answeronly,
                 "withexplanation": userselection_withexplanation,
@@ -198,57 +140,72 @@ function update_balance() {
     }
 }
 
+/* New function: Show start-of-condition page */
+function showStartConditionPage(condition: string) {
+    $("#main_box_experiment").hide();
+
+    $("#start_condition_page").empty().show();
+    $("#start_condition_page").append("<h2>Start " + condition + "</h2>");
+    $("#start_condition_page").append("<input id='start_condition_next' type='button' value='Next'>");
+    $("#start_condition_next").on("click", () => {
+        $("#start_condition_page").hide();
+        // After start page, begin with first question (set index to 1)
+        currentQuestionIndex = 1;
+        next_question();
+    });
+}
+
+/* New function: Show end-of-condition page */
+function showEndConditionPage(condition: string) {
+    $("#main_box_experiment").hide();
+    const currentCondition = data[currentConditionIndex].condition;
+    $("#condition_label").text(currentCondition);
+    // Reset each slider to a default, e.g., 0
+    $("#mental_demand").val("0");
+    $("#hurried_demand").val("0");
+    $("#performance").val("0");
+    $("#effort").val("0");
+    $("#frustration").val("0");
+
+    $("#nasa_tlx_survey").show();
+   
+}
+
+
+
 function next_question() {
     // restore previous state of UI
-
-    $("#button_readytoanswer").removeAttr("activedecision")
-    $("#button_readytoanswer").removeAttr("disabled")
-    $("#button_readytoanswer").show()
-
-    $("#button_answeronly_usertrusts").removeAttr("activedecision")
-    $("#button_answeronly_usertrusts").removeAttr("disabled")
-    $("#button_answeronly_userdistrusts").removeAttr("activedecision")
-    $("#button_answeronly_userdistrusts").removeAttr("disabled")
-    $("#button_answeronly_userunsure").removeAttr("activedecision")
-    $("#button_answeronly_userunsure").removeAttr("disabled")
-
-    $("#button_withexplanation_usertrusts").removeAttr("activedecision")
-    $("#button_withexplanation_usertrusts").removeAttr("disabled")
-    $("#button_withexplanation_userdistrusts").removeAttr("activedecision")
-    $("#button_withexplanation_userdistrusts").removeAttr("disabled")
-    $("#button_withexplanation_userunsure").removeAttr("activedecision")
-    $("#button_withexplanation_userunsure").removeAttr("disabled")
-
-    $("#button_withexplanationquality_usertrusts").removeAttr("activedecision")
-    $("#button_withexplanationquality_usertrusts").removeAttr("disabled")
-    $("#button_withexplanationquality_userdistrusts").removeAttr("activedecision")
-    $("#button_withexplanationquality_userdistrusts").removeAttr("disabled")
-    $("#button_withexplanationquality_userunsure").removeAttr("activedecision")
-    $("#button_withexplanationquality_userunsure").removeAttr("disabled")
-
-    $("#ai_explanation_div").hide()
-    $("#ai_explanation_quality_div").hide()
-    
-
+    $("#main_box_experiment").show();
     $("#button_next").hide()
     $('#button_quit').hide()
     //$("#range_val").val(user_trust)
+    console.log("question index, condition index", currentQuestionIndex, currentConditionIndex)        
 
-    question_i += 1;
-    if (question_i >= data.length) {
-        // Hide the experiment container.
+    if (currentConditionIndex >= data.length) {
         $("#main_box_experiment").hide();
         $("#qualitative_section").show();
         return;
     }
+    let conditionBlock = data[currentConditionIndex];
+    console.log("Condition block", conditionBlock)
+    console.log(data)
 
+    // If we are at the start page for this condition, show it.
+    if (currentQuestionIndex === 0) {
+        showStartConditionPage(conditionBlock.condition);
+        return;
+    }
+
+    // If we've gone past all questions in this condition, show the end-of-condition page.
+    if (currentQuestionIndex > conditionBlock.questions.length) {
+        showEndConditionPage(conditionBlock.condition);
+        return;
+    }
+
+
+    question = conditionBlock.questions[currentQuestionIndex - 1];
+    console.log("Question", currentQuestionIndex, question)
     
-    // Retrieve the current question object.
-    question = data[question_i];
-    
-    // Always show Part 1 and hide Part 2 when a new question loads.
-    $("#part1").show();
-    $("#part2").hide();
     
     // --- Update Part 1 elements ---
     // For the image: assume a valid Base64 string for now.
@@ -287,12 +244,6 @@ function next_question() {
             .join('');
     }
     $("#predicted_text").html(predictedHtml);
-
-    if (question["is_highlighted"] == 1) {
-        $("#predicted_text_container strong").addClass("highlighted-title");
-      } else {
-        $("#predicted_text_container strong").removeClass("highlighted-title");
-      }
       
     
     // Concatenate tokens (with replacement of Ġ and skipping <|im_end|>).
@@ -307,8 +258,11 @@ function next_question() {
     $("#token_input").val(tokensConcatenated);
     
     // (Update progress and other elements as necessary)
-    $("#progress").text(`Progress: ${question_i + 1} / ${data.length}`);
-
+    $("#progress").text(`Section ${currentConditionIndex + 1} of ${data.length} | Question ${currentQuestionIndex} of ${conditionBlock.questions.length}`);
+        // Always show Part 1 and hide Part 2 when a new question loads.
+        $("#part1").show();
+        $("#part2").hide();
+    
 // At the end of next_question(), after updating all Part 1 elements:
 $("#token_input_container").hide();
 $("#button_next_part1").hide();
@@ -398,8 +352,8 @@ load_data().catch((_error) => {
 ).then((new_data) => {
     data = new_data
     if (startOverride != null) {
-        question_i = parseInt(startOverride) - 1
-        console.log("Starting from", question_i)
+        currentQuestionIndex = parseInt(startOverride) - 1
+        console.log("Starting from", currentQuestionIndex)
     }
     // next_question()
     next_instructions(0)
@@ -449,7 +403,8 @@ $(document).ready(() => {
     $("#button_next_part2").on("click", () => {
       // Log the confidence rating along with other data if needed.
       let logged_data = {
-        "question_i": question_i,
+        "question_i": currentQuestionIndex,
+        "condition_i": currentConditionIndex,
         "confidence_rating": confidenceRating,
         // ... include other logging fields as desired
       };
@@ -463,6 +418,7 @@ $(document).ready(() => {
       // Switch back to Part 1 and load the next question.
       $("#part2").hide();
       $("#part1").show();
+      currentQuestionIndex++;
       next_question();
     });
     $("input[name='latexExperience'], input[name='latexFrequency'], input[name='chatbotFrequency']").on("change", () => {
@@ -472,6 +428,42 @@ $(document).ready(() => {
         }
 
     });
+    // keylog the input
+    $("#token_input").on("input", function() {
+        let currentText = $(this).val();
+        console.log("User input:", currentText);
+    }
+    );
+
+    $("#nasa_tlx_next").on("click", () => {
+        // Gather slider values
+        const mentalDemand = $("#mental_demand").val();
+        const hurriedDemand = $("#hurried_demand").val();
+        const performance   = $("#performance").val();
+        const effort        = $("#effort").val();
+        const frustration   = $("#frustration").val();
+    
+        // Log the data
+        const tlxData = {
+          mental_demand: mentalDemand,
+          hurried_demand: hurriedDemand,
+          performance: performance,
+          effort: effort,
+          frustration: frustration
+        };
+        log_data({
+          condition: $("#condition_label").text(),
+          tlx: tlxData
+        });
+    
+        // Hide the NASA TLX page and move on
+        $("#nasa_tlx_survey").hide();
+        // e.g., load next condition or next question
+        currentConditionIndex++;
+        currentQuestionIndex = 0;
+        next_question();
+      });
+    
 
 });
   function autoSubmitPart1() {
@@ -530,11 +522,11 @@ $("#qual_next").on("click", () => {
     // Transition to end-of-survey “Thank you” screen or similar.
     $("#qualitative_section").hide();
     if (MOCKMODE) {
-        $('#reward_box_mock').text(`Your total reward is $${balance.toFixed(2)} (${question_i} questions answered) + $2.`);
+        $('#reward_box_mock').text(`Your total reward is $${balance.toFixed(2)} (${(data.length)* (data[0].length)} questions answered) + $2.`);
         $('#reward_box_mock').show();
         $("#main_box_end_mock").show();    
     } else {
-        $('#reward_box').text(`Your total reward is $${balance.toFixed(2)} (${question_i} questions answered) + $2.`);
+        $('#reward_box').text(`Your total reward is $${balance.toFixed(2)} (${(data.length)* (data[0].length)} questions answered) + $2.`);
         $('#reward_box').show();
         $("#main_box_end").show();    
     }

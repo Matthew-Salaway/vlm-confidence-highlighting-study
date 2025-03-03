@@ -30,8 +30,8 @@
             </div>
 
             <br>
-            <div style="text-align: right; height: 20px; margin-left: -30px; margin-bottom: 15px; margin-top: 40px;">
-                <div id="progress" style="width: 150px; float: left;">(-/-)</div>
+            <div style="text-align: right; height: 20px; margin-bottom: 15px; margin-top: 40px;">
+                <div id="progress" style="float: left;">(-/-)</div>
                 <div id="timer" style="width: 100px; float: right; display: none; font-size: 1.3em;">20</div>
             </div>            
         </div>
@@ -175,11 +175,13 @@
                 <!-- Existing content for question display -->
                 <div id="question_display">
                 <img id="question_image" src="" alt="Question Image" style="height: 110px; display: block; margin: 0 auto; max-width: 800px;">
-                <div id="predicted_text_container" style="margin-top: 20px; font-size: 18px; text-align: center;">
-                    <strong style="margin-right: 5px;">Predicted Text:</strong>   <span id="predicted_text"></span>
-                </div>
+                <div id="predicted_text_container" style="margin-top: 20px; font-size: 18px; text-align: left; margin-left: 40px;">
+                    <div>Predicted Text:</div>
+                    <div id="predicted_text"></div>
+                  </div>
+                  
                 <div id="token_input_container" style="margin-top: 20px; text-align: center;">
-                    <input type="text" id="token_input" style="width: 90%; font-size: 16px; padding: 8px;">
+                    <input type="text" id="token_input" style="width: 90%; font-size: 18px; padding: 8px;">
                 </div>
                 </div>
                 <!-- Next button for Part 1: always visible -->
@@ -229,6 +231,107 @@
             <input id="qual_next" type="button" class="button-neutral" value="Next">
             </div>
         </div>
+        <!-- NASA TLX End-of-Condition Survey -->
+        <div class="main_box" id="nasa_tlx_survey" style="display: none;">
+            <h2>Please answer the following questions for the <span id="condition_label"></span> section</h2>
+        
+            <!-- (1) How mentally demanding was the task? -->
+            <div class="nasa-tlx-question">
+            <label for="mental_demand">How mentally demanding was the task?</label>
+            <div class="slider-container">
+                <span class="slider-label">Very Low</span>
+                <input
+                type="range"
+                id="mental_demand"
+                class="nasa-tlx-range"
+                min="0"
+                max="100"
+                step="20"
+                value="0"
+                />
+                <span class="slider-label">Very High</span>
+            </div>
+            </div>
+        
+            <!-- (2) How hurried or rushed was the pace of the task? -->
+            <div class="nasa-tlx-question">
+            <label for="hurried_demand">How hurried or rushed was the pace of the task?</label>
+            <div class="slider-container">
+                <span class="slider-label">Very Low</span>
+                <input
+                type="range"
+                id="hurried_demand"
+                class="nasa-tlx-range"
+                min="0"
+                max="100"
+                step="20"
+                value="0"
+                />
+                <span class="slider-label">Very High</span>
+            </div>
+            </div>
+        
+            <!-- (3) How successful were you in accomplishing what you were asked to do? -->
+            <div class="nasa-tlx-question">
+            <label for="performance">How successful were you in accomplishing what you were asked to do?</label>
+            <div class="slider-container">
+                <span class="slider-label">Perfect</span>
+                <input
+                type="range"
+                id="performance"
+                class="nasa-tlx-range"
+                min="0"
+                max="100"
+                step="20"
+                value="0"
+                />
+                <span class="slider-label">Failure</span>
+            </div>
+            </div>
+        
+            <!-- (4) How hard did you have to work to accomplish your level of performance? -->
+            <div class="nasa-tlx-question">
+            <label for="effort">How hard did you have to work to accomplish your level of performance?</label>
+            <div class="slider-container">
+                <span class="slider-label">Very Low</span>
+                <input
+                type="range"
+                id="effort"
+                class="nasa-tlx-range"
+                min="0"
+                max="100"
+                step="20"
+                value="0"
+                />
+                <span class="slider-label">Very High</span>
+            </div>
+            </div>
+        
+            <!-- (5) How insecure, discouraged, irritated, stressed, and annoyed were you? -->
+            <div class="nasa-tlx-question">
+            <label for="frustration">How insecure, discouraged, irritated, stressed, and annoyed were you?</label>
+            <div class="slider-container">
+                <span class="slider-label">Very Low</span>
+                <input
+                type="range"
+                id="frustration"
+                class="nasa-tlx-range"
+                min="0"
+                max="100"
+                step="20"
+                value="0"
+                />
+                <span class="slider-label">Very High</span>
+            </div>
+            </div>
+        
+            <!-- Next button -->
+            <div style="text-align: center; margin-top: 20px;">
+            <input id="nasa_tlx_next" type="button" class="button-neutral" value="Next">
+            </div>
+        </div>
+        <div class=main_box id="start_condition_page" style="display:none;"></div>
+
   
         <br>
         <!-- Research project by Tejas Srinivasan and Matthew Salaway at the University of Southern California. -->
