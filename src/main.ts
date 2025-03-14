@@ -235,7 +235,7 @@ function next_question() {
                 // Compute the highlight intensity (0 if probability is 1, 1 if probability is 0)
                 let intensity = 1 - prob;
                 // Create a span with red background; adjust the opacity by intensity.
-                if (question["is_highlighted"] == 1) {
+                if (data[currentConditionIndex].condition == "highlighted") {
                     return `<span style="background-color: rgba(255, 0, 0, ${intensity});">${tokenText}</span>`;
                 } else {
                     return tokenText;
@@ -435,34 +435,99 @@ $(document).ready(() => {
     }
     );
 
-    $("#nasa_tlx_next").on("click", () => {
-        // Gather slider values
-        const mentalDemand = $("#mental_demand").val();
-        const hurriedDemand = $("#hurried_demand").val();
-        const performance   = $("#performance").val();
-        const effort        = $("#effort").val();
-        const frustration   = $("#frustration").val();
+    // Define an interface for slider tracking
+interface SliderState {
+    mental_demand: boolean;
+    hurried_demand: boolean;
+    performance: boolean;
+    effort: boolean;
+    frustration: boolean;
+}
+
+// Initialize tracking object
+const sliderChanged: SliderState = {
+    mental_demand: false,
+    hurried_demand: false,
+    performance: false,
+    effort: false,
+    frustration: false
+};
+
+// Function to check if all sliders have been adjusted
+function checkAllSlidersChanged(): boolean {
+    return Object.values(sliderChanged).every(value => value === true);
+}
+function resetSliders() {
+    // Reset tracking object
+    for (let key in sliderChanged) {
+        sliderChanged[key as keyof SliderState] = false;
+    }
+
+    // Reset slider values to 0
+    $(".nasa-tlx-range").val("0");
+
+    // Disable the "Next" button again
+    nextButton.prop("disabled", true);
+}
+
+// Disable the "Next" button initially
+const nextButton = $("#nasa_tlx_next") as JQuery<HTMLInputElement>;
+nextButton.prop("disabled", true);
+
+// Event listener for all sliders
+$(".nasa-tlx-range").on("input", function () {
+    const sliderId = $(this).attr("id") as keyof SliderState;
     
-        // Log the data
-        const tlxData = {
-          mental_demand: mentalDemand,
-          hurried_demand: hurriedDemand,
-          performance: performance,
-          effort: effort,
-          frustration: frustration
-        };
-        log_data({
-          condition: $("#condition_label").text(),
-          tlx: tlxData
-        });
-    
-        // Hide the NASA TLX page and move on
-        $("#nasa_tlx_survey").hide();
-        // e.g., load next condition or next question
-        currentConditionIndex++;
-        currentQuestionIndex = 0;
-        next_question();
-      });
+    // Ensure that the slider exists in our tracking object
+    if (sliderId in sliderChanged) {
+        const sliderValue = $(this).val();
+        if (sliderValue !== "0") {
+            sliderChanged[sliderId] = true;
+        }
+
+        // Enable the "Next" button if all sliders have been changed
+        if (checkAllSlidersChanged()) {
+            nextButton.prop("disabled", false);
+        }
+    }
+});
+
+// Event listener for "Next" button in NASA TLX survey
+nextButton.on("click", () => {
+    if (!checkAllSlidersChanged()) {
+        alert("Please adjust all sliders before continuing.");
+        return;
+    }
+
+    // Gather slider values safely
+    const mentalDemand = ($("#mental_demand").val() as string) || "0";
+    const hurriedDemand = ($("#hurried_demand").val() as string) || "0";
+    const performance = ($("#performance").val() as string) || "0";
+    const effort = ($("#effort").val() as string) || "0";
+    const frustration = ($("#frustration").val() as string) || "0";
+
+    // Log the data
+    const tlxData = {
+        mental_demand: parseInt(mentalDemand),
+        hurried_demand: parseInt(hurriedDemand),
+        performance: parseInt(performance),
+        effort: parseInt(effort),
+        frustration: parseInt(frustration)
+    };
+
+    log_data({
+        condition: $("#condition_label").text(),
+        tlx: tlxData
+    });
+
+    // Hide the NASA TLX page and move on
+    resetSliders();
+    $("#nasa_tlx_survey").hide();
+    currentConditionIndex++;
+    currentQuestionIndex = 0;
+    next_question();
+});
+
     
 
 });
