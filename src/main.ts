@@ -522,11 +522,11 @@ $("#qual_next").on("click", () => {
     // Transition to end-of-survey “Thank you” screen or similar.
     $("#qualitative_section").hide();
     if (MOCKMODE) {
-        $('#reward_box_mock').text(`Your total reward is $${balance.toFixed(2)} (${(data.length)* (data[0].length)} questions answered) + $2.`);
+        $('#reward_box_mock').text(`Your total reward is $3.00.`);
         $('#reward_box_mock').show();
         $("#main_box_end_mock").show();    
     } else {
-        $('#reward_box').text(`Your total reward is $${balance.toFixed(2)} (${(data.length)* (data[0].length)} questions answered) + $2.`);
+        $('#reward_box').text(`Your total reward is $3.00.`);
         $('#reward_box').show();
         $("#main_box_end").show();    
     }

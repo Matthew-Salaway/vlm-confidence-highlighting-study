@@ -1,7 +1,7 @@
 import { DEVMODE } from './globals'
 import { MOCKMODE } from './main'
 
-let SERVER_LOG_ROOT = DEVMODE ? "http://127.0.0.1:5000/" : "https://tejassrinivasan.pythonanywhere.com/"
+let SERVER_LOG_ROOT = DEVMODE ? "http://127.0.0.1:5000/" : "https://matthewsalaway.pythonanywhere.com/"
 
 async function sleep(ms: number): Promise<void> {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -40,7 +40,7 @@ export async function log_data(data): Promise<any> {
             SERVER_LOG_ROOT + "log",
             {
                 data: JSON.stringify({
-                    project: "vlm-rationales-study/"+data['url_data']['study_id'],
+                    project: "ocr-calibration-study/"+data['url_data']['study_id'],
                     uid: globalThis.uid+"_"+data['url_data']['prolific_id'],
                     payload: JSON.stringify(data),
                 }),
