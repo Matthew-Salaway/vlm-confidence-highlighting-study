@@ -17,7 +17,7 @@ random.seed(14)
 
 # Load data from JSON
 data = json.load(open(args.data))
-
+data = data[:args.num_instances_per_queue]
 # Shuffle the data once globally
 random.shuffle(data)
 

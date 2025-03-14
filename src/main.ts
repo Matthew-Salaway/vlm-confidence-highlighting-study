@@ -143,10 +143,44 @@ function update_balance() {
 /* New function: Show start-of-condition page */
 function showStartConditionPage(condition: string) {
     $("#main_box_experiment").hide();
-
+    // Clear the container once.
     $("#start_condition_page").empty().show();
-    $("#start_condition_page").append("<h2>Start " + condition + "</h2>");
-    $("#start_condition_page").append("<input id='start_condition_next' type='button' value='Next'>");
+
+    // Determine header text based on condition.
+    const headerText = (condition === "highlighted") 
+                         ? "Uncertainty Highlighted Section" 
+                         : "Non-Highlighted Section";
+
+    // Create a flex container with header and Start Experiment button.
+    const headerHtml = `
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+          <h2 style="margin: 0;">${headerText}</h2>
+          <input id="start_condition_next" type="button" value="Start Experiment" style="margin: 0;"/>
+      </div>
+    `;
+    $("#start_condition_page").append(headerHtml);
+
+    // Append a container for the practice round content if not already present.
+    if ($("#practice_container").length === 0) {
+      $("#start_condition_page").append('<div id="practice_container" style="margin-top:10px;"></div>');
+    }
+
+    loadPracticeQuestions().then((data) => {
+        practiceQuestions = data;
+        console.log("Practice questions loaded:", practiceQuestions);
+        practiceIndex = 0; // Start at the first practice question.
+        // Launch the practice round.
+        showPracticeRound(() => {
+          // When practice is complete, resume the normal experiment flow.
+          // (At this point, you can now safely update experiment state.)
+          currentQuestionIndex = 1;
+          next_question();
+        });
+      }).catch((err) => {
+        console.error("Error loading practice questions:", err);
+      });
+    
+
     $("#start_condition_next").on("click", () => {
         $("#start_condition_page").hide();
         // After start page, begin with first question (set index to 1)
@@ -154,6 +188,115 @@ function showStartConditionPage(condition: string) {
         next_question();
     });
 }
+let practiceQuestions: any[] = [];
+let practiceIndex: number = 0;
+
+// Function to load practice questions (assumes a JSON file with an array of example questions)
+function loadPracticeQuestions(): Promise<any[]> {
+  return new Promise<any[]>((resolve, reject) => {
+    $.getJSON("practice_questions/Qwen_practice_Qs.json")
+      .done(data => resolve(data))
+      .fail((jqxhr, textStatus, error) => reject(error));
+  });
+}
+function showPracticeRound(onComplete: () => void) {
+    // Instead of emptying the entire page, update only the practice container.
+    $("#practice_container").empty().show();
+  
+    // Build the practice round content inside a fixed container.
+    const practiceContent = $(`
+      <div id="practice_inner_container" style="padding: 20px; padding-top:0px; overflow-y: auto;">
+        <div id="practice_header"></div>
+        <div id="practice_content" style="margin-top: 10px;"></div>
+        <div id="practice_nav" style="margin-top: 20px; margin-bottom: 25px;"></div>
+      </div>
+    `);
+    $("#practice_container").append(practiceContent);
+  
+    // Set header for the practice round.
+    $("#practice_header").html(`<h2>Practice Round (${practiceIndex + 1} of ${practiceQuestions.length})</h2>`);
+  
+    // Build content: image, predicted text, and input.
+    const contentHtml = `
+      <div id="practice_question_display" style="margin-top: 10px;">
+        <img id="practice_question_image" src="" alt="Practice Question Image" style="max-width: 100%; height: 110px; object-fit: contain;margin-top: 20px;">
+        <div id="practice_predicted_text_container" style="margin-top: 20px;">
+          <div style="margin-top: 10px;">Predicted Text:</div>
+          <div id="practice_predicted_text" style="margin-top: 20px;"></div>
+        </div>
+        <div id="practice_token_input_container" style="margin-top: 20px;">
+          <input id="practice_token_input" type="text" style="width: 100%; font-size: 16px; padding: 8px;">
+        </div>
+      </div>
+    `;
+    $("#practice_content").html(contentHtml);
+  
+    // Get the current practice question.
+    const question = practiceQuestions[practiceIndex];
+  
+    // Set the question image.
+    if (question["image"]) {
+      $("#practice_question_image").attr("src", "data:image/png;base64," + question["image"]);
+    } else {
+      $("#practice_question_image").attr("src", "");
+    }
+  
+    // Render predicted text using token_info.
+    let predictedHtml = "";
+    if (question["token_info"] && Array.isArray(question["token_info"])) {
+      predictedHtml = question["token_info"]
+        .filter(item => item.token !== "<|im_end|>")
+        .map(item => {
+          const tokenText = item.token.replace(/Ġ/g, " ");
+          const prob = (item.top_5_tokens &&
+                        item.top_5_tokens[0] &&
+                        typeof item.top_5_tokens[0].probability === "number")
+                        ? item.top_5_tokens[0].probability
+                        : 1;
+          // Use the global condition from the main data to decide whether to apply highlighting.
+          if (data[currentConditionIndex].condition === "highlighted") {
+            const intensity = 1 - prob;
+            return `<span style="background-color: rgba(255, 0, 0, ${intensity});">${tokenText}</span>`;
+          } else {
+            return tokenText;
+          }
+        })
+        .join('');
+    }
+    $("#practice_predicted_text").html(predictedHtml);
+  
+    // Prepopulate the text input.
+    let tokensConcatenated = "";
+    if (question["token_info"] && Array.isArray(question["token_info"])) {
+      tokensConcatenated = question["token_info"]
+        .map(item => item.token)
+        .filter(token => token !== "<|im_end|>")
+        .map(token => token.replace(/Ġ/g, " "))
+        .join('');
+    }
+    $("#practice_token_input").val(tokensConcatenated);
+  
+    // Build navigation buttons.
+    const navHtml = `
+      <div>
+        <input id="practice_prev" type="button" value="Previous Example">
+        <input id="practice_next" type="button" value="Next Example" style="margin-left: 10px;">
+      </div>
+    `;
+    $("#practice_nav").html(navHtml);
+  
+    // Attach button handlers.
+    $("#practice_prev").off("click").on("click", () => {
+      practiceIndex = (practiceIndex - 1 + practiceQuestions.length) % practiceQuestions.length;
+      showPracticeRound(onComplete);
+    });
+    $("#practice_next").off("click").on("click", () => {
+      practiceIndex = (practiceIndex + 1) % practiceQuestions.length;
+      showPracticeRound(onComplete);
+    });
+  }
+  
+
 
 /* New function: Show end-of-condition page */
 function showEndConditionPage(condition: string) {
