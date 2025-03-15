@@ -276,3 +276,27 @@ input[type="button"]:hover:not([disabled]) {
     border-radius: 50%;
     cursor: pointer;
 }
+.tlx-box-group {
+    display: flex;
+    justify-content: space-between;
+    width: 220px; /* similar width as the slider */
+    margin: 0 5px;
+}
+
+.tlx-box {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: white;
+    margin: 0 2px;
+}
+
+.tlx-box.selected {
+    border-color: #4CAF50;
+    background-color: #ddd;
+}
