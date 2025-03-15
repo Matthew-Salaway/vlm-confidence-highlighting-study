@@ -86,43 +86,6 @@ function next_instructions(increment: number) {
 $("#button_instructions_next").on("click", () => next_instructions(+1))
 $("#button_instructions_prev").on("click", () => next_instructions(-1))
 
-$("#button_next").on("click", () => {
-
-    // Update the user balance
-    let old_balance = balance
-    update_balance()
-
-    if (currentQuestionIndex > 0) {
-        let logged_data = {
-            "question_i": currentQuestionIndex,
-            "user_selections": {
-                "answeronly": userselection_answeronly,
-                "withexplanation": userselection_withexplanation,
-                "withexplanationquality": userselection_withexplanationquality
-            },
-            "user_is_correct": {
-                "answeronly": is_user_correct(userselection_answeronly),
-                "withexplanation": is_user_correct(userselection_withexplanation),
-                "withexplanationquality": is_user_correct(userselection_withexplanationquality)
-            },
-            "balance": {
-                "old": old_balance,
-                "new": balance
-            }
-        }
-
-        logged_data['question'] = question
-        logged_data['count_exited_page'] = count_exited_page
-        log_data(logged_data)
-        count_exited_page = 0
-    }
-    
-
-    next_question()
-});
-
-
-
 function is_user_correct(selection) {
     if (selection != 2) {
         let correct_selection = 1 - question["prediction_is_correct"] // 0 if AI is correct, 1 if incorrect

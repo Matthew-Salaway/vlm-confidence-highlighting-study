@@ -9,11 +9,11 @@ args.add_argument("-d", "--data", default="../data/sample_data.json")
 args.add_argument("-n", "--name", default="fm2_llama3.1_8b")
 args.add_argument("-i", "--num_instances_per_queue", type=int, default=50)
 args.add_argument("-q", "--num_queues", type=int, default=4)  # Ensure num_queues is a multiple of 4
-args.add_argument("-s", "--seed", type=int, default=14)  # Set default seed to 14
+args.add_argument("-s", "--seed", type=int, default=27)  # Set default seed to 14
 args = args.parse_args()
 
 # Set deterministic seed
-random.seed(14)
+random.seed(27)
 
 # Load data from JSON
 data = json.load(open(args.data))
@@ -25,7 +25,11 @@ random.shuffle(data)
 half_size = len(data) // 2
 X = data[:half_size]  # First half
 Y = data[half_size:]  # Second half
-
+# print the answer of each partition
+for x in X:
+    print(f"X: {x['answer'][0].replace(" ", "")}")
+for y in Y:
+    print(f"Y: {y['answer'][0].replace(" ", "")}")
 # Output directory for JSON files
 out_dirname = f"web/baked_queues/{args.name}_q{args.num_queues}_i{args.num_instances_per_queue}_s{args.seed}"
 os.makedirs(out_dirname, exist_ok=True)
@@ -35,6 +39,7 @@ for i in range(args.num_queues // 4):
     # Shuffle partitions before each iteration
     random.shuffle(X)
     random.shuffle(Y)
+
 
     # Generate JSON files with different orderings
     json_variants = [
