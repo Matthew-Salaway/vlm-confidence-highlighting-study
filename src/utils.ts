@@ -6,5 +6,19 @@ function paramsToObject(entries) {
   }
   return result;
 }
+// In src/utils.ts or at the top of src/main.ts
+function fixSpacing(input: string): string {
+  // Remove all spaces.
+  let output = input.replace(/\s+/g, "");
+  // Add a space before every backslash.
+  output = output.replace(/\\/g, " \\");
+  // Add a space before and after every plus, minus, and equal sign.
+  output = output.replace(/([\+\-\=])/g, " $1 ");
+  // Collapse multiple spaces into one.
+  output = output.replace(/\s+/g, " ");
+  return output;
+}
 
-export { paramsToObject }
+
+
+export { paramsToObject, fixSpacing }

@@ -2,7 +2,7 @@ import { DEVMODE } from "./globals"
 export var UID: string
 export var MOCKMODE: boolean = false
 import { load_data, log_data } from './connector'
-import { paramsToObject } from "./utils"
+import { paramsToObject, fixSpacing } from "./utils"
 
 var data: any[] = []
 let question: any = null
@@ -31,6 +31,7 @@ function assert(condition, message) {
     }
 }
 
+
 function checkPreSurvey(): boolean {
     const latexExp = $("input[name='latexExperience']:checked").val();
     const latexFreq = $("input[name='latexFrequency']:checked").val();
@@ -54,7 +55,7 @@ function next_instructions(increment: number) {
     } else {
         $("#button_instructions_prev").removeAttr("disabled")
     }
-    if(instruction_i == 4 && !checkPreSurvey()) {
+    if(instruction_i == 3 && !checkPreSurvey()) {
         $("#button_instructions_next").attr("disabled", "true")
         $("#button_instructions_next").hide()
     }
@@ -62,14 +63,14 @@ function next_instructions(increment: number) {
         $("#button_instructions_next").removeAttr("disabled")
         $("#button_instructions_next").show()
     }
-    if (instruction_i >= 5) {
+    if (instruction_i >= 4) {
         $("#instructions_and_decorations").show()
         $("#button_instructions_next").val("Start study")
     } else {
         $("#instructions_and_decorations").hide()
         $("#button_instructions_next").val("Next")
     }
-    if (instruction_i == 6) {
+    if (instruction_i == 5) {
         $("#instructions_and_decorations").show()
         $("#main_box_instructions").hide()
         $("#main_box_experiment").show()
@@ -118,7 +119,7 @@ function showStartConditionPage(condition: string) {
     const headerHtml = `
       <div style="display: flex; justify-content: space-between; align-items: center;">
           <h2 style="margin: 0;">${headerText}</h2>
-          <input id="start_condition_next" type="button" value="Start Experiment" style="margin: 0;"/>
+          <input id="start_condition_next" type="button" value="Start Section" style="margin: 0;"/>
       </div>
     `;
     $("#start_condition_page").append(headerHtml);
@@ -169,6 +170,7 @@ function showPracticeRound(onComplete: () => void) {
     // Build the practice round content inside a fixed container.
     const practiceContent = $(`
       <div id="practice_inner_container" style="padding: 20px; padding-top:0px; overflow-y: auto;">
+        <div id="practice_instructions"></div>
         <div id="practice_header"></div>
         <div id="practice_content" style="margin-top: 10px;"></div>
         <div id="practice_nav" style="margin-top: 20px; margin-bottom: 25px;"></div>
@@ -179,6 +181,28 @@ function showPracticeRound(onComplete: () => void) {
     // Set header for the practice round.
     $("#practice_header").html(`<h2>Practice Round (${practiceIndex + 1} of ${practiceQuestions.length})</h2>`);
   
+    const condition = data[currentConditionIndex].condition;
+    const bulletPoints: string[] = [];
+
+    if (condition === "highlighted") {
+    bulletPoints.push("The text is red if the model is uncertain about it. The brighter the red, the more uncertain the model is about that specific text.");
+    bulletPoints.push("Review the transcription carefully and fix any errors by editing the input box.");
+    } else {
+    bulletPoints.push("Review the transcription carefully and fix any errors by editing the input box.");
+    }
+    bulletPoints.push("When the session starts, you will have 20 seconds to modify each transcription.");
+
+    // Build HTML for the bullet list dynamically
+    const bulletHtml = bulletPoints.map(point => `<li>${point}</li>`).join("");
+
+    // Insert the instructions in the practice round UI
+    $("#practice_instructions").html(`
+    <h3 style="font-size: 1.1em; margin-bottom: 5px;">Instructions:</h3>
+    <ul style="margin-left: 20px;">
+        ${bulletHtml}
+    </ul>
+    `);
+
     // Build content: image, predicted text, and input.
     const contentHtml = `
       <div id="practice_question_display" style="margin-top: 10px;">
@@ -207,24 +231,27 @@ function showPracticeRound(onComplete: () => void) {
     // Render predicted text using token_info.
     let predictedHtml = "";
     if (question["token_info"] && Array.isArray(question["token_info"])) {
-      predictedHtml = question["token_info"]
+        predictedHtml = question["token_info"]
         .filter(item => item.token !== "<|im_end|>")
         .map(item => {
-          const tokenText = item.token.replace(/Ġ/g, " ");
-          const prob = (item.top_5_tokens &&
-                        item.top_5_tokens[0] &&
-                        typeof item.top_5_tokens[0].probability === "number")
-                        ? item.top_5_tokens[0].probability
-                        : 1;
-          // Use the global condition from the main data to decide whether to apply highlighting.
+          // Replace the special "Ġ" with a space
+          let tokenText = item.token.replace(/Ġ/g, " ");
           if (data[currentConditionIndex].condition === "highlighted") {
+            const prob = (item.top_5_tokens &&
+                          item.top_5_tokens[0] &&
+                          typeof item.top_5_tokens[0].probability === "number")
+                          ? item.top_5_tokens[0].probability
+                          : 1;
             const intensity = 1 - prob;
+            // Apply fixSpacing to tokenText BEFORE wrapping in a span.
+            tokenText = fixSpacing(tokenText);
             return `<span style="background-color: rgba(255, 0, 0, ${intensity});">${tokenText}</span>`;
           } else {
-            return tokenText;
+            // For non-highlighted, you can either fix the entire string later or fix each token here.
+            return fixSpacing(tokenText);
           }
         })
-        .join('');
+        .join('');      
     }
     $("#practice_predicted_text").html(predictedHtml);
   
@@ -237,8 +264,25 @@ function showPracticeRound(onComplete: () => void) {
         .map(token => token.replace(/Ġ/g, " "))
         .join('');
     }
-    $("#practice_token_input").val(tokensConcatenated);
+    $("#practice_token_input").val(fixSpacing(tokensConcatenated));
   
+    // After setting the predicted text in #practice_predicted_text, add:
+    if (condition === "highlighted"){
+        let additionalText = "";
+        if (practiceIndex === 0) {
+        additionalText = "The model is uncertain about the text \\boxed";
+        } else if (practiceIndex === 1) {
+        additionalText = "the model shows no uncertainty";
+        } else if (practiceIndex === 2) {
+        additionalText = "The model is uncertain about three characters";
+        }
+        $("#practice_predicted_text").append(
+        `<span style="font-style: italic; margin-left: 20px; vertical-align: middle;">${additionalText}</span>`
+        );
+    
+    }
+
+
     // Build navigation buttons.
     const navHtml = `
       <div>
@@ -326,30 +370,27 @@ function next_question() {
     let predictedHtml = "";
     if (question["token_info"] && Array.isArray(question["token_info"])) {
         predictedHtml = question["token_info"]
-            // Skip the end token
-            .filter(item => item.token !== "<|im_end|>")
-            .map(item => {
-                // Replace the special "Ġ" character with a space
-                let tokenText = item.token.replace(/Ġ/g, " ");
-                // Get the probability from the first candidate in top_5_tokens.
-                // If not available, default to 1 (no highlight).
-                let prob = (item.top_5_tokens &&
-                            item.top_5_tokens[0] &&
-                            typeof item.top_5_tokens[0].probability === "number")
-                            ? item.top_5_tokens[0].probability
-                            : 1;
-                // Compute the highlight intensity (0 if probability is 1, 1 if probability is 0)
-                let intensity = 1 - prob;
-                // Create a span with red background; adjust the opacity by intensity.
-                if (data[currentConditionIndex].condition == "highlighted") {
-                    return `<span style="background-color: rgba(255, 0, 0, ${intensity});">${tokenText}</span>`;
-                } else {
-                    return tokenText;
-                }
-            })
-            .join('');
+        .filter(item => item.token !== "<|im_end|>")
+        .map(item => {
+        let tokenText = item.token.replace(/Ġ/g, " ");
+        let prob = (item.top_5_tokens &&
+                    item.top_5_tokens[0] &&
+                    typeof item.top_5_tokens[0].probability === "number")
+                    ? item.top_5_tokens[0].probability
+                    : 1;
+        let intensity = 1 - prob;
+        if (data[currentConditionIndex].condition == "highlighted") {
+            // Apply fixSpacing on the token text before wrapping in span.
+            return `<span style="background-color: rgba(255, 0, 0, ${intensity});">${fixSpacing(tokenText)}</span>`;
+        } else {
+            // For non-highlighted, you can fix the whole string afterwards or per token.
+            return fixSpacing(tokenText);
+        }
+        })
+        .join('');
     }
-    $("#predicted_text").html(predictedHtml);
+$("#predicted_text").html(predictedHtml);
+
       
     
     // Concatenate tokens (with replacement of Ġ and skipping <|im_end|>).
@@ -361,7 +402,7 @@ function next_question() {
           .map(token => token.replace(/Ġ/g, " "))
           .join('');
     }
-    $("#token_input").val(tokensConcatenated);
+    $("#token_input").val(fixSpacing(tokensConcatenated));
     
     // (Update progress and other elements as necessary)
     $("#progress").text(`Section ${currentConditionIndex + 1} of ${data.length} | Question ${currentQuestionIndex} of ${conditionBlock.questions.length}`);
@@ -540,8 +581,7 @@ $(document).ready(() => {
         console.log("User input:", currentText);
     }
     );
-
-    // Define an interface for slider tracking
+// Global object to track whether a slider was changed.
 interface SliderState {
     mental_demand: boolean;
     hurried_demand: boolean;
@@ -550,7 +590,6 @@ interface SliderState {
     frustration: boolean;
 }
 
-// Initialize tracking object
 const sliderChanged: SliderState = {
     mental_demand: false,
     hurried_demand: false,
@@ -559,20 +598,29 @@ const sliderChanged: SliderState = {
     frustration: false
 };
 
-// Function to check if all sliders have been adjusted
+// Global object to store the selected values. (null indicates no selection yet)
+const tlxValues: { [key: string]: number | null } = {
+    mental_demand: null,
+    hurried_demand: null,
+    performance: null,
+    effort: null,
+    frustration: null
+};
+
 function checkAllSlidersChanged(): boolean {
     return Object.values(sliderChanged).every(value => value === true);
 }
+
 function resetSliders() {
-    // Reset tracking object
+    // Reset tracking object and selected values
     for (let key in sliderChanged) {
         sliderChanged[key as keyof SliderState] = false;
     }
-
-    // Reset slider values to 0
-    $(".nasa-tlx-range").val("0");
-
-    // Disable the "Next" button again
+    for (let key in tlxValues) {
+        tlxValues[key] = null;
+    }
+    // Remove selection highlight from all boxes
+    $(".tlx-box").removeClass("selected");
     nextButton.prop("disabled", true);
 }
 
@@ -581,20 +629,20 @@ const nextButton = $("#nasa_tlx_next") as JQuery<HTMLInputElement>;
 nextButton.prop("disabled", true);
 
 // Event listener for all sliders
-$(".nasa-tlx-range").on("input", function () {
-    const sliderId = $(this).attr("id") as keyof SliderState;
+$(".tlx-box").on("click", function() {
+    const sliderId = $(this).parent().attr("id"); // e.g., "mental_demand"
+    if (!sliderId || !(sliderId in sliderChanged)) return;
+    const value = parseInt($(this).attr("data-value") as string);
+    tlxValues[sliderId] = value;
+    sliderChanged[sliderId as keyof SliderState] = true;
     
-    // Ensure that the slider exists in our tracking object
-    if (sliderId in sliderChanged) {
-        const sliderValue = $(this).val();
-        if (sliderValue !== "0") {
-            sliderChanged[sliderId] = true;
-        }
+    // Update UI: mark this box as selected and remove selection from siblings.
+    $(this).siblings().removeClass("selected");
+    $(this).addClass("selected");
 
-        // Enable the "Next" button if all sliders have been changed
-        if (checkAllSlidersChanged()) {
-            nextButton.prop("disabled", false);
-        }
+    // Enable the Next button if all sliders have been changed.
+    if (checkAllSlidersChanged()) {
+        nextButton.prop("disabled", false);
     }
 });
 
@@ -605,21 +653,14 @@ nextButton.on("click", () => {
         return;
     }
 
-    // Gather slider values safely
-    const mentalDemand = ($("#mental_demand").val() as string) || "0";
-    const hurriedDemand = ($("#hurried_demand").val() as string) || "0";
-    const performance = ($("#performance").val() as string) || "0";
-    const effort = ($("#effort").val() as string) || "0";
-    const frustration = ($("#frustration").val() as string) || "0";
-
-    // Log the data
     const tlxData = {
-        mental_demand: parseInt(mentalDemand),
-        hurried_demand: parseInt(hurriedDemand),
-        performance: parseInt(performance),
-        effort: parseInt(effort),
-        frustration: parseInt(frustration)
+        mental_demand: tlxValues["mental_demand"] !== null ? tlxValues["mental_demand"] : 0,
+        hurried_demand: tlxValues["hurried_demand"] !== null ? tlxValues["hurried_demand"] : 0,
+        performance: tlxValues["performance"] !== null ? tlxValues["performance"] : 0,
+        effort: tlxValues["effort"] !== null ? tlxValues["effort"] : 0,
+        frustration: tlxValues["frustration"] !== null ? tlxValues["frustration"] : 0
     };
+    
 
     log_data({
         condition: $("#condition_label").text(),
