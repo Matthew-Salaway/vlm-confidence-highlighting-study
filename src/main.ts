@@ -6,15 +6,15 @@ import { paramsToObject, fixSpacing } from "./utils"
 
 var data: any[] = []
 let question: any = null
-let userselection_answeronly: number = -1
-let userselection_withexplanation: number = -1
-let userselection_withexplanationquality: number = -1
 let confidenceRating: number = -1;
 let part1Timer: number = 0;
 let part1Interval: number = 0;
 let remainingTime: number = 20;
 let currentConditionIndex = 0;
 let currentQuestionIndex = 0;
+let preSurveyLogged = false;
+let questionStartTime: number = Date.now();
+
 
 
 
@@ -46,6 +46,25 @@ function checkPreSurvey(): boolean {
     }
 }
 
+function logInputEvent(eventType: string) {
+    const preciseTime = ((Date.now() - questionStartTime) / 1000).toFixed(3);
+    const qid = currentQuestionIndex; // Using the currentQuestionIndex as the question id.
+    const condition = data[currentConditionIndex].condition;
+    const currentText = $("#token_input").val();
+
+    log_data({
+        keylog: {
+            event: eventType,
+            qid: qid,
+            condition: condition,
+            condition_index: currentConditionIndex,
+            precise_time: preciseTime,
+            input: currentText
+        }
+    });
+}
+
+
 
 function next_instructions(increment: number) {
     instruction_i += increment
@@ -75,6 +94,16 @@ function next_instructions(increment: number) {
         $("#main_box_instructions").hide()
         $("#main_box_experiment").show()
         // Reset our condition indices before starting the experiment
+        if (!preSurveyLogged) {
+            const preSurveyData = {
+                latexExperience: $("input[name='latexExperience']:checked").val(),
+                latexFrequency: $("input[name='latexFrequency']:checked").val(),
+                chatbotFrequency: $("input[name='chatbotFrequency']:checked").val()
+            };
+            log_data({ pre_survey: preSurveyData });
+            preSurveyLogged = true;
+        }
+
 
         next_question()
     }
@@ -87,22 +116,6 @@ function next_instructions(increment: number) {
 $("#button_instructions_next").on("click", () => next_instructions(+1))
 $("#button_instructions_prev").on("click", () => next_instructions(-1))
 
-function is_user_correct(selection) {
-    if (selection != 2) {
-        let correct_selection = 1 - question["prediction_is_correct"] // 0 if AI is correct, 1 if incorrect
-        return selection == correct_selection ? 1 : 0
-    }
-    return -1
-}
-
-function update_balance() {
-    if (userselection_withexplanationquality != 2) {
-        let correct_selection = 1 - question["prediction_is_correct"] // 0 if AI is correct, 1 if incorrect
-        if (userselection_withexplanationquality == correct_selection) {
-            balance += balance_increment
-        }
-    }
-}
 
 /* New function: Show start-of-condition page */
 function showStartConditionPage(condition: string) {
@@ -131,7 +144,7 @@ function showStartConditionPage(condition: string) {
 
     loadPracticeQuestions().then((data) => {
         practiceQuestions = data;
-        console.log("Practice questions loaded:", practiceQuestions);
+        // console.log("Practice questions loaded:", practiceQuestions);
         practiceIndex = 0; // Start at the first practice question.
         // Launch the practice round.
         showPracticeRound(() => {
@@ -141,7 +154,7 @@ function showStartConditionPage(condition: string) {
           next_question();
         });
       }).catch((err) => {
-        console.error("Error loading practice questions:", err);
+        // console.error("Error loading practice questions:", err);
       });
     
 
@@ -329,7 +342,7 @@ function next_question() {
     $("#button_next").hide()
     $('#button_quit').hide()
     //$("#range_val").val(user_trust)
-    console.log("question index, condition index", currentQuestionIndex, currentConditionIndex)        
+    // console.log("question index, condition index", currentQuestionIndex, currentConditionIndex)        
 
     if (currentConditionIndex >= data.length) {
         $("#main_box_experiment").hide();
@@ -337,8 +350,8 @@ function next_question() {
         return;
     }
     let conditionBlock = data[currentConditionIndex];
-    console.log("Condition block", conditionBlock)
-    console.log(data)
+    // console.log("Condition block", conditionBlock)
+    // console.log(data)
 
     // If we are at the start page for this condition, show it.
     if (currentQuestionIndex === 0) {
@@ -354,7 +367,7 @@ function next_question() {
 
 
     question = conditionBlock.questions[currentQuestionIndex - 1];
-    console.log("Question", currentQuestionIndex, question)
+    // console.log("Question", currentQuestionIndex, question)
     
     
     // --- Update Part 1 elements ---
@@ -413,6 +426,10 @@ $("#predicted_text").html(predictedHtml);
 // At the end of next_question(), after updating all Part 1 elements:
 $("#token_input_container").hide();
 $("#button_next_part1").hide();
+
+    // Set the precise question start time (in ms)
+    questionStartTime = Date.now();
+
 
 // Start a 20-second timer for Part 1
 clearTimeout(part1Timer);
@@ -489,18 +506,18 @@ if (DEVMODE) {
     MOCKMODE = true
 }
 
-console.log("Running with UID", globalThis.uid)
+// console.log("Running with UID", globalThis.uid)
 load_data().catch((_error) => {
     //alert("Invalid user id.")
-    console.log("Invalid user id.")
-    console.log(globalThis.uid!)
+    // console.log("Invalid user id.")
+    // console.log(globalThis.uid!)
     window.location.reload()
 }
 ).then((new_data) => {
     data = new_data
     if (startOverride != null) {
         currentQuestionIndex = parseInt(startOverride) - 1
-        console.log("Starting from", currentQuestionIndex)
+        // console.log("Starting from", currentQuestionIndex)
     }
     // next_question()
     next_instructions(0)
@@ -508,7 +525,7 @@ load_data().catch((_error) => {
     $("#instructions_and_decorations").hide()
 })
 
-console.log("Starting session with UID:", globalThis.uid!)
+// console.log("Starting session with UID:", globalThis.uid!)
 
 let alert_active = false
 document.onvisibilitychange = () => {
@@ -526,13 +543,13 @@ document.onvisibilitychange = () => {
 $(document).ready(() => {
     // Transition from Part 1 (question) to Part 2 (confidence rating)
     $("#button_next_part1").on("click", () => {
-      // Optionally, log or save any Part 1 data here.
-      clearTimeout(part1Timer);
-      $("#timer").hide();
+        // Clear timer and transition to Part 2 (confidence rating)
+        logInputEvent("next_button_submitted");
+        clearTimeout(part1Timer);
+        $("#timer").hide();
+        $("#part1").hide();
+        $("#part2").show();
 
-
-      $("#part1").hide();
-      $("#part2").show();
     });
   
     // Handle confidence rating selections:
@@ -551,7 +568,8 @@ $(document).ready(() => {
       // Log the confidence rating along with other data if needed.
       let logged_data = {
         "question_i": currentQuestionIndex,
-        "condition_i": currentConditionIndex,
+        "qid" : question["qid"],
+        "condition": data[currentConditionIndex].condition,
         "confidence_rating": confidenceRating,
         // ... include other logging fields as desired
       };
@@ -577,10 +595,10 @@ $(document).ready(() => {
     });
     // keylog the input
     $("#token_input").on("input", function() {
-        let currentText = $(this).val();
-        console.log("User input:", currentText);
-    }
-    );
+        logInputEvent("input_change");
+    });
+    
+    
 // Global object to track whether a slider was changed.
 interface SliderState {
     mental_demand: boolean;
@@ -664,6 +682,7 @@ nextButton.on("click", () => {
 
     log_data({
         condition: $("#condition_label").text(),
+        condition_index: currentConditionIndex,
         tlx: tlxData
     });
 
@@ -679,6 +698,7 @@ nextButton.on("click", () => {
 
 });
   function autoSubmitPart1() {
+    logInputEvent("auto_submit");
     // Stop the timer if not already cleared
     clearInterval(part1Interval);
     $("#timer").hide();

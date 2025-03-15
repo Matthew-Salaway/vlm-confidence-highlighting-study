@@ -65,34 +65,3 @@ for i in range(args.num_queues // 4):
     print(f"Generated {i*4:03}.json to {i*4+3:03}.json")
 
 print(f"\n✅ Successfully generated {args.num_queues} JSON files in: {out_dirname}")
-
-
-# for uid in list(range(args.num_queues)):
-#     sampled_data = random.sample(data, args.num_instances_per_queue)
-#     random.shuffle(sampled_data)
-
-#     half = args.num_instances_per_queue // 2
-#     # Split the sampled data into two conditions
-#     condition_A = sampled_data[:half]
-#     condition_B = sampled_data[half:]
-    
-#     # Set the is_highlighted flag for each condition accordingly
-#     for question in condition_A:
-#         question["is_highlighted"] = True
-#     for question in condition_B:
-#         question["is_highlighted"] = False
-
-#     # Create a list of condition blocks
-#     conditions = [
-#         {"condition": "highlighted", "questions": condition_A},
-#         {"condition": "non_highlighted", "questions": condition_B}
-#     ]
-#     # Randomize the order of the condition blocks
-#     random.shuffle(conditions)
-    
-#     out_file = f"{out_dirname}/{uid:0>3}.json"
-#     if os.path.exists(out_file):
-#         print(f"Overwriting {out_file}")
-#     else:
-#         print(f"Writing {out_file}")
-#     json.dump(conditions, open(out_file, "w"), indent=2)
