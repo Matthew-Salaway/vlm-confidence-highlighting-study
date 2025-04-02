@@ -27,9 +27,9 @@ X = data[:half_size]  # First half
 Y = data[half_size:]  # Second half
 # print the answer of each partition
 for x in X:
-    print(f"X: {x['answer'][0].replace(" ", "")}")
+    print("X: " + x['answer'][0].replace(" ", ""))
 for y in Y:
-    print(f"Y: {y['answer'][0].replace(" ", "")}")
+    print("Y: " + y['answer'][0].replace(" ", ""))
 # Output directory for JSON files
 out_dirname = f"web/baked_queues/{args.name}_q{args.num_queues}_i{args.num_instances_per_queue}_s{args.seed}"
 os.makedirs(out_dirname, exist_ok=True)

@@ -14,7 +14,7 @@ let currentConditionIndex = 0;
 let currentQuestionIndex = 0;
 let preSurveyLogged = false;
 let questionStartTime: number = Date.now();
-
+let keylogs: any[] = [];
 
 
 
@@ -52,16 +52,17 @@ function logInputEvent(eventType: string) {
     const condition = data[currentConditionIndex].condition;
     const currentText = $("#token_input").val();
 
-    log_data({
-        keylog: {
-            event: eventType,
-            qid: qid,
-            condition: condition,
-            condition_index: currentConditionIndex,
-            precise_time: preciseTime,
-            input: currentText
-        }
-    });
+    let new_keylog = {
+        event: eventType,
+        qid: qid,
+        condition: condition,
+        condition_index: currentConditionIndex,
+        precise_time: preciseTime,
+        new_text: currentText,
+        old_text: null, //todo
+        key_pressed: null, //todo
+    }
+    keylogs = keylogs.concat([new_keylog]);
 }
 
 
@@ -125,8 +126,8 @@ function showStartConditionPage(condition: string) {
 
     // Determine header text based on condition.
     const headerText = (condition === "highlighted") 
-                         ? "Uncertainty Highlighted Section" 
-                         : "Non-Highlighted Section";
+                         ? `Part ${currentConditionIndex+1}: AI Uncertainty is Highlighted` 
+                         : `Part ${currentConditionIndex+1}: AI Uncertainty is Not Highlighted`;
 
     // Create a flex container with header and Start Experiment button.
     const headerHtml = `
@@ -192,17 +193,18 @@ function showPracticeRound(onComplete: () => void) {
     $("#practice_container").append(practiceContent);
   
     // Set header for the practice round.
-    $("#practice_header").html(`<h2>Practice Round (${practiceIndex + 1} of ${practiceQuestions.length})</h2>`);
+    $("#practice_header").html(`<h3>Practice Example (${practiceIndex + 1} of ${practiceQuestions.length})</h3>`);
   
     const condition = data[currentConditionIndex].condition;
     const bulletPoints: string[] = [];
 
     if (condition === "highlighted") {
-    bulletPoints.push("The text is red if the model is uncertain about it. The brighter the red, the more uncertain the model is about that specific text.");
-    bulletPoints.push("Review the transcription carefully and fix any errors by editing the input box.");
+        bulletPoints.push("You will be able to see if the model is uncertain about any part of the transcription.")
+        bulletPoints.push("The text is red if the model is uncertain about it. The brighter the red highlight, the more uncertain the model is about that specific part of the text.");
     } else {
-    bulletPoints.push("Review the transcription carefully and fix any errors by editing the input box.");
+        bulletPoints.push("You will <b>not</b> be able to see if the model is uncertain about any part of the transcription.");
     }
+    bulletPoints.push("Review the transcription carefully and fix any errors by editing the input box.");
     bulletPoints.push("When the session starts, you will have 20 seconds to modify each transcription.");
 
     // Build HTML for the bullet list dynamically
@@ -283,9 +285,9 @@ function showPracticeRound(onComplete: () => void) {
     if (condition === "highlighted"){
         let additionalText = "";
         if (practiceIndex === 0) {
-        additionalText = "The model is uncertain about the text \\boxed";
+        additionalText = "The model is uncertain about the text '\\boxed'";
         } else if (practiceIndex === 1) {
-        additionalText = "the model shows no uncertainty";
+        additionalText = "the model shows no uncertainty (i.e. it is confident about the full transcription)";
         } else if (practiceIndex === 2) {
         additionalText = "The model is uncertain about three characters";
         }
@@ -341,6 +343,7 @@ function next_question() {
     $("#main_box_experiment").show();
     $("#button_next").hide()
     $('#button_quit').hide()
+    keylogs = [];
     //$("#range_val").val(user_trust)
     // console.log("question index, condition index", currentQuestionIndex, currentConditionIndex)        
 
@@ -486,7 +489,7 @@ if (globalThis.url_data['session_id'] == null) {
 if (UIDFromURL != null) {
     globalThis.uid = UIDFromURL as string
     if (globalThis.uid == "prolific_random") {
-        let queue_id = `${Math.floor(Math.random() * 10)}`.padStart(3, "0")
+        let queue_id = `${Math.floor(Math.random() * 4)}`.padStart(3, "0")
         globalThis.uid = `${urlParams.get("prolific_queue_name")}/${queue_id}`
     }
 } else if (DEVMODE) {
@@ -571,6 +574,7 @@ $(document).ready(() => {
         "qid" : question["qid"],
         "condition": data[currentConditionIndex].condition,
         "confidence_rating": confidenceRating,
+        "keylogs": keylogs,
         // ... include other logging fields as desired
       };
       log_data(logged_data);
