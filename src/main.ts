@@ -15,6 +15,8 @@ let currentQuestionIndex = 0;
 let preSurveyLogged = false;
 let questionStartTime: number = Date.now();
 let keylogs: any[] = [];
+let previousInput: string = "";
+
 
 
 
@@ -46,11 +48,11 @@ function checkPreSurvey(): boolean {
     }
 }
 
-function logInputEvent(eventType: string) {
+function logInputEvent(eventType: string, keyPressed?: string) {
     const preciseTime = ((Date.now() - questionStartTime) / 1000).toFixed(3);
     const qid = currentQuestionIndex; // Using the currentQuestionIndex as the question id.
     const condition = data[currentConditionIndex].condition;
-    const currentText = $("#token_input").val();
+    const currentText = $("#token_input").val() as string;
 
     let new_keylog = {
         event: eventType,
@@ -59,9 +61,10 @@ function logInputEvent(eventType: string) {
         condition_index: currentConditionIndex,
         precise_time: preciseTime,
         new_text: currentText,
-        old_text: null, //todo
-        key_pressed: null, //todo
+        old_text: previousInput,
+        key_pressed: keyPressed || null, //todo
     }
+    previousInput = currentText; // Ensure currentText is a string before assignment
     keylogs = keylogs.concat([new_keylog]);
 }
 
@@ -243,32 +246,6 @@ function showPracticeRound(onComplete: () => void) {
       $("#practice_question_image").attr("src", "");
     }
   
-    // Render predicted text using token_info.
-    let predictedHtml = "";
-    if (question["token_info"] && Array.isArray(question["token_info"])) {
-        predictedHtml = question["token_info"]
-        .filter(item => item.token !== "<|im_end|>")
-        .map(item => {
-          // Replace the special "Ġ" with a space
-          let tokenText = item.token.replace(/Ġ/g, " ");
-          if (data[currentConditionIndex].condition === "highlighted") {
-            const prob = (item.top_5_tokens &&
-                          item.top_5_tokens[0] &&
-                          typeof item.top_5_tokens[0].probability === "number")
-                          ? item.top_5_tokens[0].probability
-                          : 1;
-            const intensity = 1 - prob;
-            // Apply fixSpacing to tokenText BEFORE wrapping in a span.
-            tokenText = fixSpacing(tokenText);
-            return `<span style="background-color: rgba(255, 0, 0, ${intensity});">${tokenText}</span>`;
-          } else {
-            // For non-highlighted, you can either fix the entire string later or fix each token here.
-            return fixSpacing(tokenText);
-          }
-        })
-        .join('');      
-    }
-    $("#practice_predicted_text").html(predictedHtml);
   
     // Prepopulate the text input.
     let tokensConcatenated = "";
@@ -280,6 +257,30 @@ function showPracticeRound(onComplete: () => void) {
         .join('');
     }
     $("#practice_token_input").val(fixSpacing(tokensConcatenated));
+
+    if(data[currentConditionIndex].condition == "non-highlighted"){ 
+        $("#practice_predicted_text").html(fixSpacing(tokensConcatenated));
+    }   
+    else if (data[currentConditionIndex].condition == "highlighted"){
+        let predictedHtml = "";
+            if (question["token_info"] && Array.isArray(question["token_info"])) {
+                predictedHtml = question["token_info"]
+                .filter(item => item.token !== "<|im_end|>")
+                .map(item => {
+                let tokenText = item.token.replace(/Ġ/g, " ");
+                let prob = (item.top_5_tokens &&
+                            item.top_5_tokens[0] &&
+                            typeof item.top_5_tokens[0].probability === "number")
+                            ? item.top_5_tokens[0].probability
+                            : 1;
+                let intensity = 1 - prob;
+                
+                    return `<span style="background-color: rgba(255, 0, 0, ${intensity});">${fixSpacing(tokenText)}</span>`;
+                })
+                .join('');
+            }
+        $("#practice_predicted_text").html(predictedHtml);
+        }    
   
     // After setting the predicted text in #practice_predicted_text, add:
     if (condition === "highlighted"){
@@ -381,34 +382,6 @@ function next_question() {
       $("#question_image").attr("src", "");
     }
     
-    // Display the predicted text.
-    // Build the predicted text HTML by concatenating token_info
-    let predictedHtml = "";
-    if (question["token_info"] && Array.isArray(question["token_info"])) {
-        predictedHtml = question["token_info"]
-        .filter(item => item.token !== "<|im_end|>")
-        .map(item => {
-        let tokenText = item.token.replace(/Ġ/g, " ");
-        let prob = (item.top_5_tokens &&
-                    item.top_5_tokens[0] &&
-                    typeof item.top_5_tokens[0].probability === "number")
-                    ? item.top_5_tokens[0].probability
-                    : 1;
-        let intensity = 1 - prob;
-        if (data[currentConditionIndex].condition == "highlighted") {
-            // Apply fixSpacing on the token text before wrapping in span.
-            return `<span style="background-color: rgba(255, 0, 0, ${intensity});">${fixSpacing(tokenText)}</span>`;
-        } else {
-            // For non-highlighted, you can fix the whole string afterwards or per token.
-            return fixSpacing(tokenText);
-        }
-        })
-        .join('');
-    }
-$("#predicted_text").html(predictedHtml);
-
-      
-    
     // Concatenate tokens (with replacement of Ġ and skipping <|im_end|>).
     let tokensConcatenated = "";
     if (question["token_info"] && Array.isArray(question["token_info"])) {
@@ -419,7 +392,31 @@ $("#predicted_text").html(predictedHtml);
           .join('');
     }
     $("#token_input").val(fixSpacing(tokensConcatenated));
-    
+    previousInput = $("#token_input").val() as string || "";
+    if(data[currentConditionIndex].condition == "non-highlighted"){ 
+        $("#predicted_text").html(fixSpacing(tokensConcatenated));
+    }   
+    else if (data[currentConditionIndex].condition == "highlighted"){
+        let predictedHtml = "";
+            if (question["token_info"] && Array.isArray(question["token_info"])) {
+                predictedHtml = question["token_info"]
+                .filter(item => item.token !== "<|im_end|>")
+                .map(item => {
+                let tokenText = item.token.replace(/Ġ/g, " ");
+                let prob = (item.top_5_tokens &&
+                            item.top_5_tokens[0] &&
+                            typeof item.top_5_tokens[0].probability === "number")
+                            ? item.top_5_tokens[0].probability
+                            : 1;
+                let intensity = 1 - prob;
+                
+                    return `<span style="background-color: rgba(255, 0, 0, ${intensity});">${fixSpacing(tokenText)}</span>`;
+                })
+                .join('');
+            }
+        $("#predicted_text").html(predictedHtml);
+        }    
+
     // (Update progress and other elements as necessary)
     $("#progress").text(`Section ${currentConditionIndex + 1} of ${data.length} | Question ${currentQuestionIndex} of ${conditionBlock.questions.length}`);
         // Always show Part 1 and hide Part 2 when a new question loads.
@@ -435,8 +432,8 @@ $("#button_next_part1").hide();
 
 
 // Start a 20-second timer for Part 1
-clearTimeout(part1Timer);
-part1Timer = window.setTimeout(autoSubmitPart1, 20000);
+// clearTimeout(part1Timer);
+// part1Timer = window.setTimeout(autoSubmitPart1, 20000);
 
 // Reset and start the timer for Part 1
 remainingTime = 20;
@@ -548,7 +545,7 @@ $(document).ready(() => {
     $("#button_next_part1").on("click", () => {
         // Clear timer and transition to Part 2 (confidence rating)
         logInputEvent("next_button_submitted");
-        clearTimeout(part1Timer);
+        clearInterval(part1Interval);
         $("#timer").hide();
         $("#part1").hide();
         $("#part2").show();
@@ -598,8 +595,8 @@ $(document).ready(() => {
 
     });
     // keylog the input
-    $("#token_input").on("input", function() {
-        logInputEvent("input_change");
+    $("#token_input").on("keydown", function(event) {
+        logInputEvent("input_change", event.key);
     });
     
     
