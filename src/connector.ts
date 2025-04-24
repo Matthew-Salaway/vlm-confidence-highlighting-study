@@ -41,7 +41,7 @@ export async function log_data(data): Promise<any> {
             {
                 data: JSON.stringify({
                     project: "ocr-calibration-study/"+data['url_data']['study_id'],
-                    uid: globalThis.uid+"_"+data['url_data']['prolific_id'],
+                    uid: globalThis.uid.replace("/", "_") + "_" + data['url_data']['prolific_id'],
                     payload: JSON.stringify(data),
                 }),
                 type: 'POST',

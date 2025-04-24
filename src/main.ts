@@ -487,7 +487,7 @@ if (UIDFromURL != null) {
     globalThis.uid = UIDFromURL as string
     if (globalThis.uid == "prolific_random") {
         let queue_id = `${Math.floor(Math.random() * 4)}`.padStart(3, "0")
-        globalThis.uid = `${urlParams.get("prolific_queue_name")}_${queue_id}`
+        globalThis.uid = `${urlParams.get("prolific_queue_name")}/${queue_id}`
     }
 } else if (DEVMODE) {
     globalThis.uid = "demo"
