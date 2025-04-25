@@ -9,23 +9,27 @@ import jsonlines, json
 from collections import defaultdict
 
 def get_submissions(study_id):
-    r = requests.get(
-        f"https://api.prolific.co/api/v1/studies/{study_id}/submissions/",
+    result = requests.get(
+        f"https://api.prolific.com/api/v1/studies/{study_id}/submissions/",
         params={"state": "AWAITING REVIEW"},
         headers={"Authorization": f"Token {PROLIFIC_API_KEY}"}
     )
-    if not r.ok:
+    if not result.ok:
+        pdb.set_trace()
         exit("Unable to complete an important request (fetching submissions).")
-    d = r.json()["results"]
+    d = result.json()["results"]
     return d
 
 def display_interaction_summary(uid, interaction_summary):
     print(f"UID: {uid}")
-    print(f"\tBalance: ${interaction_summary['balance']:.2f}")
-    print(f"\tAccuracy with only answer: {interaction_summary['accuracy_answeronly']:.2%}")
-    print(f"\tAccuracy with explanation: {interaction_summary['accuracy_withexplanation']:.2%}")
-    print(f"\tAccuracy with explanation quality: {interaction_summary['accuracy_withexplanationquality']:.2%}")
-    print(f"\tNumber of exits: {interaction_summary['num_exits']}")
+    for k, v in interaction_summary['pre_survey'].items():
+        print(f"\t{k}: {v}")
+    print(f"\t# keys pressed in highlighted condition: {interaction_summary['highlighted']['keys_pressed']}")
+    print(f"\t# keys pressed in non-highlighted condition: {interaction_summary['non-highlighted']['keys_pressed']}")
+    print(f"\tAverage time spent in highlighted condition: {interaction_summary['highlighted']['average_time']:.2f}s")
+    print(f"\tAverage time spent in non-highlighted condition: {interaction_summary['non-highlighted']['average_time']:.2f}s")
+    print(f"\t# unique TLX responses: {interaction_summary['highlighted']['unique_tlx']}")
+    print(f"\t# unique TLX responses: {interaction_summary['non-highlighted']['unique_tlx']}")
 
 def reject_submission(submission_id, participant_id, message, rejection_category):
     if args.dry_run:
@@ -39,7 +43,7 @@ def reject_submission(submission_id, participant_id, message, rejection_category
                        "MALINGERING" ,"NO_CODE", "BAD_CODE", "NO_DATA", "UNSUPP_DEVICE", "OTHER"]:
         print(rejection_category)
     r = requests.post(
-        f"https://api.prolific.co/api/v1/submissions/{submission_id}/transition/",
+        f"https://api.prolific.com/api/v1/submissions/{submission_id}/transition/",
         headers={"Authorization": f"Token {PROLIFIC_API_KEY}"},
 
         json={
@@ -55,9 +59,9 @@ def reject_submission(submission_id, participant_id, message, rejection_category
     d = r.json()
     print(f'status: {d["status"]}, participant: {d["participant"]}')
 
-def approve_and_pay_bonuses(study_id, session_id, participant_id, bonus_payment):
+def approve_and_pay_bonuses(study_id, session_id, participant_id):
     r = requests.post(
-        f"https://api.prolific.co/api/v1/submissions/{session_id}/transition/",
+        f"https://api.prolific.com/api/v1/submissions/{session_id}/transition/",
         headers={"Authorization": f"Token {PROLIFIC_API_KEY}"},
         json={
             "action": "APPROVE",
@@ -70,34 +74,45 @@ def approve_and_pay_bonuses(study_id, session_id, participant_id, bonus_payment)
     d = r.json()
     print(f'status: {d["status"]}, participant: {d["participant"]}')
 
-    if float(bonus_payment) == 0:
-        print(f"Bonus payment is 0, not setting up bonus payment.")
-        return
 
-    bonus_string = f"{participant_id},{bonus_payment}"
-    r = requests.post(
-        f"https://api.prolific.co/api/v1/submissions/bonus-payments/",
-        headers={"Authorization": f"Token {PROLIFIC_API_KEY}"},
-        json={
-            "study_id": study_id,
-            "csv_bonuses": bonus_string
-        }
-    )
-    if not r.ok:
-        exit("Failed to set up bonus payment " + r.content.decode())
-    d = r.json()
-    print("Set up bonus payment with the following response:", d)
-    print(f"Bonus paid: {bonus_payment}, total cost: ${d['total_amount']/100:.2f}")
-    bonus_id = d["id"]
+def get_user_summary(data):
+    
+    for k, v in data['pre_survey']['pre_survey'].items():
+        print(f"\t{k}: {v}")
+    highlighted_interactions = data['highlighted']['interactions']
+    non_highlighted_interactions = data['non-highlighted']['interactions']            
 
-    r = requests.post(
-        f"https://api.prolific.co/api/v1/bulk-bonus-payments/{bonus_id}/pay/",
-        headers={"Authorization": f"Token {PROLIFIC_API_KEY}"},
-    )
-    if not r.ok:
-        exit("Failed to pay bonus payment " + r.content.decode())
-    d = r.json()
-    print("Paid the bonus with the following response:", d)
+    keys_pressed_highlighted = sum([[k['key_pressed'] for k in i['keylogs'] if k['event'] == 'input_change'] for i in highlighted_interactions], [])
+    keys_pressed_non_highlighted = sum([[k['key_pressed'] for k in i['keylogs'] if k['event'] == 'input_change'] for i in non_highlighted_interactions], [])
+    if len(keys_pressed_highlighted) <= 5 or len(keys_pressed_non_highlighted) <= 5:
+        print("Keys pressed in highlighted condition: ", keys_pressed_highlighted)
+        print("Keys pressed in non-highlighted condition: ", keys_pressed_non_highlighted)
+        for i in highlighted_interactions + non_highlighted_interactions:
+            for k in i['keylogs']:
+                print(k['event'], k['key_pressed'], k['old_text'], k['new_text'])
+            #pdb.set_trace()
+
+    time_submissions_highlighted = sum([[float(k['precise_time']) for k in i['keylogs'] if k['event'] == 'auto_submit' or k['event'] == 'next_button_submitted'] for i in highlighted_interactions], [])
+    time_submissions_non_highlighted = sum([[float(k['precise_time']) for k in i['keylogs'] if k['event'] == 'auto_submit' or k['event'] == 'next_button_submitted'] for i in non_highlighted_interactions], [])
+    assert len(time_submissions_highlighted) == 10 and len(time_submissions_non_highlighted) == 10, f"Expected 10 time submissions in each condition, got {len(time_submissions_highlighted)} and {len(time_submissions_non_highlighted)}"
+
+    tlx_responses_highlighted = list(data['highlighted']['tlx']['tlx'].values())
+    tlx_responses_non_highlighted = list(data['non-highlighted']['tlx']['tlx'].values())
+
+    summary = {
+        'highlighted': {
+            'keys_pressed': len(keys_pressed_highlighted),
+            'average_time': sum(time_submissions_highlighted)/len(time_submissions_highlighted),
+            'unique_tlx': len(set(tlx_responses_highlighted)),
+        },
+        'non-highlighted': {
+            'keys_pressed': len(keys_pressed_non_highlighted),
+            'average_time': sum(time_submissions_non_highlighted)/len(time_submissions_non_highlighted),
+            'unique_tlx': len(set(tlx_responses_non_highlighted)),
+        },
+        'pre_survey': data['pre_survey']['pre_survey'],
+    }
+    return summary
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -108,7 +123,7 @@ if __name__ == '__main__':
     interaction_data_filename = f"study_data/batch_interaction_data/{args.study_name}.json"
     batch_summaries_filename = f"study_data/batch_summaries/{args.study_name}.tsv"
     tmp_filename = "tmp.jsonl"
-    command = f"curl \"https://tejassrinivasan.pythonanywhere.com/read?password={PYTHONANYWHERE_KEY}&project=2step-trust-study-interventions/{args.study_id}\" > {tmp_filename}"
+    command = f"curl \"https://matthewsalaway.pythonanywhere.com/read?password={PYTHONANYWHERE_KEY}&project=ocr-calibration-study/{args.study_id}\" > {tmp_filename}"
     os.system(command)
 
     submissions = get_submissions(args.study_id)
@@ -120,17 +135,28 @@ if __name__ == '__main__':
     with jsonlines.open(tmp_filename) as reader:
         for obj in reader:
             user_id = obj['url_data']['prolific_id']
-            try:
-                assert obj['question_i'] == len(uid2interactions[user_id])
-                uid2interactions[user_id].append(obj)
-                all_interactions.append(obj)
-            except:
-                print(f"Skipping question {obj['question_i']} for user {user_id} because it is out of order (already have {len(uid2interactions[user_id])} interactions).")
-                continue
+            uid2interactions[user_id].append(obj)
+
     print(f"Loaded interaction data from PythonAnywhere logs for {len(uid2interactions)} users.")
     print("-"*100)
-    pdb.set_trace()
 
+    uid2structureddata = defaultdict(dict)
+    for uid, interactions in uid2interactions.items():
+        for i in interactions:
+            if 'pre_survey' in i:
+                uid2structureddata[uid]['pre_survey'] = i
+                uid2structureddata[uid]['highlighted'] = {'tlx': {}, 'interactions': []}
+                uid2structureddata[uid]['non-highlighted'] = {'tlx': {}, 'interactions': []}
+            if 'tlx' in i:
+                uid2structureddata[uid][i['condition']]['tlx'] = i
+            if 'question_i' in i:
+                uid2structureddata[uid][i['condition']]['interactions'].append(i)
+            if 'qualitative' in i:
+                uid2structureddata[uid]['qualitative'] = i
+        print(f"User {uid} has {len(interactions)} entries.")
+
+    pdb.set_trace()
+    
     output_data = {}
     for s in submissions:
         uid = s['participant_id']
@@ -138,32 +164,24 @@ if __name__ == '__main__':
             print(f"UID: {uid} was returned.")
             print("-"*100)
             continue
+        if s['status'] == 'ACTIVE':
+            print(f"UID: {uid} is active.")
+            print("-"*100)
+            continue
 
         try:
-            assert uid in uid2interactions
+            assert uid in uid2structureddata
         except:
             print(f"Interaction data not found in PythonAnywhere logs for User {uid}.")
             print('-'*100)
             #pdb.set_trace()
             continue
-        
-        balance = round(uid2interactions[uid][-1]['user_balance_post_interaction'], 2)
-        interactions = uid2interactions[uid]
-        accuracy_answeronly = len([x for x in interactions if x['user_is_correct']['answeronly']]) / len(interactions)
-        accuracy_withexplanation = len([x for x in interactions if x['user_is_correct']['withexplanation']]) / len(interactions)
-        accuracy_withexplanationquality = len([x for x in interactions if x['user_is_correct']['withexplanationquality']]) / len(interactions)
-        num_exits = sum([x['count_exited_page'] for x in interactions])
-        interaction_summary = {
-            'balance': balance,
-            'accuracy_answeronly': accuracy_answeronly,
-            'accuracy_withexplanation': accuracy_withexplanation,
-            'accuracy_withexplanationquality': accuracy_withexplanationquality,
-            'num_exits': num_exits
-        }
+
+        interaction_summary = get_user_summary(uid2structureddata[uid])
 
         output_data[uid] = copy.deepcopy(s)
         output_data[uid]['interaction_summary'] = interaction_summary
-        output_data[uid]['interactions'] = interactions    
+        output_data[uid]['interaction_data'] = uid2structureddata[uid]
         if s['status'] in ['APPROVED', 'REJECTED']:
             display_interaction_summary(uid, interaction_summary)
             print(f"Already {s['status']}.")
@@ -175,9 +193,9 @@ if __name__ == '__main__':
             print(f"UID: {uid} is {s['status'].lower()}.")
             display_interaction_summary(uid, interaction_summary)
             try:
-                assert len(interactions) == 30
+                assert len(uid2interactions[uid]) == 24
             except:
-                print(f"Number of interactions is {len(interactions)}")
+                print(f"Number of interactions is {len(uid2interactions[uid])}.")
                 pdb.set_trace()
                 print("-"*100)
                 continue
@@ -185,15 +203,8 @@ if __name__ == '__main__':
             while True:
                 choice = input(f"(A)pprove, (R)eject, (S)kip: ")
                 if choice == 'A':
-                    while True:
-                        pay_bonus = input(f"Award bonus of ${balance:.2f} to {uid}? Y/N: ")
-                        if pay_bonus == 'Y':
-                            out = approve_and_pay_bonuses(args.study_id, s['id'], uid, balance)
-                            output_data[uid]['status'] = 'APPROVED'
-                            break
-                        elif pay_bonus == 'N':
-                            break
-
+                    out = approve_and_pay_bonuses(args.study_id, s['id'], uid)
+                    output_data[uid]['status'] = 'APPROVED'
                     break
                 elif choice == 'R':
                     output_data[uid]['status'] = 'REJECTED'
@@ -205,6 +216,7 @@ if __name__ == '__main__':
         print("-"*100)
         #pdb.set_trace()
 
+    print(f"Saving data for {len(output_data)} users to {interaction_data_filename} and {batch_summaries_filename}.")
     # Create parent directory if it doesn't exist
     os.makedirs(os.path.dirname(interaction_data_filename), exist_ok=True)
     json.dump(output_data, open(interaction_data_filename, 'w'), indent=2)
@@ -212,11 +224,11 @@ if __name__ == '__main__':
     #print(f"\n\nProlific ID{' '*25}\tBalance\tFalseAccepts\tFalseRejects\t# exits{' '*5}\t# of max bets\tAvg bet value")
     os.makedirs(os.path.dirname(batch_summaries_filename), exist_ok=True)
     f = open(batch_summaries_filename, 'w')
-    f.write(f"Prolific ID\tSession ID\tBalance\tAccAnswerOnly\tAccWithExpl\tAccWithExplQuality\t# exits\tStatus\n")
+    f.write(f"Prolific ID\tSession ID\tlatexExp\tlatexFreq\tchatbotFreq\tKeysPressedHL\tKeysPressedNH\tAvgTimeHL\tAvgTimeNH\tUniqueTLXHL\tUniqueTLXNH\t# of interactions HL\t# of interactions NH\tStatus\n")
     for o in output_data:
         s = output_data[o]['interaction_summary']
         if output_data[o]['status'] in ['APPROVED', 'REJECTED']:
-            f.write(f"{o}\t{output_data[o]['id']}\t${s['balance']:.2f}\t{s['accuracy_answeronly']:.4f}\t{s['accuracy_withexplanation']:.4f}\t{s['accuracy_withexplanationquality']:.4f}\t{s['num_exits']}\t{output_data[o]['status']}\n")
+            f.write(f"{o}\t{output_data[o]['id']}\t{s['pre_survey']['latexExperience']}\t{s['pre_survey']['latexFrequency']}\t{s['pre_survey']['chatbotFrequency']}\t{s['highlighted']['keys_pressed']}\t{s['non-highlighted']['keys_pressed']}\t{s['highlighted']['average_time']:.2f}\t{s['non-highlighted']['average_time']:.2f}\t{s['highlighted']['unique_tlx']}\t{s['non-highlighted']['unique_tlx']}\t{len(output_data[o]['interaction_data']['highlighted']['interactions'])}\t{len(output_data[o]['interaction_data']['non-highlighted']['interactions'])}\t{output_data[o]['status']}\n")
     f.close()
 
     # Read the tsv file into pandas dataframe and print 
