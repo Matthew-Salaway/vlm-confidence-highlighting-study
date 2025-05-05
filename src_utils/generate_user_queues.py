@@ -5,18 +5,20 @@ import os
 
 # Argument parser
 args = ArgumentParser()
-args.add_argument("-d", "--data", default="../data/sample_data.json")
-args.add_argument("-n", "--name", default="fm2_llama3.1_8b")
-args.add_argument("-i", "--num_instances_per_queue", type=int, default=50)
-args.add_argument("-q", "--num_queues", type=int, default=4)  # Ensure num_queues is a multiple of 4
-args.add_argument("-s", "--seed", type=int, default=27)  # Set default seed to 14
+args.add_argument("-d", "--data", default="data\Qwen_ocr_STUDY_qid_20_specific_qids_5_4_25.json")
+args.add_argument("-n", "--name", default="smartqueue")
+args.add_argument("-i", "--num_instances_per_queue", type=int, default=20)
+args.add_argument("-q", "--num_queues", type=int, default=20)  # Ensure num_queues is a multiple of 4
+args.add_argument("-s", "--seed", type=int, default=6)  # Set default seed to 14
 args = args.parse_args()
 
 # Set deterministic seed
-random.seed(27)
+random.seed(args.seed)
 
 # Load data from JSON
-data = json.load(open(args.data))
+with open(args.data, "r", encoding="utf-8") as f:
+    data = json.load(f)
+
 data = data[:args.num_instances_per_queue]
 # Shuffle the data once globally
 random.shuffle(data)
@@ -59,8 +61,9 @@ for i in range(args.num_queues // 4):
 
     # Save each JSON variant
     for data_json, filename in json_variants:
-        with open(os.path.join(out_dirname, filename), "w") as f:
-            json.dump(data_json, f, indent=2)
+        with open(os.path.join(out_dirname, filename), "w", encoding="utf-8") as f:
+          json.dump(data_json, f, indent=2, ensure_ascii=False)
+
 
     print(f"Generated {i*4:03}.json to {i*4+3:03}.json")
 

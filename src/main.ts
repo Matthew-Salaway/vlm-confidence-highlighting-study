@@ -286,11 +286,11 @@ function showPracticeRound(onComplete: () => void) {
     if (condition === "highlighted"){
         let additionalText = "";
         if (practiceIndex === 0) {
-        additionalText = "The model is uncertain about the text '\\boxed'";
+        additionalText = "The model is uncertain about the characters 'E', 'F', and 'D' ";
         } else if (practiceIndex === 1) {
-        additionalText = "the model shows no uncertainty (i.e. it is confident about the full transcription)";
-        } else if (practiceIndex === 2) {
         additionalText = "The model is uncertain about three characters";
+        } else if (practiceIndex === 2) {
+        additionalText = "the model shows no uncertainty (i.e. it is confident about the full transcription)";
         }
         $("#practice_predicted_text").append(
         `<span style="font-style: italic; margin-left: 20px; vertical-align: middle;">${additionalText}</span>`

@@ -15,7 +15,7 @@ function fixSpacing(input: string): string {
   // Add a space before and after every plus, minus, and equal sign.
   output = output.replace(/([\+\-\=])/g, " $1 ");
   // want a space after div, approx, and times only if not followed by a space
-  output = output.replace(/(\\?)(div|approx|times|Delta)(?!\s)/g, "$1$2 ");
+  output = output.replace(/(\\?)(div|approx|times|Delta|bot|angle)(?!\s)/g, "$1$2 ");
   // Collapse multiple spaces into one.
   output = output.replace(/\s+/g, " ");
   return output;
